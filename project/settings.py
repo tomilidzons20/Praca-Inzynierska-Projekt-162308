@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'debug_toolbar',
 
     # Local
     'car_rental.apps.CarRentalConfig',
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 AUTHENTICATION_BACKENDS = [
@@ -130,6 +132,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_files/')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR / 'static'),
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -137,3 +143,16 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+    'localhost',
+]
+
+ACCOUNT_FORMS = {
+    'login': 'accounts.forms.CustomLoginForm',
+    'signup': 'accounts.forms.CustomSignupForm',
+    'change_password': 'accounts.forms.CustomChangePasswordForm',
+    'reset_password': 'accounts.forms.CustomResetPasswordForm',
+    'add_email': 'accounts.forms.CustomEmailForm',
+}

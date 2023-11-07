@@ -2,33 +2,51 @@
 {% load i18n %}
 {% load allauth account socialaccount %}
 {% block head_title %}
-    {% trans "Sign In" %}
+  {% trans "Sign In" %}
 {% endblock head_title %}
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign In" %}
-    {% endelement %}
-    <p>
-        {% blocktrans %}If you have not created an account yet, then please
-    <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
-    </p>
+  <div class="d-flex justify-content-center align-items-center">
     {% url 'account_login' as login_url %}
-    {% element form form=form method="post" action=login_url tags="entrance,login" %}
-        {% slot body %}
-            {% csrf_token %}
-            {% element fields form=form unlabeled=True %}
-            {% endelement %}
-            {% if redirect_field_value %}
-                <input type="hidden"
-                       name="{{ redirect_field_name }}"
-                       value="{{ redirect_field_value }}" />
-            {% endif %}
-        {% endslot %}
-        {% slot actions %}
-            {% element button type="submit" tags="prominent,login" %}
-                {% trans "Sign In" %}
-            {% endelement %}
-        {% endslot %}
+    {% element form form=form method="post" action=login_url tags="entrance,login" class="my-5" %}
+      {% slot body %}
+        {% element h1 %}
+          {% trans "Sign In" %}
+        {% endelement %}
+        {% csrf_token %}
+        <!-- {% element fields form=form unlabeled=True %}
+        {% endelement %} -->
+        {{ form.non_field_errors }}
+        {{ form.login.errors }}
+        <div class="form-floating">
+          {{ form.login }}
+          {{ form.login.label_tag }}
+        </div>
+        {{ form.password.errors }}
+        <div class="form-floating my-3">
+          {{ form.password }}
+          {{ form.password.label_tag }}
+        </div>
+        {{ form.remember.errors }}
+        <div class="form-check text-start mb-3">
+          {{ form.remember }}
+          {{ form.remember.label_tag }}
+        </div>
+        {% if redirect_field_value %}
+          <input type="hidden"
+                  name="{{ redirect_field_name }}"
+                  value="{{ redirect_field_value }}" />
+        {% endif %}
+      {% endslot %}
+      {% slot actions %}
+        {% element button type="submit" tags="prominent,login" class="btn btn-primary w-100 py-2" %}
+          {% trans "Sign In" %}
+        {% endelement %}
+        <p class="my-3">
+          {% blocktrans %}If you have not created an account yet, then please
+          <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
+        </p>
+      {% endslot %}
     {% endelement %}
-    {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+  </div>
+  {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
 {% endblock content %}

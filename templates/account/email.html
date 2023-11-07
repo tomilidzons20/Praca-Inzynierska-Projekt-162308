@@ -1,90 +1,93 @@
 {% extends "account/base_manage_email.html" %}
 {% load allauth i18n %}
 {% block head_title %}
-    {% trans "Email Addresses" %}
+  {% trans "Email Addresses" %}
 {% endblock head_title %}
 {% block content %}
+<div class="d-flex justify-content-center align-items-center">
+  <div class="col-sm-12 col-md-8 my-3">
     {% element h1 %}
-        {% trans "Email Addresses" %}
+      {% trans "Email Addresses" %}
     {% endelement %}
     {% if emailaddresses %}
-        <p>{% trans 'The following email addresses are associated with your account:' %}</p>
-        {% url 'account_email' as email_url %}
-        {% element form form=form action=email_url method="post" %}
-            {% slot body %}
-                {% csrf_token %}
-                {% for radio in emailaddress_radios %}
-                    {% with emailaddress=radio.emailaddress %}
-                        {% element field type="radio" checked=radio.checked name="email" value=emailaddress.email id=radio.id %}
-                            {% slot label %}
-                                {{ emailaddress.email }}
-                                {% if emailaddress.verified %}
-                                    {% element badge tags="success,email,verified" %}
-                                        {% translate "Verified" %}
-                                    {% endelement %}
-                                {% else %}
-                                    {% element badge tags="warning,email,unverified" %}
-                                        {% translate "Unverified" %}
-                                    {% endelement %}
-                                {% endif %}
-                                {% if emailaddress.primary %}
-                                    {% element badge tags="email,primary" %}
-                                        {% translate "Primary" %}
-                                    {% endelement %}
-                                {% endif %}
-                            {% endslot %}
-                        {% endelement %}
-                    {% endwith %}
-                {% endfor %}
-            {% endslot %}
-            {% slot actions %}
-                {% element button type="submit" name="action_primary" %}
-                    {% trans 'Make Primary' %}
-                {% endelement %}
-                {% element button tags="secondary" type="submit" name="action_send" %}
-                    {% trans 'Re-send Verification' %}
-                {% endelement %}
-                {% element button tags="danger,delete" type="submit" name="action_remove" %}
-                    {% trans 'Remove' %}
-                {% endelement %}
-            {% endslot %}
-        {% endelement %}
+      <p>{% trans 'The following email addresses are associated with your account:' %}</p>
+      {% url 'account_email' as email_url %}
+      {% element form form=form action=email_url method="post" %}
+        {% slot body %}
+          {% csrf_token %}
+          {% for radio in emailaddress_radios %}
+            {% with emailaddress=radio.emailaddress %}
+              {% element field type="radio" checked=radio.checked name="email" value=emailaddress.email id=radio.id %}
+                {% slot label %}
+                  {{ emailaddress.email }}
+                  {% if emailaddress.verified %}
+                    {% element badge tags="success,email,verified" %}
+                      {% translate "Verified" %}
+                    {% endelement %}
+                  {% else %}
+                    {% element badge tags="warning,email,unverified" %}
+                      {% translate "Unverified" %}
+                    {% endelement %}
+                  {% endif %}
+                  {% if emailaddress.primary %}
+                    {% element badge tags="email,primary" %}
+                      {% translate "Primary" %}
+                    {% endelement %}
+                  {% endif %}
+                {% endslot %}
+              {% endelement %}
+            {% endwith %}
+          {% endfor %}
+        {% endslot %}
+        {% slot actions %}
+          <div class="d-flex gap-2 my-3">
+            {% element button type="submit" name="action_primary" class="btn btn-secondary w-100 py-2 mb-3" %}
+              {% trans 'Make Primary' %}
+            {% endelement %}
+            {% element button tags="secondary" type="submit" name="action_send" class="btn btn-secondary w-100 py-2 mb-3" %}
+              {% trans 'Re-send Verification' %}
+            {% endelement %}
+            {% element button tags="danger,delete" type="submit" name="action_remove" class="btn btn-secondary w-100 py-2 mb-3" %}
+              {% trans 'Remove' %}
+            {% endelement %}
+          </div>
+        {% endslot %}
+      {% endelement %}
     {% else %}
-        {% include "account/snippets/warn_no_email.html" %}
+      {% include "account/snippets/warn_no_email.html" %}
     {% endif %}
     {% if can_add_email %}
-        {% element h2 %}
-            {% trans "Add Email Address" %}
-        {% endelement %}
-        {% url 'account_email' as action_url %}
-        {% element form form=form method="post" action=action_url %}
-            Hoi bef bod
-            {% slot body %}
-                {% csrf_token %}
-                {% element fields form=form %}
-                {% endelement %}
-            {% endslot %}
-            befac
-            {% slot actions %}
-                {% element button name="action_add" type="submit" %}
-                    {% trans "Add Email" %}
-                {% endelement %}
-            {% endslot %}
-        {% endelement %}
+      {% element h2 %}
+        {% trans "Add Email Address" %}
+      {% endelement %}
+      {% url 'account_email' as action_url %}
+      {% element form form=form method="post" action=action_url %}
+        {% slot body %}
+          {% csrf_token %}
+          {% element fields form=form %}
+          {% endelement %}
+        {% endslot %}
+        {% slot actions %}
+          {% element button name="action_add" type="submit" class="btn btn-primary w-100 py-2 mb-3" %}
+            {% trans "Add Email" %}
+          {% endelement %}
+        {% endslot %}
+      {% endelement %}
     {% endif %}
+  </div>
 {% endblock content %}
 {% block extra_body %}
-    <script type="text/javascript">
-(function() {
-  var message = "{% trans 'Do you really want to remove the selected email address?' %}";
-  var actions = document.getElementsByName('action_remove');
-  if (actions.length) {
-    actions[0].addEventListener("click", function(e) {
-      if (! confirm(message)) {
-        e.preventDefault();
-      }
-    });
-  }
-})();
-    </script>
+  <script type="text/javascript">
+    (function() {
+    var message = "{% trans 'Do you really want to remove the selected email address?' %}";
+    var actions = document.getElementsByName('action_remove');
+    if (actions.length) {
+      actions[0].addEventListener("click", function(e) {
+        if (! confirm(message)) {
+          e.preventDefault();
+        }
+      });
+    }
+    })();
+  </script>
 {% endblock extra_body %}
