@@ -1,6 +1,8 @@
 from django.contrib import admin
 
-from .models import Car, CarMaintenance, CarRental
+from .models import Car
+from .models import CarMaintenance
+from .models import CarRental
 
 
 @admin.register(Car)
