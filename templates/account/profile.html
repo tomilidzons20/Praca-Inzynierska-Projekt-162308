@@ -1,0 +1,101 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n static %}
+{% load allauth account socialaccount %}
+
+{% block head_title %}
+  {% trans "Profile" %}
+{% endblock head_title %}
+
+{% block content %}
+  <div class="d-flex justify-content-center align-items-center">
+    {% element form method="post" class="my-5 w-100" enctype="multipart/form-data" %}
+    
+      {% slot body %}
+        {% csrf_token %}
+
+        {% element h1 %}
+          {% trans "Profile" %}
+        {% endelement %}
+
+        <div class="d-flex justify-content-center mb-5">
+          <div class="row w-100 gy-3">
+
+            <div class="col-12 col-md-6">
+
+              <div class="bg-body-secondary rounded p-2">
+                <div class="row gy-3">
+                  <div class="col-12 col-md-4 h-100">
+                    {% if user.profile_picture %}
+                      <img src="{{ user.profile_picture.url }}" alt="Profile picture" class="img-thumbnail" width="150" height="150">
+                    {% else %}
+                      <img src="{% static 'img/profile_pictures/default_profile_pic.png' %}" alt="Profile picture" class="img-thumbnail" width="150" height="150">
+                    {% endif %}
+                  </div>
+  
+                  <div class="col-12 col-md-8 text-break">
+                    {{ form.profile_picture.label_tag }}
+                    {{ form.profile_picture }}
+                    {{ form.profile_picture.errors }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-body-secondary rounded p-2 mt-3">
+                <div class="text-center col-12 col-md-6 offset-md-3">
+                  <a href="{% url 'account_email' %}" class="btn btn-primary w-100">{% trans "Change Email" %}</a>
+                </div>
+                <div class="text-center col-12 col-md-6 offset-md-3 mt-3">
+                  <a href="{% url 'account_change_password' %}" class="btn btn-primary w-100">{% trans "Change Password" %}</a>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="bg-body-secondary rounded p-2">
+                {{ form.non_field_errors }}
+                {{ form.login.errors }}
+                <div class="form-floating">
+                  {{ form.username }}
+                  {{ form.username.label_tag }}
+                </div>
+
+                {{ form.first_name.errors }}
+                <div class="form-floating my-3">
+                  {{ form.first_name }}
+                  {{ form.first_name.label_tag }}
+                </div>
+
+                {{ form.last_name.errors }}
+                <div class="form-floating my-3">
+                  {{ form.last_name }}
+                  {{ form.last_name.label_tag }}
+                </div>
+
+                {{ form.phone_number.errors }}
+                <div class="form-floating my-3">
+                  {{ form.phone_number }}
+                  {{ form.phone_number.label_tag }}
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        
+        {% endslot %}
+        
+        {% slot actions %}
+        
+        <div class="col-12 col-md-6 offset-md-3 text-center">
+          {% element button type="submit" class="btn btn-primary w-100 py-2" %}
+            {% trans "Confirm changes" %}
+          {% endelement %}
+        </div>
+        
+        {% endslot %}
+
+    {% endelement %}
+  </div>
+{% endblock content %}

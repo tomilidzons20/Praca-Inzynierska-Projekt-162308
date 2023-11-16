@@ -19,6 +19,9 @@ class AdminCustomUser(UserAdmin):
              'email',
              'phone_number',
         )}),
+        (_('Profile'), {'fields': (
+            'profile_picture',
+        )}),
         (_('Permissions'), {'fields': (
              'is_active',
              'is_staff',

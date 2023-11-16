@@ -1,6 +1,7 @@
 {% load allauth %}
 <form method="{{ attrs.method }}" action="{{ attrs.action }}" 
-    {% if attrs.class %} class="{{ attrs.class }}" {% endif %}>
+    {% if attrs.class %} class="{{ attrs.class }}" {% endif %}
+    {% if attrs.enctype %} enctype="multipart/form-data" {% endif %}>
     {% slot body %}
     {% endslot %}
     {% slot actions %}

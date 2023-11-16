@@ -8,6 +8,11 @@ class CustomUser(AbstractUser):
     phone_number = PhoneNumberField(
         blank=True,
     )
+    profile_picture = models.ImageField(
+        upload_to='uploads/img/profile_pictures',
+        blank=True,
+        null=True,
+    )
 
     def __str__(self):
         return f'{self.first_name} {self.last_name} ({self.pk})'
