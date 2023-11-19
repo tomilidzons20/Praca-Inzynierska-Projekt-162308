@@ -53,6 +53,9 @@ class ProfileForm(forms.ModelForm):
             'phone_number',
             'profile_picture',
         ]
+        widgets = {
+            'profile_picture': forms.FileInput(),
+        }
 
 
 
