@@ -160,3 +160,5 @@ ACCOUNT_FORMS = {
     'reset_password': 'accounts.forms.CustomResetPasswordForm',
     'add_email': 'accounts.forms.CustomEmailForm',
 }
+
+PHONENUMBER_DEFAULT_REGION = 'PL'

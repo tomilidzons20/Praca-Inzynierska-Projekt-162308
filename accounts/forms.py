@@ -6,6 +6,7 @@ from allauth.account.forms import SignupForm
 
 from car_rental.utils import set_form_styles
 from .models import CustomUser
+from .models import Address
 from django import forms
 
 
@@ -58,4 +59,14 @@ class ProfileForm(forms.ModelForm):
         }
 
 
+class AddressForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        set_form_styles(self.fields)
 
+    class Meta:
+        model = Address
+        fields = '__all__'
+        exclude = [
+            'account',
+        ]

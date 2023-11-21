@@ -1,0 +1,77 @@
+{% extends 'car_rental/layouts/dashboard_base.html' %}
+{% load i18n allauth static %}
+
+{% block head_title %}
+  {% trans "Cars" %}
+{% endblock head_title %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-12 col-md-3 my-3">
+      <a type="button" class="btn btn-primary w-100" href="{% url 'dashboard_car_create' %}">
+        {% trans "Add car" %}
+      </a>
+    </div>
+  </div>
+
+  <div class="bg-body-secondary rounded p-2 mb-5">
+    <div class="row row-cols-1 gy-2 mt-2">
+      {% for car in object_list %}
+        <div class="col">
+          <div class="bg-body-tertiary rounded p-2 mx-2">
+            <div class="row">
+              <!-- Info section -->
+              <div class="col-10">
+                {% element h3 %}
+                  {{ car.brand }} {{ car.model }}
+                {% endelement h3 %}
+                <div class="d-flex flex-row gap-2 text-center">
+                  <p class="rounded-pill bg-primary px-2 col" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Year of production' %}">
+                    {{ car.production_year }}
+                  </p>
+                  <p class="rounded-pill bg-secondary px-2 col" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Engine capacity' %}">
+                    {{ car.engine_capacity }}
+                  </p>
+                  <p class="rounded-pill bg-secondary px-2 col" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Engine power' %}">
+                    {{ car.engine_power}}
+                  </p>
+                  <p class="rounded-pill bg-secondary px-2 col" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Mileage' %}">
+                    {{ car.mileage }} km
+                  </p>
+                  <p class="rounded-pill 
+                    {% if car.status == 'AV' %} bg-success 
+                    {% elif car.status == 'UN' %} bg-danger 
+                    {% elif car.status == 'MA' %} bg-warning text-black
+                    {% elif car.status == 'RE' %} bg-info text-black
+                    {% endif %} px-2 col"
+                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Status' %}">
+                    {{ car.get_status_display }}
+                  </p>
+                  <div class="col-4"></div>
+                </div>
+              </div>
+
+              <!-- Picture section -->
+              <div class="col-2">
+                {% if car.car_picture %}
+                  <img src="{{ car.car_picture.url }}" alt="Profile picture" class="img-thumbnail" width="150" height="150">
+                {% else %}
+                  <img src="{% static 'img/car_pictures/default_car.png' %}" alt="Profile picture" class="img-thumbnail" width="150" height="150">
+                {% endif %}
+              </div>
+
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    {% include 'car_rental/dashboard/pagination.html' %}
+  </div>
+{% endblock content %}
+
+{% block extra_body %}
+<script>
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
+{% endblock extra_body %}

@@ -18,17 +18,23 @@
     </style>
   </head>
 
-  <body class="bg-body-tertiary">
+  <body class="bg-body-tertiary" style="padding-top: 56px;">
     {% block body %}
       <!-- Navbar -->
+      {% include 'allauth/layouts/navbar_top.html' %}
       {% include 'car_rental/layouts/dashboard_sidebar.html' %}
-      <div class="container h-100">
-        {% block content %}
-        {% endblock content %}
+      <div class="h-100 pt-5 pe-5" style="padding-left: 300px;">
+        <div class="pb-2">
+          {% block content %}
+          {% endblock content %}
+        </div>
       </div>
     {% endblock body %}
-    <script src="{% static 'bootstrap/js/popper.min.js' %}"></script>
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+      <script src="{% static 'bootstrap/js/popper.min.js' %}"></script>
+      <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+      <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+      
     {% block extra_body %}
     {% endblock extra_body %}
   </body>

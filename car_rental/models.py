@@ -46,11 +46,15 @@ class Car(models.Model):
         _('Status'),
         choices=StatusChoices.choices,
         default=StatusChoices.UNAVAILABLE,
-        blank=True,
     )
     production_year = models.PositiveIntegerField(
         _('Production year'),
         validators=[validate_year]
+    )
+    car_picture = models.ImageField(
+        upload_to='uploads/img/car_pictures',
+        blank=True,
+        null=True,
     )
 
     def __str__(self):

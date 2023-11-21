@@ -47,6 +47,11 @@
                 <div class="text-center col-12 col-md-6 offset-md-3 mt-3">
                   <a href="{% url 'account_change_password' %}" class="btn btn-primary w-100">{% trans "Change Password" %}</a>
                 </div>
+                <div class="text-center col-12 col-md-6 offset-md-3 mt-3">
+                  <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#address-modal">
+                    {% trans "Change Address" %}
+                  </button>
+                </div>
               </div>
 
             </div>
@@ -97,5 +102,34 @@
         {% endslot %}
 
     {% endelement %}
-  </div>
+    <div class="modal fade" id="address-modal" tabindex="-1" aria-labelledby="address-modal-label" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+
+            <h1 class="modal-title fs-5" id="address-modal-label">{% trans "Change Address" %}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+          </div>
+
+          <form data-url="{% url 'update_address' %}" method="post" id="address-form">
+            {% csrf_token %}
+            <div class="modal-body">
+              {{ address_form.as_p }}
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Close" %}</button>
+              <button type="submit" class="btn btn-primary">{% trans "Save changes" %}</button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
 {% endblock content %}
+
+{% block extra_body %}
+<script src="{% static 'js/account/address-form-ajax.js' %}"></script>
+{% endblock extra_body %}
