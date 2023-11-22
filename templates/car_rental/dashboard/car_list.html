@@ -5,6 +5,14 @@
   {% trans "Cars" %}
 {% endblock head_title %}
 
+{% block extra_head %}
+<style>
+  .info-pill {
+    min-width: fit-content;
+  }
+</style>
+{% endblock extra_head %}
+
 {% block content %}
   <div class="row">
     <div class="col-12 col-md-3 my-3">
@@ -17,28 +25,32 @@
   <div class="bg-body-secondary rounded p-2 mb-5">
     <div class="row row-cols-1 gy-2 mt-2">
       {% for car in object_list %}
-        <div class="col">
-          <div class="bg-body-tertiary rounded p-2 mx-2">
+        <a class="col text-decoration-none" href="{% url 'dashboard_car_update' car.pk %}">
+          <div class="bg-body-tertiary rounded p-2 mx-2 text-white">
             <div class="row">
               <!-- Info section -->
-              <div class="col-10">
-                {% element h3 %}
+              <div class="col-9">
+                <h3 class="fw-normal mb-3">
                   {{ car.brand }} {{ car.model }}
-                {% endelement h3 %}
+                </h3>
                 <div class="d-flex flex-row gap-2 text-center">
-                  <p class="rounded-pill bg-primary px-2 col" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Year of production' %}">
+                  <p class="rounded-pill info-pill bg-primary px-2 col" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-title="{% trans 'Year of production' %}">
                     {{ car.production_year }}
                   </p>
-                  <p class="rounded-pill bg-secondary px-2 col" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Engine capacity' %}">
+                  <p class="rounded-pill info-pill bg-secondary px-2 col" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-title="{% trans 'Engine capacity' %}">
                     {{ car.engine_capacity }}
                   </p>
-                  <p class="rounded-pill bg-secondary px-2 col" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Engine power' %}">
+                  <p class="rounded-pill info-pill bg-secondary px-2 col" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-title="{% trans 'Engine power' %}">
                     {{ car.engine_power}}
                   </p>
-                  <p class="rounded-pill bg-secondary px-2 col" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Mileage' %}">
+                  <p class="rounded-pill info-pill bg-secondary px-2 col" data-bs-toggle="tooltip" data-bs-placement="top"
+                    data-bs-title="{% trans 'Mileage' %}">
                     {{ car.mileage }} km
                   </p>
-                  <p class="rounded-pill 
+                  <p class="rounded-pill info-pill
                     {% if car.status == 'AV' %} bg-success 
                     {% elif car.status == 'UN' %} bg-danger 
                     {% elif car.status == 'MA' %} bg-warning text-black
@@ -52,17 +64,17 @@
               </div>
 
               <!-- Picture section -->
-              <div class="col-2">
+              <div class="col-3 d-flex justify-content-end">
                 {% if car.car_picture %}
-                  <img src="{{ car.car_picture.url }}" alt="Profile picture" class="img-thumbnail" width="150" height="150">
+                  <img src="{{ car.car_picture.url }}" alt="Profile picture" class="img-thumbnail" width="150px" height="150px" style="min-width: 150px;">
                 {% else %}
-                  <img src="{% static 'img/car_pictures/default_car.png' %}" alt="Profile picture" class="img-thumbnail" width="150" height="150">
+                  <img src="{% static 'img/car_pictures/default_car.png' %}" alt="Profile picture" class="img-thumbnail" width="150px" height="150px" style="min-width: 150px;">
                 {% endif %}
               </div>
 
             </div>
           </div>
-        </div>
+        </a>
       {% endfor %}
     </div>
     {% include 'car_rental/dashboard/pagination.html' %}

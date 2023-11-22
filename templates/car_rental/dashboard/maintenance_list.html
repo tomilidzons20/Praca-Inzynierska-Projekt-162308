@@ -1,0 +1,12 @@
+{% extends 'car_rental/layouts/dashboard_base.html' %}
+{% load i18n allauth static %}
+
+{% block head_title %}
+  {% trans "Cars" %}
+{% endblock head_title %}
+
+{% block content %}
+  {% for maintenance in object_list %}
+    <p>{{ maintenance }}</p>
+  {% endfor %}
+{% endblock content %}

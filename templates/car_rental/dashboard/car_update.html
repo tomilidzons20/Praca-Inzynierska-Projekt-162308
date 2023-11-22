@@ -1,0 +1,111 @@
+{% extends 'car_rental/layouts/dashboard_base.html' %}
+{% load i18n allauth static %}
+
+{% block head_title %}
+  {% trans "Car update" %}
+{% endblock head_title %}
+
+{% block content %}
+<div class="bg-body-secondary rounded p-2 col-12 col-md-10 offset-md-1">
+  <form method="POST" class="my-3 px-2 w-100" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h3 class="fw-normal mb-3">
+      {{ object.brand }} {{ object.model }}
+    </h3>
+    <div class="row">
+      <div class="col-5">
+        {{ form.non_field_errors }}
+        <div class="d-flex justify-content-center py-3">
+          {% if object.car_picture %}
+            <img src="{{ object.car_picture.url }}" alt="Profile picture" class="img-thumbnail" width="150px" height="150px" style="min-width: 150px;">
+          {% else %}
+            <img src="{% static 'img/car_pictures/default_car.png' %}" alt="Profile picture" class="img-thumbnail" width="150px" height="150px" style="min-width: 150px;">
+          {% endif %}
+        </div>
+        <div class="mb-3">
+          {{ form.car_picture.label_tag }}
+          {{ form.car_picture }}
+          {{ form.car_picture.errors }}
+        </div>
+        {{ form.brand.errors }}
+        <div class="form-floating mb-3">
+          {{ form.brand }}
+          {{ form.brand.label_tag }}
+        </div>
+        {{ form.model.errors }}
+        <div class="form-floating mb-3">
+          {{ form.model }}
+          {{ form.model.label_tag }}
+        </div>
+        {{ form.engine_capacity.errors }}
+        <div class="form-floating mb-3">
+          {{ form.engine_capacity }}
+          {{ form.engine_capacity.label_tag }}
+        </div>
+        {{ form.engine_power.errors }}
+        <div class="form-floating mb-3">
+          {{ form.engine_power }}
+          {{ form.engine_power.label_tag }}
+        </div>
+        {{ form.mileage.errors }}
+        <div class="form-floating mb-3">
+          {{ form.mileage }}
+          {{ form.mileage.label_tag }}
+        </div>
+        {{ form.production_year.errors }}
+        <div class="form-floating mb-3">
+          {{ form.production_year }}
+          {{ form.production_year.label_tag }}
+        </div>
+        {{ form.status.errors }}
+        <div class="form-floating mb-3">
+          {{ form.status }}
+          {{ form.status.label_tag }}
+        </div>
+      </div>
+      <div class="col-7">
+        <h3 class="fw-normal mb-3">
+          {% trans 'Maintenance' %}
+        </h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">{% trans 'Date of repair' %}</th>
+              <th scope="col">{% trans 'Cost of repair' %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for maintenance in maintenance_list %}
+              <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ maintenance.date_of_repair }}</td>
+                <td>{{ maintenance.cost_of_repair.amount }} {{ maintenance.cost_of_repair.currency }}</td>
+              </tr>
+            {% endfor %}
+            <tr>
+              <th></th>
+              <td>{% trans 'Total' %}:</td>
+              <td>
+                {% if total_maintenance_cost %}
+                  {{ total_maintenance_cost }}
+                {% else %}
+                  0
+                {% endif %}
+                PLN</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="col-12 col-md-6 offset-md-3 text-center">
+      <button type="submit" class="btn btn-primary w-100">
+        {% trans "Confirm changes" %}
+      </button>
+    </div>
+
+  </form>
+</div>
+{% endblock content %}

@@ -7,14 +7,12 @@
 
 {% block content %}
 <div class="bg-body-secondary rounded p-2 col-12 col-md-8 offset-md-2">
-  {% element form method="post" class="my-3 px-2 w-100" enctype="multipart/form-data" %}
-
-  {% slot body %}
+  <form method="POST" class="my-3 px-2 w-100" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="">
-      {% element h1 %}
+      <h3 class="fw-normal mb-3">
         {% trans "Add car" %}
-      {% endelement %}
+      </h3>
       {{ form.non_field_errors }}
       
       <div class="mb-3">
@@ -57,16 +55,13 @@
         {{ form.status }}
         {{ form.status.label_tag }}
       </div>
-  {% endslot body %}
 
-  {% slot actions %}
     <div class="col-12 col-md-6 offset-md-3 text-center">
-      {% element button type="submit" class="btn btn-primary w-100" %}
+      <button type="submit" class="btn btn-primary w-100">
         {% trans "Confirm changes" %}
-      {% endelement %}
+      </button>
     </div>
-  {% endslot actions %}
 
-  {% endelement %}
+  </form>
 </div>
 {% endblock content %}

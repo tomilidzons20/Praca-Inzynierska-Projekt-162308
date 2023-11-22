@@ -14,4 +14,5 @@ class CarForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'status': forms.Select(attrs={'class': 'form-select'}),
+            'car_picture': forms.FileInput(),
         }

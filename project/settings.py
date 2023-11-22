@@ -125,6 +125,9 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+CURRENCIES = 'PLN'
+CURRENCY_CHOICES = [('PLN', 'Polish Zloty')]
+
 USE_TZ = True
 
 
