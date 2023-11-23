@@ -82,35 +82,33 @@
       <h3 class="fw-normal mb-3">
         {% trans 'Maintenance' %}
       </h3>
-      <table class="table" id="maintenance-table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">{% trans 'Date of repair' %}</th>
-            <th scope="col">{% trans 'Cost of repair' %}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for maintenance in maintenance_list %}
+      <div class="mb-3">
+        <table class="table w-100" id="maintenance-table">
+          <thead>
             <tr>
-              <th scope="row">{{ forloop.counter }}</th>
-              <td>{{ maintenance.date_of_repair }}</td>
-              <td>{{ maintenance.cost_of_repair.amount }} {{ maintenance.cost_of_repair.currency }}</td>
+              <th scope="col">#</th>
+              <th scope="col">{% trans 'Date of repair' %}</th>
+              <th scope="col">{% trans 'Cost of repair' %}</th>
             </tr>
-          {% endfor %}
-          <tr>
-            <th></th>
-            <td>{% trans 'Total' %}:</td>
-            <td>
-              {% if total_maintenance_cost %}
-                {{ total_maintenance_cost }}
-              {% else %}
-                0
-              {% endif %}
-              PLN</td>
-          </tr>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {% for maintenance in maintenance_list %}
+              <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ maintenance.date_of_repair }}</td>
+                <td>{{ maintenance.cost_of_repair.amount }} {{ maintenance.cost_of_repair.currency }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+          <tfoot>
+            <tr>
+                <th colspan="2" class="text-end">{% trans 'Total:' %}</th>
+                <th></th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
       <div>
         <h4 class="fw-normal mb-3">
           {% trans 'Add maintenance' %}
@@ -145,25 +143,26 @@
 {% endblock content %}
 
 {% block extra_body %}
-<script>
+<script src="{% static 'js/dashboard/car_update.js' %}"></script>
+<script type="text/javascript">
   $(document).on('submit', '#maintenance-form', (e) => {
-  e.preventDefault();
-  const form = $(e.currentTarget);
-  $.ajax({
-    type: 'POST',
-    url: form.attr('data-url'),
-    dataType: 'json',
-    data: {
-      'csrfmiddlewaretoken': '{{ csrf_token }}',
-      'car': '{{ object.id }}',
-      'date_of_repair': $('input[name=date_of_repair]').val(),
-      'cost_of_repair': $('input[name=cost_of_repair_0]').val()
-    },
-    success: function(data) {
-      form[0].reset();
-      $("#maintenance-table").load(location.href + " #maintenance-table");
-    },
+    e.preventDefault();
+    const form = $(e.currentTarget);
+    const table = $('#maintenance-table');
+    $.ajax({
+      type: 'POST',
+      url: form.attr('data-url'),
+      dataType: 'json',
+      data: {
+        'csrfmiddlewaretoken': '{{ csrf_token }}',
+        'car': '{{ object.id }}',
+        'date_of_repair': $('input[name=date_of_repair]').val(),
+        'cost_of_repair': $('input[name=cost_of_repair_0]').val()
+      },
+      success: function (data) {
+        location.reload();
+      },
+    });
   });
-});
 </script>
 {% endblock extra_body %}
