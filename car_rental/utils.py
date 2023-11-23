@@ -24,6 +24,12 @@ def set_form_styles(form_fields):
         'IntegerField': {
             'class': 'form-control',
         },
+        'DateField': {
+            'class': 'form-control',
+        },
+        'MoneyField': {
+            'class': 'form-control',
+        },
     }
 
     for _, field in form_fields.items():

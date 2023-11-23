@@ -10,6 +10,7 @@ from .models import Car
 from .models import CarMaintenance
 from .models import CarRental
 from .forms import CarForm
+from .forms import CarMaintenanceForm
 
 
 class HomeView(TemplateView):
@@ -47,11 +48,13 @@ class DashboardCarUpdateView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         maintenance_list = CarMaintenance.objects.filter(car=self.object.id)
-        context['maintenance_list'] = maintenance_list
         total_maintenance_cost = maintenance_list.aggregate(
             Sum('cost_of_repair')
         )['cost_of_repair__sum']
+
+        context['maintenance_list'] = maintenance_list
         context['total_maintenance_cost'] = total_maintenance_cost
+        context['maintenance_form'] = CarMaintenanceForm
         return context
 
 
@@ -60,3 +63,6 @@ class DashboardMaintenanceListView(ListView):
     model = CarMaintenance
     paginate_by = 10
     ordering = 'date_of_repair'
+
+
+

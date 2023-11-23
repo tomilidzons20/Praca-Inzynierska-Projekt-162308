@@ -71,7 +71,7 @@ class CarMaintenance(models.Model):
         verbose_name=_('Car'),
         on_delete=models.CASCADE,
     )
-    date_of_repair = models.DateTimeField(
+    date_of_repair = models.DateField(
         _('Date of repair'),
         default=timezone.now,
         blank=True,

@@ -1,19 +1,27 @@
 {% extends 'car_rental/layouts/dashboard_base.html' %}
-{% load i18n allauth static %}
+{% load i18n allauth static djmoney %}
 
 {% block head_title %}
   {% trans "Car update" %}
 {% endblock head_title %}
 
+{% block extra_head %}
+<style>
+  #id_cost_of_repair_1 {
+    display: none;
+  }
+</style>
+{% endblock extra_head %}
+
 {% block content %}
 <div class="bg-body-secondary rounded p-2 col-12 col-md-10 offset-md-1">
-  <form method="POST" class="my-3 px-2 w-100" enctype="multipart/form-data">
-    {% csrf_token %}
-    <h3 class="fw-normal mb-3">
-      {{ object.brand }} {{ object.model }}
-    </h3>
-    <div class="row">
-      <div class="col-5">
+  <h3 class="fw-normal mb-3">
+    {{ object.brand }} {{ object.model }}
+  </h3>
+  <div class="row">
+    <div class=" col-12 col-md-5">
+      <form method="POST" class="my-3 px-2 w-100" enctype="multipart/form-data">
+        {% csrf_token %}
         {{ form.non_field_errors }}
         <div class="d-flex justify-content-center py-3">
           {% if object.car_picture %}
@@ -62,50 +70,100 @@
           {{ form.status }}
           {{ form.status.label_tag }}
         </div>
-      </div>
-      <div class="col-7">
-        <h3 class="fw-normal mb-3">
-          {% trans 'Maintenance' %}
-        </h3>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">{% trans 'Date of repair' %}</th>
-              <th scope="col">{% trans 'Cost of repair' %}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for maintenance in maintenance_list %}
-              <tr>
-                <th scope="row">{{ forloop.counter }}</th>
-                <td>{{ maintenance.date_of_repair }}</td>
-                <td>{{ maintenance.cost_of_repair.amount }} {{ maintenance.cost_of_repair.currency }}</td>
-              </tr>
-            {% endfor %}
-            <tr>
-              <th></th>
-              <td>{% trans 'Total' %}:</td>
-              <td>
-                {% if total_maintenance_cost %}
-                  {{ total_maintenance_cost }}
-                {% else %}
-                  0
-                {% endif %}
-                PLN</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
+        <div class="col-12 col-md-6 offset-md-3 text-center">
+          <button type="submit" class="btn btn-primary w-100">
+            {% trans "Confirm changes" %}
+          </button>
+        </div>
+      </form>
     </div>
 
-    <div class="col-12 col-md-6 offset-md-3 text-center">
-      <button type="submit" class="btn btn-primary w-100">
-        {% trans "Confirm changes" %}
-      </button>
+    <div class=" col-12 col-md-7">
+      <h3 class="fw-normal mb-3">
+        {% trans 'Maintenance' %}
+      </h3>
+      <table class="table" id="maintenance-table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">{% trans 'Date of repair' %}</th>
+            <th scope="col">{% trans 'Cost of repair' %}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for maintenance in maintenance_list %}
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td>{{ maintenance.date_of_repair }}</td>
+              <td>{{ maintenance.cost_of_repair.amount }} {{ maintenance.cost_of_repair.currency }}</td>
+            </tr>
+          {% endfor %}
+          <tr>
+            <th></th>
+            <td>{% trans 'Total' %}:</td>
+            <td>
+              {% if total_maintenance_cost %}
+                {{ total_maintenance_cost }}
+              {% else %}
+                0
+              {% endif %}
+              PLN</td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        <h4 class="fw-normal mb-3">
+          {% trans 'Add maintenance' %}
+        </h4>
+        <form action="POST" class="my-3 px-2 w-100" enctype="multipart/form-data" id="maintenance-form" data-url="{% url 'api_maintenance_create' %}">
+          {% csrf_token %}
+          <div class="row">
+            {{ maintenance_form.non_field_errors }}
+  
+            {{ maintenance_form.date_of_repair.errors }}
+            <div class="form-floating mb-3 col-12 col-md-6 p-1">
+              {{ maintenance_form.date_of_repair }}
+              {{ maintenance_form.date_of_repair.label_tag }}
+            </div>
+  
+            {{ maintenance_form.cost_of_repair.errors }}
+            <div class="form-floating mb-3 col-12 col-md-6 p-1">
+              {{ maintenance_form.cost_of_repair }}
+              {{ maintenance_form.cost_of_repair.label_tag }}
+            </div>
+          </div>
+
+          <div>
+            <button type="submit" class="btn btn-primary w-100">{% trans 'Save' %}</button>
+          </div>
+        </form>
+      </div>
     </div>
 
-  </form>
+  </div>
 </div>
 {% endblock content %}
+
+{% block extra_body %}
+<script>
+  $(document).on('submit', '#maintenance-form', (e) => {
+  e.preventDefault();
+  const form = $(e.currentTarget);
+  $.ajax({
+    type: 'POST',
+    url: form.attr('data-url'),
+    dataType: 'json',
+    data: {
+      'csrfmiddlewaretoken': '{{ csrf_token }}',
+      'car': '{{ object.id }}',
+      'date_of_repair': $('input[name=date_of_repair]').val(),
+      'cost_of_repair': $('input[name=cost_of_repair_0]').val()
+    },
+    success: function(data) {
+      form[0].reset();
+      $("#maintenance-table").load(location.href + " #maintenance-table");
+    },
+  });
+});
+</script>
+{% endblock extra_body %}

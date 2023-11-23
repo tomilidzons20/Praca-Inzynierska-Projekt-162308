@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'debug_toolbar',
+    'rest_framework',
 
     # Local
     'car_rental.apps.CarRentalConfig',
