@@ -88,6 +88,7 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">{% trans 'Date of repair' %}</th>
+              <th scope="col">{% trans 'Status' %}</th>
               <th scope="col">{% trans 'Cost of repair' %}</th>
             </tr>
           </thead>
@@ -95,15 +96,16 @@
             {% for maintenance in maintenance_list %}
               <tr>
                 <th scope="row">{{ forloop.counter }}</th>
-                <td>{{ maintenance.date_of_repair }}</td>
+                <td>{{ maintenance.date_of_repair|date:"Y-m-d" }}</td>
+                <td>{{ maintenance.get_status_display }}</td>
                 <td>{{ maintenance.cost_of_repair.amount }} {{ maintenance.cost_of_repair.currency }}</td>
               </tr>
             {% endfor %}
           </tbody>
           <tfoot>
             <tr>
-                <th colspan="2" class="text-end">{% trans 'Total:' %}</th>
-                <th></th>
+                <th colspan="3" class="text-end">{% trans 'Total:' %}</th>
+                <th colspan="1"></th>
             </tr>
           </tfoot>
         </table>
@@ -113,7 +115,7 @@
         <h4 class="fw-normal mb-3">
           {% trans 'Add maintenance' %}
         </h4>
-        <form action="POST" class="my-3 px-2 w-100" enctype="multipart/form-data" id="maintenance-form" data-url="{% url 'api_maintenance_create' %}">
+        <form action="POST" class="my-3 px-2 w-100" enctype="multipart/form-data" id="maintenance-form" data-url="{% url 'api_maintenance_create' %}" data-car="{{ object.id }}">
           {% csrf_token %}
           <div class="row">
             {{ maintenance_form.non_field_errors }}
@@ -129,6 +131,12 @@
               {{ maintenance_form.cost_of_repair }}
               {{ maintenance_form.cost_of_repair.label_tag }}
             </div>
+
+            {{ maintenance_form.status.errors }}
+            <div class="form-floating mb-3 col-12 col-md-6 p-1">
+              {{ maintenance_form.status }}
+              {{ maintenance_form.status.label_tag }}
+            </div>
           </div>
 
           <div>
@@ -143,26 +151,6 @@
 {% endblock content %}
 
 {% block extra_body %}
-<script src="{% static 'js/dashboard/car_update.js' %}"></script>
-<script type="text/javascript">
-  $(document).on('submit', '#maintenance-form', (e) => {
-    e.preventDefault();
-    const form = $(e.currentTarget);
-    const table = $('#maintenance-table');
-    $.ajax({
-      type: 'POST',
-      url: form.attr('data-url'),
-      dataType: 'json',
-      data: {
-        'csrfmiddlewaretoken': '{{ csrf_token }}',
-        'car': '{{ object.id }}',
-        'date_of_repair': $('input[name=date_of_repair]').val(),
-        'cost_of_repair': $('input[name=cost_of_repair_0]').val()
-      },
-      success: function (data) {
-        location.reload();
-      },
-    });
-  });
-</script>
+<script src="{% static 'js/car_rental/dashboard/car_update.js' %}"></script>
+<script src="{% static 'js/car_rental/dashboard/maintenance_ajax.js' %}"></script>
 {% endblock extra_body %}

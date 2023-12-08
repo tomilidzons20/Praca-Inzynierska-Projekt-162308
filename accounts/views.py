@@ -1,14 +1,14 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView
-from django.shortcuts import get_object_or_404
-from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import CustomUser
-from .forms import ProfileForm
 from .forms import AddressForm
+from .forms import ProfileForm
 from .models import Address
+from .models import CustomUser
 
 
 class ProfileView(LoginRequiredMixin, UpdateView):

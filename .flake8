@@ -4,3 +4,4 @@ exclude = migrations,
           settings_local.py
           manage.py
           venv
+          urls.py

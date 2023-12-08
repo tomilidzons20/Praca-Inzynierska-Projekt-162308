@@ -1,5 +1,40 @@
-{% extends "account/base_entrance.html" %}
+{% extends "car_rental/layouts/main_base.html" %}
 {% load i18n static %}
 {% block head_title %}
   {% trans "Home" %}
 {% endblock head_title %}
+
+{% block content %}
+<div class="container mt-5">
+  <div>
+    <h3 class="fw-normal mb-3">{% trans 'Rent a car for:' %}</h3>
+    <div class="row gy-4">
+
+      <a class="card btn btn-secondary col-12 col-md-5 offset-md-1">
+        <div class="card-body">
+          <h5 class="card-title text-center">{% trans 'Days' %}</h5>
+          <div class="d-flex justify-content-center">
+            <img src="{% static 'img/car_pictures/default_car.png' %}" class="img-thumbnail" alt="{% trans 'Days' %}" width="350px" height="200px">
+          </div>
+          <p class="card-text mt-3">
+            {% trans 'From' %} / {% trans 'day' %}
+          </p>
+        </div>
+      </a>
+
+      <a class="card btn btn-secondary col-12 col-md-5 offset-md-1">
+        <div class="card-body">
+          <h5 class="card-title text-center">{% trans 'Months' %}</h5>
+          <div class="d-flex justify-content-center">
+            <img src="{% static 'img/car_pictures/default_car.png' %}" class="img-thumbnail" alt="{% trans 'Months' %}" width="350px" height="200px">
+          </div>
+          <p class="card-text mt-3">
+            {% trans 'From' %} / {% trans 'month' %}
+          </p>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div>
+{% endblock content %}

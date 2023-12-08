@@ -3,11 +3,12 @@ from allauth.account.forms import ChangePasswordForm
 from allauth.account.forms import LoginForm
 from allauth.account.forms import ResetPasswordForm
 from allauth.account.forms import SignupForm
+from django import forms
 
 from car_rental.utils import set_form_styles
-from .models import CustomUser
+
 from .models import Address
-from django import forms
+from .models import CustomUser
 
 
 class CustomLoginForm(LoginForm):

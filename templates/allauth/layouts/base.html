@@ -18,10 +18,12 @@
     </style>
   </head>
 
-  <body class="bg-body-tertiary" style="padding-top: 56px;">
+  <body class="bg-body-secondary" style="padding-top: 56px;">
     {% block body %}
       <!-- Navbar -->
       {% include 'allauth/layouts/navbar_top.html' %}
+      {% block extra_nav %}
+      {% endblock extra_nav %}
       <div class="container h-100">
         {% block content %}
         {% endblock content %}

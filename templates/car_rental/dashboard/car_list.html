@@ -82,8 +82,5 @@
 {% endblock content %}
 
 {% block extra_body %}
-<script>
-  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-</script>
+  <script src="{% static 'bootstrap/js/tooltips.js' %}"></script>
 {% endblock extra_body %}

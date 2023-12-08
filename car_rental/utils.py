@@ -27,6 +27,12 @@ def set_form_styles(form_fields):
         'DateField': {
             'class': 'form-control',
         },
+        'DateTimeField': {
+            'class': 'form-control',
+        },
+        'DurationField': {
+            'class': 'form-control',
+        },
         'MoneyField': {
             'class': 'form-control',
         },
