@@ -1,0 +1,34 @@
+{% load i18n %}
+
+<div class="container-fluid p-0">
+  <nav class="navbar navbar-expand-xl bg-body-tertiary border-bottom">
+    <div class="container">
+      <div class="row w-100 gy-2">
+        <div class="col-6 col-md-3">
+          <a href=""
+            class="btn w-100 {% if request.resolver_match.url_name == 'home' %} btn-outline-success {% else %} btn-outline-light {% endif %} me-2">
+            {% trans 'Rent a car' %}
+          </a>
+        </div>
+        <div class="col-6 col-md-3">
+          <a href=""
+            class="btn w-100 {% if request.resolver_match.url_name == '' %} btn-outline-success {% else %} btn-outline-light {% endif %} me-2">
+            {% trans 'Long term rent' %}
+          </a>
+        </div>
+        <div class="col-6 col-md-3">
+          <a href=""
+            class="btn w-100 {% if request.resolver_match.url_name == '' %} btn-outline-success {% else %} btn-outline-light {% endif %} me-2">
+            {% trans 'News' %}
+          </a>
+        </div>
+        <div class="col-6 col-md-3">
+          <a href=""
+            class="btn w-100 {% if request.resolver_match.url_name == '' %} btn-outline-success {% else %} btn-outline-light {% endif %} me-2">
+            {% trans 'Contact' %}
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>

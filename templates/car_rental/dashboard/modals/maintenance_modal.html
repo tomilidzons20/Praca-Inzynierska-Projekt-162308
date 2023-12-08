@@ -1,0 +1,55 @@
+{% load i18n static %}
+
+<div class="modal fade" id="maintenance-modal" tabindex="-1" aria-labelledby="maintenance-modal-label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content p-2">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="maintenance-modal-label">{% trans "Add maintenance" %}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <form action="POST" class="my-3 px-2 w-100" enctype="multipart/form-data" id="maintenance-form"
+        data-url="{% url 'api_maintenance_create' %}">
+        {% csrf_token %}
+        <div class="row">
+          {{ maintenance_form.non_field_errors }}
+
+          {{ maintenance_form.car.errors }}
+          <div class="form-floating mb-3 col-12 col-md-6 p-1">
+            {{ maintenance_form.car }}
+            {{ maintenance_form.car.label_tag }}
+          </div>
+
+          {{ maintenance_form.date_of_repair.errors }}
+          <div class="form-floating mb-3 col-12 col-md-6 p-1">
+            {{ maintenance_form.date_of_repair }}
+            {{ maintenance_form.date_of_repair.label_tag }}
+          </div>
+
+          {{ maintenance_form.cost_of_repair.errors }}
+          <div class="form-floating mb-3 col-12 col-md-6 p-1">
+            {{ maintenance_form.cost_of_repair }}
+            {{ maintenance_form.cost_of_repair.label_tag }}
+          </div>
+
+          {{ maintenance_form.status.errors }}
+          <div class="form-floating mb-3 col-12 col-md-6 p-1">
+            {{ maintenance_form.status }}
+            {{ maintenance_form.status.label_tag }}
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            {% trans "Cancel" %}
+          </button>
+          <button type="submit" class="btn btn-primary">
+            {% trans "Add" %}
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

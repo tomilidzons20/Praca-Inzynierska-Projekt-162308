@@ -1,0 +1,58 @@
+{% extends 'car_rental/layouts/dashboard_base.html' %}
+{% load i18n allauth static djmoney %}
+
+{% block head_title %}
+  {% trans "Car update" %}
+{% endblock head_title %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-12 col-md-3 my-3">
+      <a type="button" class="btn btn-primary w-100" href="{% url 'dashboard_rental_create' %}">
+        {% trans "Add rental" %}
+      </a>
+    </div>
+  </div>
+
+  <div class="bg-body-secondary rounded p-2 mb-5">
+    <div class="row row-cols-1 gy-2 mt-2">
+      {% for rental in object_list %}
+        <a class="col text-decoration-none" href="">
+          <div class="bg-body-tertiary rounded p-2 mx-2 text-white">
+            <div class="row">
+              <!-- Info section -->
+              <div class="col-12">
+                <div class="d-flex flex-row gap-5">
+                  <h3 class="fw-normal mb-3">
+                    {{ rental.user }}
+                  </h3>
+                  <h3 class="fw-normal mb-3">
+                    {{ rental.car }}
+                  </h3>
+                  <h3 class="fw-normal mb-3">
+                    {{ rental.start_date }}
+                  </h3>
+                  <h3 class="fw-normal mb-3">
+                    {{ rental.end_date }}
+                  </h3>
+                  <h3 class="fw-normal mb-3">
+                    {{ rental.time_rented }}
+                  </h3>
+                  <h3 class="fw-normal mb-3">
+                    {{ rental.car_mileage_start }}
+                  </h3>
+                  <h3 class="fw-normal mb-3">
+                    {{ rental.car_mileage_end }}
+                  </h3>
+                  <h3 class="fw-normal mb-3">
+                    {{ rental.car_mileage_change }}
+                  </h3>              
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock content %}

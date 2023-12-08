@@ -1,0 +1,67 @@
+{% extends 'car_rental/layouts/dashboard_base.html' %}
+{% load i18n allauth %}
+
+{% block head_title %}
+  {% trans "Rental creation" %}
+{% endblock head_title %}
+
+{% block content %}
+<div class="bg-body-secondary rounded p-2 col-12 col-md-8 offset-md-2">
+  <form method="POST" class="my-3 px-2 w-100" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="">
+      <h3 class="fw-normal mb-3">
+        {% trans "Add rental" %}
+      </h3>
+      {{ form.non_field_errors }}
+      
+      {{ form.car.errors }}
+      <div class="form-floating mb-3">
+        {{ form.car }}
+        {{ form.car.label_tag }}
+      </div>
+      {{ form.user.errors }}
+      <div class="form-floating mb-3">
+        {{ form.user }}
+        {{ form.user.label_tag }}
+      </div>
+      {{ form.start_date.errors }}
+      <div class="form-floating mb-3">
+        {{ form.start_date }}
+        {{ form.start_date.label_tag }}
+      </div>
+      {{ form.end_date.errors }}
+      <div class="form-floating mb-3">
+        {{ form.end_date }}
+        {{ form.end_date.label_tag }}
+      </div>
+      {{ form.time_rented.errors }}
+      <div class="form-floating mb-3">
+        {{ form.time_rented }}
+        {{ form.time_rented.label_tag }}
+      </div>
+      {{ form.car_mileage_start.errors }}
+      <div class="form-floating mb-3">
+        {{ form.car_mileage_start }}
+        {{ form.car_mileage_start.label_tag }}
+      </div>
+      {{ form.car_mileage_end.errors }}
+      <div class="form-floating mb-3">
+        {{ form.car_mileage_end }}
+        {{ form.car_mileage_end.label_tag }}
+      </div>
+      {{ form.car_mileage_change.errors }}
+      <div class="form-floating mb-3">
+        {{ form.car_mileage_change }}
+        {{ form.car_mileage_change.label_tag }}
+      </div>
+
+    <div class="col-12 col-md-6 offset-md-3 text-center">
+      <button type="submit" class="btn btn-primary w-100">
+        {% trans "Confirm changes" %}
+      </button>
+    </div>
+
+  </form>
+</div>
+{% endblock content %}
