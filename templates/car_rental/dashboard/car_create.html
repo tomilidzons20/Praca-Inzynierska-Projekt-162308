@@ -1,0 +1,67 @@
+{% extends 'car_rental/layouts/dashboard_base.html' %}
+{% load i18n allauth %}
+
+{% block head_title %}
+  {% trans "Car creation" %}
+{% endblock head_title %}
+
+{% block content %}
+<div class="bg-body-secondary rounded p-2 col-12 col-md-8 offset-md-2">
+  <form method="POST" class="my-3 px-2 w-100" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="">
+      <h3 class="fw-normal mb-3">
+        {% trans "Add car" %}
+      </h3>
+      {{ form.non_field_errors }}
+      
+      <div class="mb-3">
+        {{ form.car_picture.label_tag }}
+        {{ form.car_picture }}
+        {{ form.car_picture.errors }}
+      </div>
+      {{ form.brand.errors }}
+      <div class="form-floating mb-3">
+        {{ form.brand }}
+        {{ form.brand.label_tag }}
+      </div>
+      {{ form.model.errors }}
+      <div class="form-floating mb-3">
+        {{ form.model }}
+        {{ form.model.label_tag }}
+      </div>
+      {{ form.engine_capacity.errors }}
+      <div class="form-floating mb-3">
+        {{ form.engine_capacity }}
+        {{ form.engine_capacity.label_tag }}
+      </div>
+      {{ form.engine_power.errors }}
+      <div class="form-floating mb-3">
+        {{ form.engine_power }}
+        {{ form.engine_power.label_tag }}
+      </div>
+      {{ form.mileage.errors }}
+      <div class="form-floating mb-3">
+        {{ form.mileage }}
+        {{ form.mileage.label_tag }}
+      </div>
+      {{ form.production_year.errors }}
+      <div class="form-floating mb-3">
+        {{ form.production_year }}
+        {{ form.production_year.label_tag }}
+      </div>
+      {{ form.status.errors }}
+      <div class="form-floating mb-3">
+        {{ form.status }}
+        {{ form.status.label_tag }}
+      </div>
+
+    <div class="col-12 col-md-6 offset-md-3 text-center">
+      <button type="submit" class="btn btn-primary w-100">
+        {% trans "Confirm changes" %}
+      </button>
+    </div>
+
+  </form>
+</div>
+{% endblock content %}

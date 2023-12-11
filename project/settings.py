@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'debug_toolbar',
+    'rest_framework',
 
     # Local
     'car_rental.apps.CarRentalConfig',
@@ -125,6 +126,9 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+CURRENCIES = 'PLN'
+CURRENCY_CHOICES = [('PLN', 'Polish Zloty')]
+
 USE_TZ = True
 
 
@@ -160,3 +164,5 @@ ACCOUNT_FORMS = {
     'reset_password': 'accounts.forms.CustomResetPasswordForm',
     'add_email': 'accounts.forms.CustomEmailForm',
 }
+
+PHONENUMBER_DEFAULT_REGION = 'PL'

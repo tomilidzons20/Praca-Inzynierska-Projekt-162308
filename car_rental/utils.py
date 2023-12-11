@@ -21,12 +21,28 @@ def set_form_styles(form_fields):
         'ImageField': {
             'class': 'form-control',
         },
+        'IntegerField': {
+            'class': 'form-control',
+        },
+        'DateField': {
+            'class': 'form-control',
+        },
+        'DateTimeField': {
+            'class': 'form-control',
+        },
+        'DurationField': {
+            'class': 'form-control',
+        },
+        'MoneyField': {
+            'class': 'form-control',
+        },
     }
 
     for _, field in form_fields.items():
         if field.__class__.__name__ in field_types.keys():
+            field_class = field_types[field.__class__.__name__]['class']
             field.widget.attrs.update(
                 {
-                    'class': field_types[field.__class__.__name__]['class'],
+                    'class': field_class,
                 },
             )

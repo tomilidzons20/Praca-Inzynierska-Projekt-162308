@@ -3,10 +3,12 @@ from allauth.account.forms import ChangePasswordForm
 from allauth.account.forms import LoginForm
 from allauth.account.forms import ResetPasswordForm
 from allauth.account.forms import SignupForm
+from django import forms
 
 from car_rental.utils import set_form_styles
+
+from .models import Address
 from .models import CustomUser
-from django import forms
 
 
 class CustomLoginForm(LoginForm):
@@ -53,6 +55,19 @@ class ProfileForm(forms.ModelForm):
             'phone_number',
             'profile_picture',
         ]
+        widgets = {
+            'profile_picture': forms.FileInput(),
+        }
 
 
+class AddressForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        set_form_styles(self.fields)
 
+    class Meta:
+        model = Address
+        fields = '__all__'
+        exclude = [
+            'account',
+        ]

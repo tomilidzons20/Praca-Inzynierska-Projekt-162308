@@ -46,11 +46,15 @@ class Car(models.Model):
         _('Status'),
         choices=StatusChoices.choices,
         default=StatusChoices.UNAVAILABLE,
-        blank=True,
     )
     production_year = models.PositiveIntegerField(
         _('Production year'),
         validators=[validate_year]
+    )
+    car_picture = models.ImageField(
+        upload_to='uploads/img/car_pictures',
+        blank=True,
+        null=True,
     )
 
     def __str__(self):
@@ -62,12 +66,17 @@ class Car(models.Model):
 
 
 class CarMaintenance(models.Model):
+    class MaintenanceChoices(models.TextChoices):
+        INREPAIR = 'IR', _('In repair')
+        DONE = 'DO', _('Done')
+        SCHEDULED = 'SCH', _('Scheduled')
+
     car = models.ForeignKey(
         'Car',
         verbose_name=_('Car'),
         on_delete=models.CASCADE,
     )
-    date_of_repair = models.DateTimeField(
+    date_of_repair = models.DateField(
         _('Date of repair'),
         default=timezone.now,
         blank=True,
@@ -79,6 +88,11 @@ class CarMaintenance(models.Model):
         default_currency='PLN',
         default=0,
         blank=True,
+    )
+    status = models.CharField(
+        _('Status'),
+        choices=MaintenanceChoices.choices,
+        default=MaintenanceChoices.SCHEDULED,
     )
 
     def __str__(self):
@@ -116,10 +130,12 @@ class CarRental(models.Model):
     car_mileage_start = models.IntegerField(
         _('Car mileage at start of car rental'),
         blank=True,
+        null=True
     )
     car_mileage_end = models.IntegerField(
         _('Car mileage at end of car rental'),
         blank=True,
+        null=True
     )
     car_mileage_change = models.IntegerField(
         _('Car mileage change'),
@@ -128,7 +144,9 @@ class CarRental(models.Model):
     )
 
     def save(self, *args, **kwargs):
-        self.car_mileage_change = self.car_mileage_end - self.car_mileage_start
+        if self.car_mileage_end and self.car_mileage_start:
+            self.car_mileage_change = self.car_mileage_end - self.car_mileage_start
+
         if self.start_date and self.end_date:
             self.time_rented = self.end_date - self.start_date
         else:
