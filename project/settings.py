@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'debug_toolbar',
     'rest_framework',
+    'ckeditor',
+    'django_bleach',
 
     # Local
     'car_rental.apps.CarRentalConfig',
@@ -166,3 +168,36 @@ ACCOUNT_FORMS = {
 }
 
 PHONENUMBER_DEFAULT_REGION = 'PL'
+
+# Bleach
+
+# Which HTML tags are allowed
+BLEACH_ALLOWED_TAGS = [
+    'p', 'b', 'i', 'u', 'em',
+    'strong', 'a', 's', 'h1',
+    'h2', 'h3', 'h4', 'h5',
+    'h6', 'pre', 'address',
+    'img',
+]
+
+# Which HTML attributes are allowed
+BLEACH_ALLOWED_ATTRIBUTES = [
+    'href', 'title', 'style', 'src',
+    'alt',
+]
+
+# Which CSS properties are allowed in 'style' attributes (assuming
+# style is an allowed attribute)
+BLEACH_ALLOWED_STYLES = [
+    'font-family', 'font-weight', 'text-decoration', 'font-variant',
+    'color', 'background-color', 'height', 'width',
+]
+
+# Strip unknown tags if True, replace with HTML escaped characters if False
+BLEACH_STRIP_TAGS = True
+
+# Strip comments, or leave them in.
+BLEACH_STRIP_COMMENTS = False
+
+# Use the CKEditorWidget for bleached HTML fields
+BLEACH_DEFAULT_WIDGET = 'ckeditor.widgets.CKEditorWidget'

@@ -3,7 +3,9 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from django.utils.text import slugify
 from djmoney.models.fields import MoneyField
+from django_bleach.models import BleachField
 
 
 def validate_year(value):
@@ -156,3 +158,35 @@ class CarRental(models.Model):
     class Meta:
         verbose_name = _('Car rental')
         verbose_name_plural = _('Car rentals')
+
+
+class News(models.Model):
+    title = models.CharField(
+        max_length=128,
+        blank=False,
+        null=False,
+    )
+    description = BleachField()
+    main_picture = models.ImageField(
+        upload_to='uploads/img/news',
+        blank=True,
+        null=True,
+    )
+    slug = models.SlugField(
+        max_length=140,
+        null=False,
+    )
+    add_date = models.DateField(
+        default=timezone.now,
+    )
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f'{self.title}'
+
+    class Meta:
+        verbose_name = _('News')
+        verbose_name_plural = _('News')

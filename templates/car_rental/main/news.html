@@ -1,0 +1,15 @@
+{% extends "car_rental/layouts/main_base.html" %}
+{% load i18n static %}
+{% block head_title %}
+  {% trans 'News' %}
+{% endblock head_title %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="row row-cols-1 row-cols-md-3 gy-4 gx-3">
+    {% for news in object_list %}
+      {% include 'car_rental/main/_partials/news_card.html' %}
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %}

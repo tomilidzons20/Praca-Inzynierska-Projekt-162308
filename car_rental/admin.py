@@ -3,6 +3,10 @@ from django.contrib import admin
 from .models import Car
 from .models import CarMaintenance
 from .models import CarRental
+from .models import News
+
+from django.db import models
+from ckeditor.widgets import CKEditorWidget
 
 
 @admin.register(Car)
@@ -54,3 +58,21 @@ class AdminCarMaintenance(admin.ModelAdmin):
     list_filter = [
         'car',
     ]
+
+
+@admin.register(News)
+class AdminNews(admin.ModelAdmin):
+    list_display = [
+        'title',
+        'add_date',
+    ]
+    readonly_fields = [
+        'slug',
+    ]
+    list_filter = [
+        'title',
+        'add_date',
+    ]
+    formfield_overrides = {
+        models.TextField: {'widget': CKEditorWidget}
+    }

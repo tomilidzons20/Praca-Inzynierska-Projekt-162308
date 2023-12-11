@@ -3,6 +3,7 @@ from django import forms
 from .models import Car
 from .models import CarRental
 from .models import CarMaintenance
+from .models import News
 from .utils import set_form_styles
 
 
@@ -67,4 +68,17 @@ class CarRentalForm(forms.ModelForm):
             'car': forms.Select(
                 attrs={'class': 'form-select'},
             ),
+        }
+
+
+class NewsForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        set_form_styles(self.fields)
+
+    class Meta:
+        model = News
+        fields = '__all__'
+        widgets = {
+            'main_picture': forms.FileInput(),
         }
