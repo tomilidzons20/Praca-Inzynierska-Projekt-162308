@@ -11,7 +11,7 @@
     <div class="row pt-4 row-cols-1 row-cols-md-2 gy-3 gx-5">
 
       <div class="col">
-        <a class="card btn btn-secondary">
+        <a href="{% url 'days_rental' %}" class="card btn btn-secondary">
           <div class="card-body">
             <h5 class="card-title text-center">{% trans 'Days' %}</h5>
             <div class="d-flex justify-content-center">
@@ -27,12 +27,12 @@
       <div class="col">
         <a class="card btn btn-secondary">
           <div class="card-body">
-            <h5 class="card-title text-center">{% trans 'Months' %}</h5>
+            <h5 class="card-title text-center">{% trans 'Long term rent' %}</h5>
             <div class="d-flex justify-content-center">
               <img src="{% static 'img/car_pictures/default_car.png' %}" class="img-thumbnail" alt="{% trans 'Months' %}" width="350px" height="200px">
             </div>
             <p class="card-text mt-3">
-              {% trans 'From' %} / {% trans 'month' %}
+              {% trans 'Long term rent' %}
             </p>
           </div>
         </a>

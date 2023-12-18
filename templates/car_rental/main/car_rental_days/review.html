@@ -1,0 +1,103 @@
+{% extends "car_rental/layouts/main_base.html" %}
+{% load i18n static math_tags %}
+{% block head_title %}
+  {% trans 'Rental for days' %}
+{% endblock head_title %}
+
+{% block extra_head %}
+<style>
+  p {
+    margin: 0;
+  }
+</style>
+{{ wizard.form.media }}
+{% endblock extra_head %}
+
+{% block content %}
+<div class="container my-5">
+  <h5>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</h5>
+  <form method="POST">
+    {% csrf_token %}
+    <div>
+      {{ wizard.management_form }}
+      {% if wizard.form.forms %}
+        {{ wizard.form.management_form }}
+        {% for form in wizard.form.forms %}
+          {{ form.as_table }}
+        {% endfor %}
+      {% else %}
+        {{ wizard.form.non_field_errors }}
+        <div class="row bg-body p-2 rounded pb-4">
+          <h3 class="mb-3">{% trans 'Review:' %}</h3>
+          <div class="col">
+            <div class="row row-cols-1 row-cols-md-2 gy-3" id="id_extra-protection">
+
+              <div class="col">
+                <div class="h-100 bg-body-secondary rounded p-4">
+                  <div class="h-100 d-flex flex-column justify-content-center">
+                    <div class="d-flex flex-row justify-content-between align-items-center border-top border-bottom border-3 my-2 p-2">
+                      <p>{{ car }}</p>
+                      <b>{{ car.day_cost.amount|multiply:days }} {{ car.day_cost.currency }}</b>
+                    </div>
+                    <div class="d-flex flex-row justify-content-between align-items-center border-top border-bottom border-3 my-2 p-2">
+                      <p>{{ protection.name }}</p>
+                      <b>{{ protection.cost.amount }} {{ protection.cost.currency }}</b>
+                    </div>
+                    {% for extra_item in extra %}
+                      <div class="d-flex flex-row justify-content-between align-items-center border-top border-bottom border-3 my-2 p-2">
+                        <p>{{ extra_item.name }}</p>
+                        <b>{{ extra_item.cost.amount }} {{ extra_item.cost.currency }}</b>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="h-100 bg-body-secondary rounded p-4">
+                  
+                  <div class="h-100 d-flex flex-column justify-content-between">
+                    <div>
+                      <div class="my-2">
+                        <p>{% trans 'Rent time: ' %}</p>
+                        <p>{{ date_from }} - {{ date_to }}</p>
+                      </div>
+                      <div class="my-2">
+                        <p>{% trans 'Address: ' %}</p>
+                        <div>
+                          <p>
+                            {{ address.first_name }}
+                            {{ address.last_name }}
+                          </p>
+                          <p>
+                            {{ address.city }}
+                            {{ address.street }}
+                            {{ address.building_number }}
+                          </p>
+                          <p>
+                            {{ address.post_code }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row justify-content-between align-items-center border-top border-bottom border-3 my-2 p-2">
+                      <p>{% trans 'Total cost: ' %}</p>
+                      <b>{{ total_cost.amount }} {{ total_cost.currency }}</b>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+    {% include 'car_rental/main/car_rental_days/wizard_nav.html' %}
+    <div class="col-12 col-md-6 offset-md-3 mt-3">
+      <button class="btn btn-secondary w-100" type="submit">{% trans 'Rent' %}</button>
+    </div>
+  </form>
+</div>
+{% endblock content %}

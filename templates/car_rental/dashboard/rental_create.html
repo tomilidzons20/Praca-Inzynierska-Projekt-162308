@@ -5,6 +5,14 @@
   {% trans "Rental creation" %}
 {% endblock head_title %}
 
+{% block extra_head %}
+<style>
+  #id_total_cost_1{
+    display: none;
+  }
+</style>
+{% endblock extra_head %}
+
 {% block content %}
 <div class="bg-body-secondary rounded p-2 col-12 col-md-8 offset-md-2">
   <form method="POST" class="my-3 px-2 w-100" enctype="multipart/form-data">
@@ -25,6 +33,21 @@
         {{ form.user }}
         {{ form.user.label_tag }}
       </div>
+      {{ form.address.errors }}
+      <div class="form-floating mb-3">
+        {{ form.address }}
+        {{ form.address.label_tag }}
+      </div>
+      {{ form.protection.errors }}
+      <div class="form-floating mb-3">
+        {{ form.protection }}
+        {{ form.protection.label_tag }}
+      </div>
+      {{ form.extra.errors }}
+      <div class="mb-3">
+        {{ form.extra.label_tag }}
+        {{ form.extra }}
+      </div>
       {{ form.start_date.errors }}
       <div class="form-floating mb-3">
         {{ form.start_date }}
@@ -40,26 +63,17 @@
         {{ form.time_rented }}
         {{ form.time_rented.label_tag }}
       </div>
-      {{ form.car_mileage_start.errors }}
+      {{ form.total_cost.errors }}
       <div class="form-floating mb-3">
-        {{ form.car_mileage_start }}
-        {{ form.car_mileage_start.label_tag }}
-      </div>
-      {{ form.car_mileage_end.errors }}
-      <div class="form-floating mb-3">
-        {{ form.car_mileage_end }}
-        {{ form.car_mileage_end.label_tag }}
-      </div>
-      {{ form.car_mileage_change.errors }}
-      <div class="form-floating mb-3">
-        {{ form.car_mileage_change }}
-        {{ form.car_mileage_change.label_tag }}
+        {{ form.total_cost }}
+        {{ form.total_cost.label_tag }}
       </div>
 
-    <div class="col-12 col-md-6 offset-md-3 text-center">
-      <button type="submit" class="btn btn-primary w-100">
-        {% trans "Confirm changes" %}
-      </button>
+      <div class="col-12 col-md-6 offset-md-3 text-center">
+        <button type="submit" class="btn btn-primary w-100">
+          {% trans "Confirm changes" %}
+        </button>
+      </div>
     </div>
 
   </form>

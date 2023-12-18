@@ -47,8 +47,8 @@
                     {{ car.engine_power}}
                   </p>
                   <p class="rounded-pill info-pill bg-secondary px-2 col" data-bs-toggle="tooltip" data-bs-placement="top"
-                    data-bs-title="{% trans 'Mileage' %}">
-                    {{ car.mileage }} km
+                    data-bs-title="{% trans 'Day cost' %}">
+                    {{ car.day_cost.amount }} {{ car.day_cost.currency }}
                   </p>
                   <p class="rounded-pill info-pill
                     {% if car.status == 'AV' %} bg-success 

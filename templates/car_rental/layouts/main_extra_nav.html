@@ -2,7 +2,7 @@
 
 <div class="container-fluid px-0">
   <nav class="navbar navbar-expand-xl bg-body-tertiary border-bottom py-3">
-    <div class="container">
+    <div class="container justify-content-center">
       <div class="row w-100 gy-2">
         <div class="col-6 col-md-3">
           <a href="{% url 'home' %}"
@@ -24,7 +24,7 @@
         </div>
         <div class="col-6 col-md-3">
           <a href=""
-            class="btn w-100 {% if request.resolver_match.url_name == 'contact' %} btn-outline-success {% else %} btn-outline-light {% endif %} me-2">
+            class="btn w-100 {% if request.resolver_match.url_name == 'contact' %} btn-outline-success {% else %} btn-outline-light {% endif %}">
             {% trans 'Contact' %}
           </a>
         </div>

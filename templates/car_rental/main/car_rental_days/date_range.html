@@ -1,0 +1,50 @@
+{% extends "car_rental/layouts/main_base.html" %}
+{% load i18n static %}
+{% block head_title %}
+  {% trans 'Rental for days' %}
+{% endblock head_title %}
+
+{% block extra_head %}
+  {{ wizard.form.media }}
+{% endblock extra_head %}
+
+{% block content %}
+<div class="container my-5">
+  <h5>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</h5>
+  <form method="POST">
+    {% csrf_token %}
+    <div>
+      {{ wizard.management_form }}
+      {% if wizard.form.forms %}
+        {{ wizard.form.management_form }}
+        {% for form in wizard.form.forms %}
+          {{ form.as_table }}
+        {% endfor %}
+      {% else %}
+        <div class="row bg-body p-2 rounded">
+          <h3>{% trans 'Select date range:' %}</h3>
+          {{ wizard.form.non_field_errors }}
+          <div class="col">
+            {{ wizard.form.date_from.errors }}
+            <div class="form-floating mb-3">
+              {{ wizard.form.date_from }}
+              {{ wizard.form.date_from.label_tag }}
+            </div>
+          </div>
+          <div class="col">
+            {{ wizard.form.date_to.errors }}
+            <div class="form-floating mb-3">
+              {{ wizard.form.date_to }}
+              {{ wizard.form.date_to.label_tag }}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+    {% include 'car_rental/main/car_rental_days/wizard_nav.html' %}
+    <div class="col-12 col-md-6 offset-md-3 mt-3">
+      <button class="btn btn-secondary w-100" type="submit">{% trans 'Search car' %}</button>
+    </div>
+  </form>
+</div>
+{% endblock content %}

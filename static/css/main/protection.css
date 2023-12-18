@@ -1,0 +1,21 @@
+.protection-radio {
+  visibility: hidden;
+  height: 0px;
+  width: 0px;
+}
+
+.protection-label {
+  display: flex;
+  text-align: center;
+  cursor: pointer;
+  background-color: #343a40;
+  color: white;
+  padding: 25px 25px;
+  border-radius: 5px;
+  transition: all .3s ease-out;
+  min-height: 500px;
+}
+
+.protection-radio:checked + .protection-label{
+  background-color: #25bd67;
+}

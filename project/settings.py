@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'ckeditor',
     'django_bleach',
+    'formtools',
 
     # Local
     'car_rental.apps.CarRentalConfig',
@@ -124,7 +125,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Poland'
 
 USE_I18N = True
 
@@ -197,7 +198,7 @@ BLEACH_ALLOWED_STYLES = [
 BLEACH_STRIP_TAGS = True
 
 # Strip comments, or leave them in.
-BLEACH_STRIP_COMMENTS = False
+BLEACH_STRIP_COMMENTS = True
 
 # Use the CKEditorWidget for bleached HTML fields
 BLEACH_DEFAULT_WIDGET = 'ckeditor.widgets.CKEditorWidget'

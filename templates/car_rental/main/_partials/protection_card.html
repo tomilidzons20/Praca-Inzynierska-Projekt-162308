@@ -1,0 +1,51 @@
+{% load i18n static %}
+
+<div class="col">
+  <input class="protection-radio" type="radio" name="extra-protection"
+    id="id_extra-protection_{{ forloop.counter0 }}" value="{{ protection.id }}" required
+    {% if protection.id == wizard.form.protection.initial %}checked{% endif %}>
+  <label class="protection-label" for="id_extra-protection_{{ forloop.counter0 }}">
+    <div class="bg-body-secondary p-3 rounded" style="min-height: 100%; min-width: 100%;">
+      <div class="d-flex h-100 flex-column justify-content-between align-items-center">
+        <h3 class="my-3">{{ protection.name }}</h3>
+        <div class="w-75">
+          <div class="d-flex justify-content-between">
+            <p>{% trans 'TPL insurance' %}</p>
+            {% if protection.tpl_insurance %}
+              {% include 'car_rental/main/_partials/checkmark.html' %}
+            {% else %}
+              {% include 'car_rental/main/_partials/xmark.html' %}
+            {% endif %}
+          </div>
+          <div class="d-flex justify-content-between">
+            <p>{% trans 'Wheel protection' %}</p>
+            {% if protection.wheel_protection %}
+              {% include 'car_rental/main/_partials/checkmark.html' %}
+            {% else %}
+              {% include 'car_rental/main/_partials/xmark.html' %}
+            {% endif %}
+          </div>
+          <div class="d-flex justify-content-between">
+            <p>{% trans 'Window protection' %}</p>
+            {% if protection.window_protection %}
+              {% include 'car_rental/main/_partials/checkmark.html' %}
+            {% else %}
+              {% include 'car_rental/main/_partials/xmark.html' %}
+            {% endif %}
+          </div>
+          <div class="d-flex justify-content-between">
+            <p>{% trans 'Penalty cost:' %}</p>
+            <b>{{ protection.penalty.amount }} {{ protection.penalty.currency }}</b>
+          </div>
+          <div class="d-flex justify-content-between">
+            <p>{% trans 'Deposit cost:' %}</p>
+            <b>{{ protection.deposit.amount }} {{ protection.deposit.currency }}</b>
+          </div>
+          <div class="mt-5">
+            <b>{{ protection.cost.amount }} {{ protection.cost.currency }}</b>
+          </div>         
+        </div>
+      </div>
+    </div>
+  </label>
+</div>

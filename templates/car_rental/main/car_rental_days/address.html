@@ -1,0 +1,67 @@
+{% extends "car_rental/layouts/main_base.html" %}
+{% load i18n static %}
+{% block head_title %}
+  {% trans 'Rental for days' %}
+{% endblock head_title %}
+
+{% block extra_head %}
+  {{ wizard.form.media }}
+{% endblock extra_head %}
+
+{% block content %}
+<div class="container my-5">
+  <h5>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</h5>
+  <form method="POST">
+    {% csrf_token %}
+    <div>
+      {{ wizard.management_form }}
+      {% if wizard.form.forms %}
+        {{ wizard.form.management_form }}
+        {% for form in wizard.form.forms %}
+          {{ form.as_table }}
+        {% endfor %}
+      {% else %}
+        {{ wizard.form.non_field_errors }}
+        <div class="mb-3">
+          {{ wizard.form.use_profile_address.label_tag }}
+          {{ wizard.form.use_profile_address }}
+        </div>
+        {{ wizard.form.first_name.errors }}
+        <div class="form-floating mb-3">
+          {{ wizard.form.first_name }}
+          {{ wizard.form.first_name.label_tag }}
+        </div>
+        {{ wizard.form.last_name.errors }}
+        <div class="form-floating mb-3">
+          {{ wizard.form.last_name }}
+          {{ wizard.form.last_name.label_tag }}
+        </div>
+        {{ wizard.form.city.errors }}
+        <div class="form-floating mb-3">
+          {{ wizard.form.city }}
+          {{ wizard.form.city.label_tag }}
+        </div>
+        {{ wizard.form.street.errors }}
+        <div class="form-floating mb-3">
+          {{ wizard.form.street }}
+          {{ wizard.form.street.label_tag }}
+        </div>
+        {{ wizard.form.building_number.errors }}
+        <div class="form-floating mb-3">
+          {{ wizard.form.building_number }}
+          {{ wizard.form.building_number.label_tag }}
+        </div>
+        {{ wizard.form.post_code.errors }}
+        <div class="form-floating mb-3">
+          {{ wizard.form.post_code }}
+          {{ wizard.form.post_code.label_tag }}
+        </div>
+      {% endif %}
+    </div>
+    {% include 'car_rental/main/car_rental_days/wizard_nav.html' %}
+    <div class="col-12 col-md-6 offset-md-3 mt-3">
+      <button class="btn btn-secondary w-100" type="submit">{% trans 'Next' %}</button>
+    </div>
+  </form>
+</div>
+{% endblock content %}

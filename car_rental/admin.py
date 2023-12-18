@@ -3,6 +3,9 @@ from django.contrib import admin
 from .models import Car
 from .models import CarMaintenance
 from .models import CarRental
+from .models import RentalProtection
+from .models import RentalExtra
+from .models import RentalAddress
 from .models import News
 
 from django.db import models
@@ -22,7 +25,6 @@ class AdminCar(admin.ModelAdmin):
         'model',
         'production_year',
         'status',
-        'mileage',
         'engine_power',
         'engine_capacity'
     ]
@@ -44,7 +46,6 @@ class AdminCarRental(admin.ModelAdmin):
     ]
     readonly_fields = [
         'time_rented',
-        'car_mileage_change',
     ]
 
 
@@ -76,3 +77,33 @@ class AdminNews(admin.ModelAdmin):
     formfield_overrides = {
         models.TextField: {'widget': CKEditorWidget}
     }
+
+
+@admin.register(RentalExtra)
+class AdminRentalExtra(admin.ModelAdmin):
+    list_display = [
+        'name',
+        'cost',
+    ]
+    list_filter = [
+        'name',
+        'cost',
+    ]
+
+
+@admin.register(RentalProtection)
+class AdminRentalProtection(admin.ModelAdmin):
+    list_display = [
+        'name',
+    ]
+    list_filter = [
+        'name',
+    ]
+
+
+@admin.register(RentalAddress)
+class AdminRentalAddress(admin.ModelAdmin):
+    list_display = [
+        'first_name',
+    ]
+
