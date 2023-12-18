@@ -1,27 +1,29 @@
-import datetime
 from math import ceil
 
 from django.db.models import Q
-from django.utils.translation import gettext_lazy as _gettext
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView
-from django.views.generic import ListView
+from django.utils.translation import gettext_lazy as _gettext
+from django.views.generic import CreateView
 from django.views.generic import DetailView
-from django.views.generic import FormView
+from django.views.generic import ListView
+from django.views.generic import TemplateView
 from formtools.wizard.views import SessionWizardView
 
+from .forms import CarAddressForm
+from .forms import CarChoiceForm
+from .forms import CarDaysRentalForm
+from .forms import CarExtraForm
+from .forms import CarLongTermRentalForm
+from .forms import ClientContactForm
+from .forms import RentalReviewForm
 from .models import Car
+from .models import CarLongTermRental
 from .models import CarMaintenance
 from .models import CarRental
+from .models import ContactMessage
 from .models import News
 from .models import RentalAddress
-from .forms import CarDaysRentalForm
-from .forms import CarChoiceForm
-from .forms import CarExtraForm
-from .forms import CarAddressForm
-from .forms import RentalReviewForm
 
 
 class HomeView(TemplateView):
@@ -47,8 +49,12 @@ class NewsDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['previous_news'] = News.objects.filter(add_date__lt=self.object.add_date).order_by('-add_date').first()
-        context['next_news'] = News.objects.filter(add_date__gt=self.object.add_date).order_by('add_date').first()
+        context['previous_news'] = News.objects.filter(
+            add_date__lt=self.object.add_date
+        ).order_by('-add_date').first()
+        context['next_news'] = News.objects.filter(
+            add_date__gt=self.object.add_date
+        ).order_by('add_date').first()
         return context
 
 
@@ -213,3 +219,33 @@ class CarRentalForDaysView(SessionWizardView):
         car_rental.extra.add(*extra)
 
         return render(self.request, 'car_rental/main/car_rental_days/rental_successful.html')
+
+
+class ContactCreateView(CreateView):
+    model = ContactMessage
+    form_class = ClientContactForm
+    template_name = 'car_rental/main/contact.html'
+
+    def form_valid(self, form):
+        message = form.save(commit=False)
+        message.user = self.request.user
+        message.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('contact')
+
+
+class CarRentalLongTermView(CreateView):
+    model = CarLongTermRental
+    form_class = CarLongTermRentalForm
+    template_name = 'car_rental/main/long_term_rental.html'
+
+    def form_valid(self, form):
+        long_term_rental = form.save(commit=False)
+        long_term_rental.user = self.request.user
+        long_term_rental.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('long_term_rental')

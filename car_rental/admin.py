@@ -1,15 +1,16 @@
+from ckeditor.widgets import CKEditorWidget
 from django.contrib import admin
+from django.db import models
 
 from .models import Car
+from .models import CarLongTermRental
 from .models import CarMaintenance
 from .models import CarRental
-from .models import RentalProtection
-from .models import RentalExtra
-from .models import RentalAddress
+from .models import ContactMessage
 from .models import News
-
-from django.db import models
-from ckeditor.widgets import CKEditorWidget
+from .models import RentalAddress
+from .models import RentalExtra
+from .models import RentalProtection
 
 
 @admin.register(Car)
@@ -103,7 +104,36 @@ class AdminRentalProtection(admin.ModelAdmin):
 
 @admin.register(RentalAddress)
 class AdminRentalAddress(admin.ModelAdmin):
-    list_display = [
+    list_display = ([
         'first_name',
+    ])
+
+
+@admin.register(ContactMessage)
+class AdminContactMessage(admin.ModelAdmin):
+    list_display = [
+        'user',
+        'status',
+        'category',
+    ]
+    list_filter = [
+        'user',
+        'status',
+        'category',
     ]
 
+
+@admin.register(CarLongTermRental)
+class AdminCarLongTermRental(admin.ModelAdmin):
+    list_display = [
+        'user',
+        'start_date',
+        'number_of_months',
+        'status',
+    ]
+    list_filter = [
+        'user',
+        'start_date',
+        'number_of_months',
+        'status',
+    ]

@@ -1,15 +1,17 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 from .models import Car
-from .models import CarRental
+from .models import CarLongTermRental
 from .models import CarMaintenance
+from .models import CarRental
+from .models import ContactMessage
 from .models import News
+from .models import RentalAddress
 from .models import RentalExtra
 from .models import RentalProtection
-from .models import RentalAddress
 from .utils import set_form_styles
 
 
@@ -233,5 +235,62 @@ class RentalReviewForm(forms.Form):
     pass
 
 
-class ContactForm(forms.Form):
-    pass
+class ClientContactForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        set_form_styles(self.fields)
+
+    class Meta:
+        model = ContactMessage
+        fields = '__all__'
+        exclude = [
+            'user',
+            'status',
+        ]
+        widgets = {
+            'category': forms.Select(
+                attrs={'class': 'form-select'},
+            ),
+            'message': forms.Textarea(
+                attrs={'style': 'height: 300px;'},
+            ),
+        }
+
+
+class CarLongTermRentalForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        set_form_styles(self.fields)
+
+    def clean(self):
+        data = self.cleaned_data
+        start_date = data.get('start_date')
+        minimum_hours_difference = 6
+
+        now = timezone.now()
+        if start_date < now:
+            raise forms.ValidationError(_('Date from cannot be in the past.'))
+
+        if start_date < now + timezone.timedelta(hours=minimum_hours_difference):
+            raise forms.ValidationError(
+                _('Date from not earlier than in ') + str(minimum_hours_difference) + _(' hours')
+            )
+
+        return data
+
+    class Meta:
+        model = CarLongTermRental
+        fields = '__all__'
+        exclude = [
+            'user',
+            'status',
+        ]
+        widgets = {
+            'start_date': forms.DateTimeInput(
+                format='YYYY-MM-DD',
+                attrs={'type': 'datetime-local'},
+            ),
+            'message': forms.Textarea(
+                attrs={'style': 'height: 300px;'},
+            ),
+        }

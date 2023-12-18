@@ -36,6 +36,9 @@ def set_form_styles(form_fields):
         'MoneyField': {
             'class': 'form-control',
         },
+        'TextField': {
+            'class': 'form-control',
+        },
     }
 
     for _, field in form_fields.items():

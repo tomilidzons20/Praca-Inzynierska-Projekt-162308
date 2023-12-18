@@ -2,10 +2,10 @@ from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
-from django.utils.translation import gettext_lazy as _
 from django.utils.text import slugify
-from djmoney.models.fields import MoneyField
+from django.utils.translation import gettext_lazy as _
 from django_bleach.models import BleachField
+from djmoney.models.fields import MoneyField
 
 
 def validate_year(value):
@@ -318,3 +318,75 @@ class RentalAddress(models.Model):
     class Meta:
         verbose_name = _('Rental address')
         verbose_name_plural = _('Rental addresses')
+
+
+class ContactMessage(models.Model):
+    class StatusChoices(models.TextChoices):
+        NEW = 'NE', _('New')
+        CLOSED = 'CL', _('Closed')
+
+    class CategoryChoices(models.TextChoices):
+        ACCIDENT = 'AC', _('Accident')
+        BREAKDOWN = 'BR', _('Breakdown')
+        QUESTION = 'QU', _('Question')
+        COMPLAINT = 'CO', _('Complaint')
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        verbose_name=_('User'),
+        on_delete=models.CASCADE,
+        null=True,
+    )
+    category = models.CharField(
+        _('Category'),
+        choices=CategoryChoices.choices,
+        default=CategoryChoices.QUESTION,
+    )
+    message = models.TextField(
+        _('Message'),
+        blank=False
+    )
+    status = models.CharField(
+        _('Status'),
+        choices=StatusChoices.choices,
+        default=StatusChoices.NEW,
+    )
+
+    class Meta:
+        verbose_name = _('Contact message')
+        verbose_name_plural = _('Contact messages')
+
+
+class CarLongTermRental(models.Model):
+    class StatusChoices(models.TextChoices):
+        NEW = 'NE', _('New')
+        IN_PROGRESS = 'IP', _('In progress')
+        CLOSED = 'CL', _('Closed')
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        verbose_name=_('User'),
+        on_delete=models.CASCADE,
+        null=True,
+    )
+    start_date = models.DateTimeField(
+        _('Start date of car rental'),
+        blank=False,
+    )
+    number_of_months = models.PositiveIntegerField(
+        _('Number of months'),
+        blank=False
+    )
+    message = models.TextField(
+        _('Message'),
+        blank=False,
+    )
+    status = models.CharField(
+        _('Status'),
+        choices=StatusChoices.choices,
+        default=StatusChoices.NEW,
+    )
+
+    class Meta:
+        verbose_name = _('Long term rental')
+        verbose_name_plural = _('Long term rentals')

@@ -11,8 +11,8 @@
           </a>
         </div>
         <div class="col-6 col-md-3">
-          <a href=""
-            class="btn w-100 {% if request.resolver_match.url_name == '' %} btn-outline-success {% else %} btn-outline-light {% endif %} me-2">
+          <a href="{% url 'long_term_rental' %}"
+            class="btn w-100 {% if request.resolver_match.url_name == 'long_term_rental' %} btn-outline-success {% else %} btn-outline-light {% endif %} me-2">
             {% trans 'Long term rent' %}
           </a>
         </div>
@@ -23,7 +23,7 @@
           </a>
         </div>
         <div class="col-6 col-md-3">
-          <a href=""
+          <a href="{% url 'contact' %}"
             class="btn w-100 {% if request.resolver_match.url_name == 'contact' %} btn-outline-success {% else %} btn-outline-light {% endif %}">
             {% trans 'Contact' %}
           </a>

@@ -5,3 +5,4 @@ exclude = migrations,
           manage.py
           venv
           urls.py
+          dashboard_urls.py

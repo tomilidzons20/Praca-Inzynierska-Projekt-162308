@@ -1,13 +1,12 @@
+from django import forms
 from django.utils.translation import gettext_lazy as _
 from django_filters import FilterSet
-from django_filters.filters import ModelChoiceFilter
 from django_filters.filters import ChoiceFilter
+from django_filters.filters import ModelChoiceFilter
 from django_filters.filters import OrderingFilter
-from django import forms
 
-from .models import CarMaintenance
 from .models import Car
-from .utils import set_form_styles
+from .models import CarMaintenance
 
 
 class MaintenanceFilter(FilterSet):
