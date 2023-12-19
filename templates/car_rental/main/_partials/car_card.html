@@ -1,0 +1,58 @@
+{% load i18n static math_tags %}
+
+<div class="col">
+  <input class="car-radio" type="radio" name="car-car" id="id_car-car_{{ forloop.counter0 }}" value="{{ car.id }}" required>
+  <label class="car-label" for="id_car-car_{{ forloop.counter0 }}">
+    <div class="bg-body-secondary p-3 rounded" style="min-height: 100%; min-width: 100%;">
+      <div class="w-100 h-100 d-flex flex-column align-items-center justify-content-between">
+        <div class="car-image">
+          {% if car.car_picture %}
+            <img src="{{ car.car_picture.url }}" alt="Profile picture" class="img-thumbnail w-100 h-100">
+          {% else %}
+            <img src="{% static 'img/car_pictures/default_car.png' %}" alt="Profile picture" class="img-thumbnail w-100 h-100">
+          {% endif %}
+        </div>
+        <div>
+          <h3 class="my-3">{{ car.brand }} {{ car.model }}</h3>
+          <div class="row row-cols-3">
+            <div class="col d-flex flex-column justify-content-between">
+              <div class="h-100 d-flex align-items-center">
+                <p class="m-0 mb-1 w-100">{% trans 'Year of production' %}</p>
+              </div>
+              <div>
+                <p class="rounded-pill info-pill bg-primary px-2">
+                  {{ car.production_year }}
+                </p>
+              </div>
+            </div>
+            <div class="col d-flex flex-column justify-content-between">
+              <div class="h-100 d-flex align-items-center">
+                <p class="m-0 mb-1 w-100">{% trans 'Engine capacity' %}</p>
+              </div>
+              <div>
+                <p class="rounded-pill info-pill bg-primary px-2">
+                  {{ car.engine_capacity }}
+                </p>
+              </div>
+            </div>
+            <div class="col d-flex flex-column justify-content-between">
+              <div class="h-100 d-flex align-items-center">
+                <p class="m-0 mb-1 w-100">{% trans 'Engine power' %}</p>
+              </div>
+              <div>
+                <p class="rounded-pill info-pill bg-primary px-2">
+                  {{ car.engine_power }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-body w-100 rounded p-2 align-self-end">
+          <p class="m-0 mb-2">{{ car.day_cost.amount }} {{ car.day_cost.currency }} / {% trans 'day' %}</p>
+          <p class="m-0 text-success">{{ car.day_cost.amount|multiply:days }} {{ car.day_cost.currency }} {% trans 'total' %}</p>
+        </div>
+                
+      </div>
+    </div>
+  </label>
+</div>

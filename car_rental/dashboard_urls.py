@@ -6,8 +6,8 @@ from .dashboard_views import DashboardCarListView
 from .dashboard_views import DashboardCarUpdateView
 from .dashboard_views import DashboardHomeView
 from .dashboard_views import DashboardMaintenanceListView
-from .dashboard_views import DashboardRentalListView
 from .dashboard_views import DashboardRentalCreateView
+from .dashboard_views import DashboardRentalListView
 
 urlpatterns = [
     path('', DashboardHomeView.as_view(), name='dashboard_home'),

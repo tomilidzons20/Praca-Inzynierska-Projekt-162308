@@ -1,0 +1,55 @@
+{% extends "car_rental/layouts/main_base.html" %}
+{% load i18n static %}
+{% block head_title %}
+  {% trans 'Rental for days' %}
+{% endblock head_title %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/main/extra.css' %}">
+<link rel="stylesheet" href="{% static 'css/main/protection.css' %}">
+{{ wizard.form.media }}
+{% endblock extra_head %}
+
+{% block content %}
+<div class="container my-5">
+  <h5>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</h5>
+  <form method="POST">
+    {% csrf_token %}
+    <div>
+      {{ wizard.management_form }}
+      {% if wizard.form.forms %}
+        {{ wizard.form.management_form }}
+        {% for form in wizard.form.forms %}
+          {{ form.as_table }}
+        {% endfor %}
+      {% else %}
+        {{ wizard.form.non_field_errors }}
+        <div class="row bg-body p-2 rounded pb-4">
+          <h3 class="mb-1">{% trans 'Select protection:' %}</h3>
+          {{ wizard.form.protection.errors }}
+          <div class="col">
+            <div class="row row-cols-1 row-cols-md-3" id="id_extra-protection">
+              {% for protection in wizard.form.protection.field.queryset %}
+                {% include 'car_rental/main/_partials/protection_card.html' %}
+              {% endfor %}
+            </div>
+          </div>
+          <h3 class="mb-1 mt-4">{% trans 'Select extra options:' %}</h3>
+          {{ wizard.form.extra.errors }}
+          <div class="col">
+            <div class="row row-cols-1 row-cols-md-3" id="id_extra-extra">
+              {% for extra in wizard.form.extra.field.queryset %}
+                {% include 'car_rental/main/_partials/extra_card.html' %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+    {% include 'car_rental/main/car_rental_days/wizard_nav.html' %}
+    <div class="col-12 col-md-6 offset-md-3 mt-3">
+      <button class="btn btn-secondary w-100" type="submit">{% trans 'Next' %}</button>
+    </div>
+  </form>
+</div>
+{% endblock content %}

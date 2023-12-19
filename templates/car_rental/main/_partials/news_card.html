@@ -1,0 +1,16 @@
+{% load i18n static %}
+
+<div class="col" style="height: 425px;">
+  <a href="{% url 'news_detail' news.slug %}" class="card btn btn-secondary w-100 h-100">
+    <div class="card-body">
+      <div style="min-width: 250px; min-height: 250px;">
+        {% if news.main_picture %}
+          <img src="{{ news.main_picture.url }}" class="img-thumbnail" alt="{{ news.title }}">
+        {% else %}
+          <img src="{% static 'img/car_pictures/default_car.png' %}" class="img-thumbnail" alt="{{ news.title }}">
+        {% endif %}
+      </div>
+      <h5 class="card-title text-start pt-3" style="min-height: 125px;">{{ news.title }}</h5>
+    </div>
+  </a>
+</div>

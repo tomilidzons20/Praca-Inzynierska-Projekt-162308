@@ -1,0 +1,18 @@
+{% extends "car_rental/layouts/main_base.html" %}
+{% load i18n static %}
+{% block head_title %}
+  {% trans 'Rental for days' %}
+{% endblock head_title %}
+
+{% block content %}
+<div class="container my-5">
+  <p>
+    {% trans 'Rental unsuccessful' %}
+  </p>
+  <p>
+    {% if message %}
+      {{ message }}
+    {% endif %}
+  </p>
+</div>
+{% endblock content %}

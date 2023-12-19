@@ -1,0 +1,21 @@
+.extra-checkbox {
+  visibility: hidden;
+  height: 0px;
+  width: 0px;
+}
+
+.extra-label {
+  display: flex;
+  text-align: center;
+  cursor: pointer;
+  background-color: #343a40;
+  color: white;
+  padding: 15px 15px;
+  border-radius: 5px;
+  transition: all .3s ease-out;
+  height: 75px;
+}
+
+.extra-checkbox:checked + .extra-label{
+  background-color: #25bd67;
+}

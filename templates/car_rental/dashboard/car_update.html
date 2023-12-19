@@ -10,6 +10,9 @@
   #id_cost_of_repair_1 {
     display: none;
   }
+  #id_day_cost_1{
+    display: none;
+  }
 </style>
 {% endblock extra_head %}
 
@@ -55,11 +58,6 @@
           {{ form.engine_power }}
           {{ form.engine_power.label_tag }}
         </div>
-        {{ form.mileage.errors }}
-        <div class="form-floating mb-3">
-          {{ form.mileage }}
-          {{ form.mileage.label_tag }}
-        </div>
         {{ form.production_year.errors }}
         <div class="form-floating mb-3">
           {{ form.production_year }}
@@ -69,6 +67,11 @@
         <div class="form-floating mb-3">
           {{ form.status }}
           {{ form.status.label_tag }}
+        </div>
+        {{ form.day_cost.errors }}
+        <div class="form-floating mb-3">
+          {{ form.day_cost }}
+          {{ form.day_cost.label_tag }}
         </div>
         <div class="col-12 col-md-6 offset-md-3 text-center">
           <button type="submit" class="btn btn-primary w-100">

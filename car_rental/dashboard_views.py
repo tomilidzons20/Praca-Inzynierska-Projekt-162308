@@ -5,13 +5,13 @@ from django.views.generic import TemplateView
 from django.views.generic import UpdateView
 from django_filters.views import FilterView
 
+from .filters import MaintenanceFilter
 from .forms import CarForm
-from .forms import CarRentalForm
 from .forms import CarMaintenanceForm
+from .forms import CarRentalForm
 from .models import Car
 from .models import CarMaintenance
 from .models import CarRental
-from .filters import MaintenanceFilter
 
 
 class DashboardHomeView(TemplateView):
