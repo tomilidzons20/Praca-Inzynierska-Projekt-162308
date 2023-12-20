@@ -9,17 +9,23 @@ from .forms import AddressForm
 from .forms import ProfileForm
 from .models import Address
 from .models import CustomUser
+from car_rental.models import CarRental
+from car_rental.models import CarLongTermRental
 
 
 class ProfileView(LoginRequiredMixin, UpdateView):
     model = CustomUser
-    template_name = 'account/profile.html'
+    template_name = 'account/profile/profile.html'
     form_class = ProfileForm
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         address, _ = Address.objects.get_or_create(account=self.request.user)
+        rentals = CarRental.objects.filter(user=self.request.user).order_by('-start_date')
+        long_term_rentals = CarLongTermRental.objects.filter(user=self.request.user).order_by('-start_date')
         context['address_form'] = AddressForm(instance=address)
+        context['rentals'] = rentals
+        context['long_term_rentals'] = long_term_rentals
         return context
 
     def get_object(self, queryset=CustomUser):
@@ -37,4 +43,17 @@ def address_update_view(request):
             form.save()
             return JsonResponse({'success': True}, status=200)
         return JsonResponse({'errors': form.errors}, status=400)
+    return redirect('view_profile')
+
+
+def cancel_rental_view(request):
+    if request.method == 'POST':
+        try:
+            rental_id = request.POST.get('id')
+            rental = CarRental.objects.get(id=rental_id, user=request.user)
+            rental.status = CarRental.StatusChoices.CANCELLED
+            rental.save()
+            return JsonResponse({'success': True}, status=200)
+        except CarRental.DoesNotExist:
+            return JsonResponse({'errors': 'Rental does not exist'}, status=400)
     return redirect('view_profile')

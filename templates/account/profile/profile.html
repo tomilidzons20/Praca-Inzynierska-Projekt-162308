@@ -7,18 +7,15 @@
 {% endblock head_title %}
 
 {% block content %}
-  <div class="d-flex justify-content-center align-items-center">
+  <div class="d-flex flex-column justify-content-center align-items-center">
     {% element form method="post" class="my-5 w-100" enctype="multipart/form-data" %}
     
       {% slot body %}
         {% csrf_token %}
-
-        {% element h1 %}
-          {% trans "Profile" %}
-        {% endelement %}
+        <h1 class="fw-normal mb-4">{% trans "Profile" %}</h1>
 
         <div class="d-flex justify-content-center mb-5">
-          <div class="row w-100 gy-3">
+          <div class="row w-100 gy-3 bg-body rounded px-1 pb-3">
 
             <div class="col-12 col-md-6">
 
@@ -85,23 +82,31 @@
               </div>
             </div>
 
+            
+
           </div>
 
         </div>
         
         {% endslot %}
-        
         {% slot actions %}
-        
-        <div class="col-12 col-md-6 offset-md-3 text-center">
-          {% element button type="submit" class="btn btn-primary w-100 py-2" %}
-            {% trans "Confirm changes" %}
-          {% endelement %}
-        </div>
-        
+          <div class="col-12 col-md-6 offset-md-3 text-center">
+            {% element button type="submit" class="btn btn-primary w-100 py-2" %}
+              {% trans "Confirm changes" %}
+            {% endelement %}
+          </div>
         {% endslot %}
-
+        
     {% endelement %}
+    <div class="col-12 bg-body rounded p-3">
+      <div class="mb-5">
+        {% include 'account/profile/car_rental_table.html' %}
+      </div>
+      <div>
+        {% include 'account/profile/car_long_term_rental_table.html' %}
+      </div>
+    </div>
+
     <div class="modal fade" id="address-modal" tabindex="-1" aria-labelledby="address-modal-label" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -128,8 +133,55 @@
         </div>
       </div>
     </div>
+  </div>
 {% endblock content %}
 
 {% block extra_body %}
 <script src="{% static 'js/account/address-form-ajax.js' %}"></script>
+<script>
+  $(document).on('submit', '.cancel-rental', (e) => {
+    e.preventDefault();
+    const form = $(e.currentTarget);
+    $.ajax({
+      type: 'POST',
+      url: form.attr('data-url'),
+      data: form.serialize(),
+      success: function(data) {
+        location.reload();
+      },
+      error: function(data) {
+        console.log('Error:', data);
+      }
+    });
+  });
+
+  const createDataTable = (id, column) => {
+    let table = new DataTable(id, {
+      "autoWidth": true,
+      responsive: {
+        details: {
+          display: $.fn.dataTable.Responsive.display.modal({
+            header: (row) => {
+              const data = row.data();
+              const rowIndex = row.index() + 1
+              return 'Details for ' + rowIndex + ''
+            }
+          }),
+          renderer: $.fn.dataTable.Responsive.renderer.tableAll(),
+        }
+      },
+      "info": false,
+      "searching": false,
+      columnDefs: [
+        { orderable: false, targets: column }
+      ],
+      order: [[2, 'desc']]
+    });
+  }
+
+  $(document).ready(() => {
+    createDataTable('#car-rental-table', 5);
+    createDataTable('#car-long-term-rental-table');
+  })
+</script>
 {% endblock extra_body %}
