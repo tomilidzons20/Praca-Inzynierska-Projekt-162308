@@ -142,7 +142,6 @@ class CarRental(models.Model):
     extra = models.ManyToManyField(
         'RentalExtra',
         verbose_name=_('Extra'),
-        null=True,
         blank=True,
     )
     start_date = models.DateTimeField(
