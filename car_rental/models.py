@@ -110,6 +110,12 @@ class CarMaintenance(models.Model):
 
 
 class CarRental(models.Model):
+    class StatusChoices(models.TextChoices):
+        RESERVED = 'RS', _('Reserved')
+        RENTED = 'RE', _('Rented')
+        CLOSED = 'CL', _('Closed')
+        CANCELLED = 'CA', _('Cancelled')
+
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         verbose_name=_('User'),
@@ -131,11 +137,12 @@ class CarRental(models.Model):
         'RentalProtection',
         verbose_name=_('Protection'),
         on_delete=models.CASCADE,
-        null=True,  # Later delete it when combining migrations
+        null=True,
     )
     extra = models.ManyToManyField(
         'RentalExtra',
         verbose_name=_('Extra'),
+        blank=True,
     )
     start_date = models.DateTimeField(
         _('Start date of car rental'),
@@ -157,6 +164,11 @@ class CarRental(models.Model):
         default_currency='PLN',
         default=0,
         blank=True,
+    )
+    status = models.CharField(
+        _('Status'),
+        choices=StatusChoices.choices,
+        default=StatusChoices.RESERVED,
     )
 
     def save(self, *args, **kwargs):
@@ -362,6 +374,7 @@ class CarLongTermRental(models.Model):
         NEW = 'NE', _('New')
         IN_PROGRESS = 'IP', _('In progress')
         CLOSED = 'CL', _('Closed')
+        CANCELLED = 'CA', _('Cancelled')
 
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,

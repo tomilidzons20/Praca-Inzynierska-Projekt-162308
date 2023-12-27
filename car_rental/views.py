@@ -147,6 +147,8 @@ class CarRentalForDaysView(SessionWizardView):
                 # if rentals already exist or maintenance scheduled or is in repair
                 # during selected period look for another car
                 car_rentals = CarRental.objects.filter(
+                    Q(status=CarRental.StatusChoices.RESERVED) |
+                    Q(status=CarRental.StatusChoices.RENTED),
                     start_date__gte=date_from,
                     start_date__lte=date_to,
                     car=car,
@@ -214,7 +216,8 @@ class CarRentalForDaysView(SessionWizardView):
             protection=protection,
             start_date=date_from,
             end_date=date_to,
-            total_cost=total_cost
+            total_cost=total_cost,
+            status=CarRental.StatusChoices.RESERVED,
         )
         car_rental.extra.add(*extra)
 

@@ -7,18 +7,15 @@
 {% endblock head_title %}
 
 {% block content %}
-  <div class="d-flex justify-content-center align-items-center">
+  <div class="d-flex flex-column justify-content-center align-items-center">
     {% element form method="post" class="my-5 w-100" enctype="multipart/form-data" %}
     
       {% slot body %}
         {% csrf_token %}
-
-        {% element h1 %}
-          {% trans "Profile" %}
-        {% endelement %}
+        <h1 class="fw-normal mb-4">{% trans "Profile" %}</h1>
 
         <div class="d-flex justify-content-center mb-5">
-          <div class="row w-100 gy-3">
+          <div class="row w-100 gy-3 bg-body rounded px-1 pb-3">
 
             <div class="col-12 col-md-6">
 
@@ -90,18 +87,24 @@
         </div>
         
         {% endslot %}
-        
         {% slot actions %}
-        
-        <div class="col-12 col-md-6 offset-md-3 text-center">
-          {% element button type="submit" class="btn btn-primary w-100 py-2" %}
-            {% trans "Confirm changes" %}
-          {% endelement %}
-        </div>
-        
+          <div class="col-12 col-md-6 offset-md-3 text-center">
+            {% element button type="submit" class="btn btn-primary w-100 py-2" %}
+              {% trans "Confirm changes" %}
+            {% endelement %}
+          </div>
         {% endslot %}
-
+        
     {% endelement %}
+    <div class="col-12 bg-body rounded p-3">
+      <div class="mb-5">
+        {% include 'account/profile/car_rental_table.html' %}
+      </div>
+      <div>
+        {% include 'account/profile/car_long_term_rental_table.html' %}
+      </div>
+    </div>
+
     <div class="modal fade" id="address-modal" tabindex="-1" aria-labelledby="address-modal-label" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -128,8 +131,11 @@
         </div>
       </div>
     </div>
+  </div>
 {% endblock content %}
 
 {% block extra_body %}
-<script src="{% static 'js/account/address-form-ajax.js' %}"></script>
+<script src="{% static 'js/account/address_form_ajax.js' %}"></script>
+<script src="{% static 'js/account/rental_list.js' %}"></script>
+<script src="{% static 'js/account/cancel_rental.js' %}"></script>
 {% endblock extra_body %}
