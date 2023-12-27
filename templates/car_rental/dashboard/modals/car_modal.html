@@ -1,0 +1,78 @@
+{% load i18n static %}
+
+<div class="modal fade" id="car-modal" tabindex="-1" aria-labelledby="car-modal-label" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content p-2">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="car-modal-label">{% trans "Add car" %}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <form action="POST" class="my-3 px-2 w-100" enctype="multipart/form-data" id="car-form"
+        data-url="{% url 'dashboard_car_create' %}">
+        {% csrf_token %}
+        <div class="row row-cols-1">
+          {{ car_form.non_field_errors }}
+
+          <div class="col mb-3 p-1">
+            {{ car_form.car_picture.label_tag }}
+            {{ car_form.car_picture }}
+            {{ car_form.car_picture.errors }}
+          </div>
+
+          {{ car_form.brand.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ car_form.brand }}
+            {{ car_form.brand.label_tag }}
+          </div>
+
+          {{ car_form.model.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ car_form.model }}
+            {{ car_form.model.label_tag }}
+          </div>
+
+          {{ car_form.engine_capacity.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ car_form.engine_capacity }}
+            {{ car_form.engine_capacity.label_tag }}
+          </div>
+
+          {{ car_form.engine_power.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ car_form.engine_power }}
+            {{ car_form.engine_power.label_tag }}
+          </div>
+
+          {{ car_form.production_year.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ car_form.production_year }}
+            {{ car_form.production_year.label_tag }}
+          </div>
+
+          {{ car_form.day_cost.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ car_form.day_cost }}
+            {{ car_form.day_cost.label_tag }}
+          </div>
+
+          {{ car_form.status.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ car_form.status }}
+            {{ car_form.status.label_tag }}
+          </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            {% trans "Cancel" %}
+          </button>
+          <button type="submit" class="btn btn-primary">
+            {% trans "Add" %}
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

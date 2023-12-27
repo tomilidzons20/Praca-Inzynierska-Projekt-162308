@@ -1,3 +1,5 @@
+from django.http import JsonResponse
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.views.generic import ListView
@@ -24,14 +26,10 @@ class DashboardCarListView(ListView):
     paginate_by = 10
     ordering = 'brand'
 
-
-class DashboardCarCreateView(CreateView):
-    template_name = 'car_rental/dashboard/car_create.html'
-    model = Car
-    form_class = CarForm
-
-    def get_success_url(self):
-        return reverse_lazy('dashboard_car_list')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['car_form'] = CarForm
+        return context
 
 
 class DashboardCarUpdateView(UpdateView):
@@ -54,13 +52,12 @@ class DashboardCarUpdateView(UpdateView):
 class DashboardMaintenanceListView(FilterView):
     template_name = 'car_rental/dashboard/maintenance_list.html'
     model = CarMaintenance
-    # paginate_by = 10
+    paginate_by = 10
     ordering = 'date_of_repair'
     filterset_class = MaintenanceFilter
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         context['maintenance_form'] = CarMaintenanceForm
         return context
 
@@ -68,13 +65,40 @@ class DashboardMaintenanceListView(FilterView):
 class DashboardRentalListView(ListView):
     template_name = 'car_rental/dashboard/rental_list.html'
     model = CarRental
+    paginate_by = 10
     ordering = 'end_date'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['rental_form'] = CarRentalForm
+        return context
 
-class DashboardRentalCreateView(CreateView):
-    template_name = 'car_rental/dashboard/rental_create.html'
-    model = CarRental
-    form_class = CarRentalForm
 
-    def get_success_url(self):
-        return reverse_lazy('dashboard_rental_list')
+def maintenance_create_view(request):
+    if request.method == 'POST':
+        form = CarMaintenanceForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return JsonResponse({'success': True}, status=200)
+        return JsonResponse({'errors': form.errors}, status=400)
+    return redirect('dashboard_maintenance_list')
+
+
+def car_create_view(request):
+    if request.method == 'POST':
+        form = CarForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return JsonResponse({'success': True}, status=200)
+        return JsonResponse({'errors': form.errors}, status=400)
+    return redirect('dashboard_car_list')
+
+
+def rental_create_view(request):
+    if request.method == 'POST':
+        form = CarRentalForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return JsonResponse({'success': True}, status=200)
+        return JsonResponse({'errors': form.errors}, status=400)
+    return redirect('dashboard_rental_list')

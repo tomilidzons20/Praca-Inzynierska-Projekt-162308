@@ -41,7 +41,6 @@ class CarMaintenanceForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'date_of_repair': forms.DateInput(
-                format='YYYY-MM-DD',
                 attrs={'type': 'date', 'required': True},
             ),
             'status': forms.Select(
@@ -77,11 +76,9 @@ class CarRentalForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'start_date': forms.DateTimeInput(
-                format='YYYY-MM-DD',
                 attrs={'type': 'datetime-local', 'required': True},
             ),
             'end_date': forms.DateTimeInput(
-                format='YYYY-MM-DD',
                 attrs={'type': 'datetime-local', 'required': True},
             ),
             'user': forms.Select(
@@ -97,6 +94,9 @@ class CarRentalForm(forms.ModelForm):
                 attrs={'class': 'form-select'},
             ),
             'protection': forms.Select(
+                attrs={'class': 'form-select'},
+            ),
+            'status': forms.Select(
                 attrs={'class': 'form-select'},
             ),
         }
@@ -119,14 +119,12 @@ class CarDaysRentalForm(forms.Form):
     date_from = forms.DateTimeField(
         required=True,
         widget=forms.DateTimeInput(
-            format='YYYY-MM-DD',
             attrs={'type': 'datetime-local'}
         )
     )
     date_to = forms.DateTimeField(
         required=True,
         widget=forms.DateTimeInput(
-            format='YYYY-MM-DD',
             attrs={'type': 'datetime-local'}
         )
     )
@@ -287,7 +285,6 @@ class CarLongTermRentalForm(forms.ModelForm):
         ]
         widgets = {
             'start_date': forms.DateTimeInput(
-                format='YYYY-MM-DD',
                 attrs={'type': 'datetime-local'},
             ),
             'message': forms.Textarea(

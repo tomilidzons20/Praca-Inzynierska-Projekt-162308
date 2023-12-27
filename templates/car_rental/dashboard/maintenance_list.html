@@ -2,7 +2,7 @@
 {% load i18n allauth static %}
 
 {% block head_title %}
-  {% trans "Cars" %}
+  {% trans "Car maintenance" %}
 {% endblock head_title %}
 
 {% block extra_head %}
@@ -17,7 +17,7 @@
   <div class="row mb-3">
     <div class="col-12 col-md-4">
       <div class="h-100 d-flex align-items-center">
-        <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#maintenance-modal">
+        <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#maintenance-modal">
           {% trans "Add maintenance" %}
         </button>
       </div>
@@ -45,7 +45,7 @@
 
   <div class="bg-body-secondary rounded p-2 mb-5">
     <div class="row row-cols-1 gy-2 pe-3">
-      {% for maintenance in filter.qs %}
+      {% for maintenance in object_list %}
         <div class="bg-body-tertiary rounded p-2 mx-2 text-white">
           <div class="row">
             <div class="col-9">
@@ -77,12 +77,13 @@
         </div>
       {% endfor %}
     </div>
+    {% include 'car_rental/dashboard/pagination.html' %}
   </div>
 
   {% include 'car_rental/dashboard/modals/maintenance_modal.html' %}
 {% endblock content %}
 
 {% block extra_body %}
-  <script src="{% static 'js/car_rental/dashboard/maintenance_ajax.js' %}"></script>
+  <script src="{% static 'js/car_rental/dashboard/maintenance_create.js' %}"></script>
   <script src="{% static 'bootstrap/js/tooltips.js' %}"></script>
 {% endblock extra_body %}

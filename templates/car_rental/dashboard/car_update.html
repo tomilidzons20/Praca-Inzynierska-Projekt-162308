@@ -63,15 +63,15 @@
           {{ form.production_year }}
           {{ form.production_year.label_tag }}
         </div>
-        {{ form.status.errors }}
-        <div class="form-floating mb-3">
-          {{ form.status }}
-          {{ form.status.label_tag }}
-        </div>
         {{ form.day_cost.errors }}
         <div class="form-floating mb-3">
           {{ form.day_cost }}
           {{ form.day_cost.label_tag }}
+        </div>
+        {{ form.status.errors }}
+        <div class="form-floating mb-3">
+          {{ form.status }}
+          {{ form.status.label_tag }}
         </div>
         <div class="col-12 col-md-6 offset-md-3 text-center">
           <button type="submit" class="btn btn-primary w-100">
@@ -99,7 +99,7 @@
             {% for maintenance in maintenance_list %}
               <tr>
                 <th scope="row">{{ forloop.counter }}</th>
-                <td>{{ maintenance.date_of_repair|date:"Y-m-d" }}</td>
+                <td>{{ maintenance.date_of_repair|date:"d.m.Y" }}</td>
                 <td>{{ maintenance.get_status_display }}</td>
                 <td>{{ maintenance.cost_of_repair.amount }} {{ maintenance.cost_of_repair.currency }}</td>
               </tr>
@@ -118,11 +118,13 @@
         <h4 class="fw-normal mb-3">
           {% trans 'Add maintenance' %}
         </h4>
-        <form action="POST" class="my-3 px-2 w-100" enctype="multipart/form-data" id="maintenance-form" data-url="{% url 'api_maintenance_create' %}" data-car="{{ object.id }}">
+        <form action="POST" class="my-3 px-2 w-100" enctype="multipart/form-data" id="maintenance-form"
+          data-url="{% url 'dashboard_maintenance_create' %}">
           {% csrf_token %}
           <div class="row">
             {{ maintenance_form.non_field_errors }}
   
+            <input type="hidden" name="car" value="{{ object.id }}">
             {{ maintenance_form.date_of_repair.errors }}
             <div class="form-floating mb-3 col-12 col-md-6 p-1">
               {{ maintenance_form.date_of_repair }}
@@ -155,5 +157,5 @@
 
 {% block extra_body %}
 <script src="{% static 'js/car_rental/dashboard/car_update.js' %}"></script>
-<script src="{% static 'js/car_rental/dashboard/maintenance_ajax.js' %}"></script>
+<script src="{% static 'js/car_rental/dashboard/maintenance_create.js' %}"></script>
 {% endblock extra_body %}

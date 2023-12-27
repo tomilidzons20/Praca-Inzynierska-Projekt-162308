@@ -10,15 +10,18 @@
   .info-pill {
     min-width: fit-content;
   }
+  #id_day_cost_1{
+    display: none;
+  }
 </style>
 {% endblock extra_head %}
 
 {% block content %}
   <div class="row">
     <div class="col-12 col-md-3 my-3">
-      <a type="button" class="btn btn-primary w-100" href="{% url 'dashboard_car_create' %}">
+      <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#car-modal">
         {% trans "Add car" %}
-      </a>
+      </button>
     </div>
   </div>
 
@@ -79,8 +82,10 @@
     </div>
     {% include 'car_rental/dashboard/pagination.html' %}
   </div>
+  {% include 'car_rental/dashboard/modals/car_modal.html' %}
 {% endblock content %}
 
 {% block extra_body %}
+  <script src="{% static 'js/car_rental/dashboard/car_create.js' %}"></script>
   <script src="{% static 'bootstrap/js/tooltips.js' %}"></script>
 {% endblock extra_body %}

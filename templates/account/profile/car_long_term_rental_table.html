@@ -12,7 +12,7 @@
   <tbody>
     {% for rental in long_term_rentals %}
       <tr>
-        <td>{{ rental.start_date }}</td>
+        <td>{{ rental.start_date|date:"d.m.Y H:m" }}</td>
         <td>{{ rental.number_of_months }}</td>
         <td>{{ rental.get_status_display }}</td>
       </tr>

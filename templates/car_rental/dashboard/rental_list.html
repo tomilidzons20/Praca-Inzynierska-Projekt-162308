@@ -2,15 +2,23 @@
 {% load i18n allauth static djmoney %}
 
 {% block head_title %}
-  {% trans "Car update" %}
+  {% trans "Car rentals" %}
 {% endblock head_title %}
+
+{% block extra_head %}
+<style>
+  #id_total_cost_1{
+    display: none;
+  }
+</style>
+{% endblock extra_head %}
 
 {% block content %}
   <div class="row">
     <div class="col-12 col-md-3 my-3">
-      <a type="button" class="btn btn-primary w-100" href="{% url 'dashboard_rental_create' %}">
+      <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#rental-modal">
         {% trans "Add rental" %}
-      </a>
+      </button>
     </div>
   </div>
 
@@ -20,7 +28,6 @@
         <a class="col text-decoration-none" href="">
           <div class="bg-body-tertiary rounded p-2 mx-2 text-white">
             <div class="row">
-              <!-- Info section -->
               <div class="col-12">
                 <div class="d-flex flex-row gap-5">
                   <h3 class="fw-normal mb-3">
@@ -45,5 +52,11 @@
         </a>
       {% endfor %}
     </div>
+    {% include 'car_rental/dashboard/pagination.html' %}
   </div>
+  {% include 'car_rental/dashboard/modals/rental_modal.html' %}
 {% endblock content %}
+
+{% block extra_body %}
+  <script src="{% static 'js/car_rental/dashboard/rental_create.js' %}"></script>
+{% endblock extra_body %}
