@@ -1,0 +1,78 @@
+{% extends 'car_rental/layouts/dashboard_base.html' %}
+{% load i18n allauth static %}
+
+{% block head_title %}
+  {% trans "Contacts" %}
+{% endblock head_title %}
+
+{% block extra_head %}
+<style>
+  #id_total_cost_1{
+    display: none;
+  }
+</style>
+{% endblock extra_head %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-12 col-md-3 my-3">
+      <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#contact-modal">
+        {% trans "Add contact" %}
+      </button>
+    </div>
+    <div class="col-12 col-md-8 gy-2">
+      <form method="get">
+        <div class="row w-100">
+          {{ filter.form.non_field_errors }}
+          {% for field in filter.form %}
+            {{ field.errors }}
+            <div class="form-floating col-12 col-md-2 p-1">
+              {{ field }}
+              {{ field.label_tag }}
+            </div>
+          {% endfor %}
+          <div class="col-12 col-md-3 p-1">
+            <div class="h-100 d-flex align-items-center">
+              <button class="btn btn-primary w-100" type="submit">Sort</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="bg-body-secondary rounded p-2 mb-5">
+    <div class="row row-cols-1 gy-2 mt-2">
+      {% for contact in object_list %}
+        <a class="col text-decoration-none" href="">
+          <div class="bg-body-tertiary rounded p-2 mx-2 text-white">
+            <div class="row">
+              <div class="col-12">
+                <div class="d-flex flex-row gap-5">
+                  <h3 class="fw-normal mb-3">
+                    {{ contact.user }}
+                  </h3>
+                  <h3 class="fw-normal mb-3">
+                    {{ contact.get_category_display }}
+                  </h3>
+                  <h3 class="fw-normal mb-3">
+                    {{ contact.get_status_display }}
+                  </h3>
+                  <h3 class="fw-normal mb-3">
+                    {{ contact.add_date|date:'d.m.Y H:m' }}
+                  </h3>       
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+    {% include 'car_rental/dashboard/pagination.html' %}
+  </div>
+  {% include 'car_rental/dashboard/modals/contact_modal.html' %}
+{% endblock content %}
+
+{% block extra_body %}
+  <script src="{% static 'js/car_rental/dashboard/contact_create.js' %}"></script>
+{% endblock extra_body %}

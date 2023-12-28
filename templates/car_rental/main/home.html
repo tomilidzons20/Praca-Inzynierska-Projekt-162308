@@ -8,9 +8,9 @@
 <div class="container my-5">
   <div class="container">
     <h3 class="fw-normal mb-3">{% trans 'Rent a car for:' %}</h3>
-    <div class="row pt-4 row-cols-1 row-cols-md-2 gy-3 gx-5">
+    <div class="row pt-4 gy-3 gx-5">
 
-      <div class="col">
+      <div class="col-12 col-md-6 offset-md-3">
         <a href="{% url 'days_rental' %}" class="card btn btn-secondary">
           <div class="card-body">
             <h5 class="card-title text-center">{% trans 'Days' %}</h5>
@@ -19,20 +19,6 @@
             </div>
             <p class="card-text mt-3">
               {% trans 'From' %} / {% trans 'day' %}
-            </p>
-          </div>
-        </a>
-      </div>
-
-      <div class="col">
-        <a href="{% url 'long_term_rental' %}" class="card btn btn-secondary">
-          <div class="card-body">
-            <h5 class="card-title text-center">{% trans 'Long term rent' %}</h5>
-            <div class="d-flex justify-content-center">
-              <img src="{% static 'img/car_pictures/default_car.png' %}" class="img-thumbnail" alt="{% trans 'Months' %}" width="350px" height="200px">
-            </div>
-            <p class="card-text mt-3">
-              {% trans 'Long term rent' %}
             </p>
           </div>
         </a>

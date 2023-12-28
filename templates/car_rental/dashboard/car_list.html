@@ -69,9 +69,9 @@
               <!-- Picture section -->
               <div class="col-3 d-flex justify-content-end">
                 {% if car.car_picture %}
-                  <img src="{{ car.car_picture.url }}" alt="Profile picture" class="img-thumbnail" width="150px" height="150px" style="min-width: 150px;">
+                  <img src="{{ car.car_picture.url }}" alt="Car picture" class="img-thumbnail" width="150px" height="150px" style="min-width: 150px;">
                 {% else %}
-                  <img src="{% static 'img/car_pictures/default_car.png' %}" alt="Profile picture" class="img-thumbnail" width="150px" height="150px" style="min-width: 150px;">
+                  <img src="{% static 'img/car_pictures/default_car.png' %}" alt="Car picture" class="img-thumbnail" width="150px" height="150px" style="min-width: 150px;">
                 {% endif %}
               </div>
 

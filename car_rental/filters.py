@@ -5,8 +5,10 @@ from django_filters.filters import ChoiceFilter
 from django_filters.filters import ModelChoiceFilter
 from django_filters.filters import OrderingFilter
 
+from accounts.models import CustomUser
 from .models import Car
 from .models import CarMaintenance
+from .models import ContactMessage
 
 
 class MaintenanceFilter(FilterSet):
@@ -53,3 +55,53 @@ class MaintenanceFilter(FilterSet):
             ('date_of_repair', _('Date of repair')),
             ('cost_of_repair', _('Cost of repair')),
         )
+
+
+class ContactFilter(FilterSet):
+    user = ModelChoiceFilter(
+        field_name='user',
+        queryset=CustomUser.objects.all(),
+        empty_label=_('All'),
+        widget=forms.Select(
+            attrs={'class': 'form-select'},
+        ),
+    )
+    category = ChoiceFilter(
+        field_name='category',
+        empty_label=_('All'),
+        choices=ContactMessage.CategoryChoices.choices,
+        widget=forms.Select(
+            attrs={'class': 'form-select'},
+        ),
+    )
+    status = ChoiceFilter(
+        field_name='status',
+        empty_label=_('All'),
+        choices=ContactMessage.StatusChoices.choices,
+        widget=forms.Select(
+            attrs={'class': 'form-select'},
+        ),
+    )
+    ordering = OrderingFilter(
+        fields=(
+            ('add_date', _('Date of creation')),
+        ),
+        null_label=None,
+        empty_label=None,
+        label=_('Order by:'),
+        widget=forms.Select,
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.filters['ordering'].field.widget.attrs.update({
+            'class': 'form-select',
+        })
+
+    class Meta:
+        model = ContactMessage
+        fields = [
+            'user',
+            'category',
+            'status',
+        ]

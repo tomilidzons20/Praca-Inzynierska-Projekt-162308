@@ -363,43 +363,11 @@ class ContactMessage(models.Model):
         choices=StatusChoices.choices,
         default=StatusChoices.NEW,
     )
+    add_date = models.DateTimeField(
+        _('Date of contact message creation'),
+        blank=True,
+    )
 
     class Meta:
         verbose_name = _('Contact message')
         verbose_name_plural = _('Contact messages')
-
-
-class CarLongTermRental(models.Model):
-    class StatusChoices(models.TextChoices):
-        NEW = 'NE', _('New')
-        IN_PROGRESS = 'IP', _('In progress')
-        CLOSED = 'CL', _('Closed')
-        CANCELLED = 'CA', _('Cancelled')
-
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        verbose_name=_('User'),
-        on_delete=models.CASCADE,
-        null=True,
-    )
-    start_date = models.DateTimeField(
-        _('Start date of car rental'),
-        blank=False,
-    )
-    number_of_months = models.PositiveIntegerField(
-        _('Number of months'),
-        blank=False
-    )
-    message = models.TextField(
-        _('Message'),
-        blank=False,
-    )
-    status = models.CharField(
-        _('Status'),
-        choices=StatusChoices.choices,
-        default=StatusChoices.NEW,
-    )
-
-    class Meta:
-        verbose_name = _('Long term rental')
-        verbose_name_plural = _('Long term rentals')

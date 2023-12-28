@@ -24,5 +24,4 @@ const createDataTable = (id, column) => {
 
 $(document).ready(() => {
   createDataTable('#car-rental-table', 5);
-  createDataTable('#car-long-term-rental-table');
 })

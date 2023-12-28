@@ -3,6 +3,7 @@ from math import ceil
 from django.db.models import Q
 from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _gettext
 from django.views.generic import CreateView
 from django.views.generic import DetailView
@@ -14,11 +15,9 @@ from .forms import CarAddressForm
 from .forms import CarChoiceForm
 from .forms import CarDaysRentalForm
 from .forms import CarExtraForm
-from .forms import CarLongTermRentalForm
 from .forms import ClientContactForm
 from .forms import RentalReviewForm
 from .models import Car
-from .models import CarLongTermRental
 from .models import CarMaintenance
 from .models import CarRental
 from .models import ContactMessage
@@ -232,23 +231,9 @@ class ContactCreateView(CreateView):
     def form_valid(self, form):
         message = form.save(commit=False)
         message.user = self.request.user
+        message.add_date = timezone.now()
         message.save()
         return super().form_valid(form)
 
     def get_success_url(self):
         return reverse_lazy('contact')
-
-
-class CarRentalLongTermView(CreateView):
-    model = CarLongTermRental
-    form_class = CarLongTermRentalForm
-    template_name = 'car_rental/main/long_term_rental.html'
-
-    def form_valid(self, form):
-        long_term_rental = form.save(commit=False)
-        long_term_rental.user = self.request.user
-        long_term_rental.save()
-        return super().form_valid(form)
-
-    def get_success_url(self):
-        return reverse_lazy('long_term_rental')

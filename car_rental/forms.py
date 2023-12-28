@@ -2,9 +2,9 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from ckeditor.widgets import CKEditorWidget
 
 from .models import Car
-from .models import CarLongTermRental
 from .models import CarMaintenance
 from .models import CarRental
 from .models import ContactMessage
@@ -112,7 +112,14 @@ class NewsForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'main_picture': forms.FileInput(),
+            'add_date': forms.DateInput(
+                attrs={'type': 'date', 'required': True},
+            ),
+            'description': CKEditorWidget(),
         }
+        exclude = [
+            'slug',
+        ]
 
 
 class CarDaysRentalForm(forms.Form):
@@ -255,39 +262,59 @@ class ClientContactForm(forms.ModelForm):
         }
 
 
-class CarLongTermRentalForm(forms.ModelForm):
+class ContactForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         set_form_styles(self.fields)
 
-    def clean(self):
-        data = self.cleaned_data
-        start_date = data.get('start_date')
-        minimum_hours_difference = 6
-
-        now = timezone.now()
-        if start_date < now:
-            raise forms.ValidationError(_('Date from cannot be in the past.'))
-
-        if start_date < now + timezone.timedelta(hours=minimum_hours_difference):
-            raise forms.ValidationError(
-                _('Date from not earlier than in ') + str(minimum_hours_difference) + _(' hours')
-            )
-
-        return data
-
     class Meta:
-        model = CarLongTermRental
+        model = ContactMessage
         fields = '__all__'
-        exclude = [
-            'user',
-            'status',
-        ]
         widgets = {
-            'start_date': forms.DateTimeInput(
-                attrs={'type': 'datetime-local'},
+            'user': forms.Select(
+                attrs={'class': 'form-select'},
+            ),
+            'category': forms.Select(
+                attrs={'class': 'form-select'},
+            ),
+            'status': forms.Select(
+                attrs={'class': 'form-select'},
             ),
             'message': forms.Textarea(
                 attrs={'style': 'height: 300px;'},
             ),
+            'add_date': forms.DateTimeInput(
+                attrs={'type': 'datetime-local', 'required': True},
+            ),
         }
+
+
+class RentalProtectionForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        set_form_styles(self.fields)
+
+    class Meta:
+        model = RentalProtection
+        fields = '__all__'
+        widgets = {
+            'tpl_insurance': forms.CheckboxInput(
+                attrs={'class': 'form-check-input'},
+            ),
+            'wheel_protection': forms.CheckboxInput(
+                attrs={'class': 'form-check-input'},
+            ),
+            'window_protection': forms.CheckboxInput(
+                attrs={'class': 'form-check-input'},
+            ),
+        }
+
+
+class RentalExtraForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        set_form_styles(self.fields)
+
+    class Meta:
+        model = RentalExtra
+        fields = '__all__'

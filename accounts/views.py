@@ -10,7 +10,6 @@ from .forms import ProfileForm
 from .models import Address
 from .models import CustomUser
 from car_rental.models import CarRental
-from car_rental.models import CarLongTermRental
 
 
 class ProfileView(LoginRequiredMixin, UpdateView):
@@ -22,10 +21,8 @@ class ProfileView(LoginRequiredMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         address, _ = Address.objects.get_or_create(account=self.request.user)
         rentals = CarRental.objects.filter(user=self.request.user).order_by('-start_date')
-        long_term_rentals = CarLongTermRental.objects.filter(user=self.request.user).order_by('-start_date')
         context['address_form'] = AddressForm(instance=address)
         context['rentals'] = rentals
-        context['long_term_rentals'] = long_term_rentals
         return context
 
     def get_object(self, queryset=CustomUser):
