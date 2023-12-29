@@ -6,10 +6,12 @@ from django_filters.filters import ModelChoiceFilter
 from django_filters.filters import OrderingFilter
 
 from accounts.models import CustomUser
+
 from .models import Car
-from .models import CarRental
 from .models import CarMaintenance
+from .models import CarRental
 from .models import ContactMessage
+from .models import News
 
 
 class MaintenanceFilter(FilterSet):
@@ -52,10 +54,6 @@ class MaintenanceFilter(FilterSet):
             'car',
             'status',
         ]
-        order_by = (
-            ('date_of_repair', _('Date of repair')),
-            ('cost_of_repair', _('Cost of repair')),
-        )
 
 
 class ContactFilter(FilterSet):
@@ -157,3 +155,25 @@ class CarRentalFilter(FilterSet):
             'car',
             'status',
         ]
+
+
+class NewsFilter(FilterSet):
+    ordering = OrderingFilter(
+        fields=(
+            ('add_date', _('Date of creation')),
+        ),
+        null_label=None,
+        empty_label=None,
+        label=_('Order by:'),
+        widget=forms.Select,
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.filters['ordering'].field.widget.attrs.update({
+            'class': 'form-select',
+        })
+
+    class Meta:
+        model = News
+        fields = ''

@@ -5,11 +5,12 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView
 
+from car_rental.models import CarRental
+
 from .forms import AddressForm
 from .forms import ProfileForm
 from .models import Address
 from .models import CustomUser
-from car_rental.models import CarRental
 
 
 class ProfileView(LoginRequiredMixin, UpdateView):

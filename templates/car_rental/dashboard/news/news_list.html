@@ -15,10 +15,17 @@
 
 {% block content %}
   <div class="row">
-    <div class="col-12 col-md-3 my-3">
-      <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#news-modal">
-        {% trans "Add news" %}
-      </button>
+    <div class="col-12 my-3">
+      <div class="d-flex justify-content-between">
+        <button class="btn btn-primary px-5" data-bs-toggle="modal" data-bs-target="#news-modal">
+          {% trans "Add news" %}
+        </button>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filter-modal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
+            <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/>
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -53,6 +60,7 @@
     {% include 'car_rental/dashboard/pagination.html' %}
   </div>
   {% include 'car_rental/dashboard/modals/news_modal.html' %}
+  {% include 'car_rental/dashboard/modals/filter_modal.html' %}
 {% endblock content %}
 
 {% block extra_body %}

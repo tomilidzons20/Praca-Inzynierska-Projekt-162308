@@ -1,8 +1,8 @@
+from ckeditor.widgets import CKEditorWidget
 from django import forms
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-from ckeditor.widgets import CKEditorWidget
 
 from .models import Car
 from .models import CarMaintenance

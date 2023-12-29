@@ -6,23 +6,24 @@ from django.views.generic import TemplateView
 from django.views.generic import UpdateView
 from django_filters.views import FilterView
 
-from .filters import MaintenanceFilter
-from .filters import ContactFilter
 from .filters import CarRentalFilter
+from .filters import ContactFilter
+from .filters import MaintenanceFilter
+from .filters import NewsFilter
 from .forms import CarForm
 from .forms import CarMaintenanceForm
 from .forms import CarRentalForm
 from .forms import ContactForm
-from .forms import RentalProtectionForm
-from .forms import RentalExtraForm
 from .forms import NewsForm
+from .forms import RentalExtraForm
+from .forms import RentalProtectionForm
 from .models import Car
 from .models import CarMaintenance
 from .models import CarRental
 from .models import ContactMessage
-from .models import RentalProtection
-from .models import RentalExtra
 from .models import News
+from .models import RentalExtra
+from .models import RentalProtection
 
 
 class DashboardHomeView(TemplateView):
@@ -30,7 +31,7 @@ class DashboardHomeView(TemplateView):
 
 
 class DashboardCarListView(ListView):
-    template_name = 'car_rental/dashboard/car_list.html'
+    template_name = 'car_rental/dashboard/car/car_list.html'
     model = Car
     paginate_by = 10
     ordering = 'brand'
@@ -42,7 +43,7 @@ class DashboardCarListView(ListView):
 
 
 class DashboardCarUpdateView(UpdateView):
-    template_name = 'car_rental/dashboard/car_update.html'
+    template_name = 'car_rental/dashboard/car/car_update.html'
     model = Car
     form_class = CarForm
 
@@ -59,7 +60,7 @@ class DashboardCarUpdateView(UpdateView):
 
 
 class DashboardMaintenanceListView(FilterView):
-    template_name = 'car_rental/dashboard/maintenance_list.html'
+    template_name = 'car_rental/dashboard/maintenance/maintenance_list.html'
     model = CarMaintenance
     paginate_by = 10
     ordering = 'date_of_repair'
@@ -71,8 +72,17 @@ class DashboardMaintenanceListView(FilterView):
         return context
 
 
+class DashboardMaintenanceUpdateView(UpdateView):
+    template_name = 'car_rental/dashboard/maintenance/maintenance_update.html'
+    model = CarMaintenance
+    form_class = CarMaintenanceForm
+
+    def get_success_url(self):
+        return reverse_lazy('dashboard_maintenance_update', kwargs={'pk': self.object.id})
+
+
 class DashboardRentalListView(FilterView):
-    template_name = 'car_rental/dashboard/rental_list.html'
+    template_name = 'car_rental/dashboard/rental/rental_list.html'
     model = CarRental
     paginate_by = 10
     ordering = 'end_date'
@@ -84,8 +94,17 @@ class DashboardRentalListView(FilterView):
         return context
 
 
+class DashboardRentalUpdateView(UpdateView):
+    template_name = 'car_rental/dashboard/rental/rental_update.html'
+    model = CarRental
+    form_class = CarRentalForm
+
+    def get_success_url(self):
+        return reverse_lazy('dashboard_rental_update', kwargs={'pk': self.object.id})
+
+
 class DashboardContactListView(FilterView):
-    template_name = 'car_rental/dashboard/contact_list.html'
+    template_name = 'car_rental/dashboard/contact/contact_list.html'
     model = ContactMessage
     paginate_by = 10
     filterset_class = ContactFilter
@@ -96,8 +115,17 @@ class DashboardContactListView(FilterView):
         return context
 
 
+class DashboardContactUpdateView(UpdateView):
+    template_name = 'car_rental/dashboard/contact/contact_update.html'
+    model = ContactMessage
+    form_class = ContactForm
+
+    def get_success_url(self):
+        return reverse_lazy('dashboard_contact_update', kwargs={'pk': self.object.id})
+
+
 class DashboardRentalProtectionListView(ListView):
-    template_name = 'car_rental/dashboard/rental_protection_list.html'
+    template_name = 'car_rental/dashboard/rental_protection/rental_protection_list.html'
     model = RentalProtection
     paginate_by = 10
 
@@ -107,8 +135,17 @@ class DashboardRentalProtectionListView(ListView):
         return context
 
 
+class DashboardRentalProtectionUpdateView(UpdateView):
+    template_name = 'car_rental/dashboard/rental_protection/rental_protection_update.html'
+    model = RentalProtection
+    form_class = RentalProtectionForm
+
+    def get_success_url(self):
+        return reverse_lazy('dashboard_protection_update', kwargs={'pk': self.object.id})
+
+
 class DashboardRentalExtraListView(ListView):
-    template_name = 'car_rental/dashboard/rental_extra_list.html'
+    template_name = 'car_rental/dashboard/rental_extra/rental_extra_list.html'
     model = RentalExtra
     paginate_by = 10
 
@@ -118,15 +155,34 @@ class DashboardRentalExtraListView(ListView):
         return context
 
 
-class DashboardNewsListView(ListView):
-    template_name = 'car_rental/dashboard/news_list.html'
+class DashboardRentalExtraUpdateView(UpdateView):
+    template_name = 'car_rental/dashboard/rental_extra/rental_extra_update.html'
+    model = RentalExtra
+    form_class = RentalExtraForm
+
+    def get_success_url(self):
+        return reverse_lazy('dashboard_extra_update', kwargs={'pk': self.object.id})
+
+
+class DashboardNewsListView(FilterView):
+    template_name = 'car_rental/dashboard/news/news_list.html'
     model = News
     paginate_by = 10
+    filterset_class = NewsFilter
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['news_form'] = NewsForm
         return context
+
+
+class DashboardNewsUpdateView(UpdateView):
+    template_name = 'car_rental/dashboard/news/news_update.html'
+    model = News
+    form_class = NewsForm
+
+    def get_success_url(self):
+        return reverse_lazy('dashboard_news_update', kwargs={'pk': self.object.id})
 
 
 def maintenance_create_view(request):
@@ -201,5 +257,3 @@ def news_create_view(request):
 # TODO
 # rest of dashboard views | crud
 # update: contact, news, rental protection, rental extra
-
-
