@@ -7,6 +7,7 @@ from django_filters.filters import OrderingFilter
 
 from accounts.models import CustomUser
 from .models import Car
+from .models import CarRental
 from .models import CarMaintenance
 from .models import ContactMessage
 
@@ -103,5 +104,56 @@ class ContactFilter(FilterSet):
         fields = [
             'user',
             'category',
+            'status',
+        ]
+
+
+class CarRentalFilter(FilterSet):
+    user = ModelChoiceFilter(
+        field_name='user',
+        queryset=CustomUser.objects.all(),
+        empty_label=_('All'),
+        widget=forms.Select(
+            attrs={'class': 'form-select'},
+        ),
+    )
+    car = ModelChoiceFilter(
+        field_name='car',
+        queryset=Car.objects.all(),
+        empty_label=_('All'),
+        widget=forms.Select(
+            attrs={'class': 'form-select'},
+        ),
+    )
+    status = ChoiceFilter(
+        field_name='status',
+        empty_label=_('All'),
+        choices=CarRental.StatusChoices.choices,
+        widget=forms.Select(
+            attrs={'class': 'form-select'},
+        ),
+    )
+    ordering = OrderingFilter(
+        fields=(
+            ('start_date', _('Start date')),
+            ('end_date', _('End date'))
+        ),
+        null_label=None,
+        empty_label=None,
+        label=_('Order by:'),
+        widget=forms.Select,
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.filters['ordering'].field.widget.attrs.update({
+            'class': 'form-select',
+        })
+
+    class Meta:
+        model = CarRental
+        fields = [
+            'user',
+            'car',
             'status',
         ]

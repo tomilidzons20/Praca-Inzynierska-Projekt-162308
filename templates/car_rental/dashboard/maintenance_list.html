@@ -14,48 +14,32 @@
 {% endblock extra_head %}
 
 {% block content %}
-  <div class="row mb-3">
-    <div class="col-12 col-md-4">
-      <div class="h-100 d-flex align-items-center">
-        <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#maintenance-modal">
+  <div class="row">
+    <div class="col-12 my-3">
+      <div class="d-flex justify-content-between">
+        <button class="btn btn-primary px-5" data-bs-toggle="modal" data-bs-target="#maintenance-modal">
           {% trans "Add maintenance" %}
         </button>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filter-modal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
+            <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/>
+          </svg>
+        </button>
       </div>
-    </div>
-    <div class="col-12 col-md-8 gy-2">
-      <form method="get">
-        <div class="row w-100">
-          {{ filter.form.non_field_errors }}
-          {% for field in filter.form %}
-            {{ field.errors }}
-            <div class="form-floating col-12 col-md-3 p-1">
-              {{ field }}
-              {{ field.label_tag }}
-            </div>
-          {% endfor %}
-          <div class="col-12 col-md-3 p-1">
-            <div class="h-100 d-flex align-items-center">
-              <button class="btn btn-primary w-100" type="submit">Sort</button>
-            </div>
-          </div>
-        </div>
-      </form>
     </div>
   </div>
 
   <div class="bg-body-secondary rounded p-2 mb-5">
-    <div class="row row-cols-1 gy-2 pe-3">
+    <div class="row row-cols-1 gy-2 mt-2">
       {% for maintenance in object_list %}
-        <div class="bg-body-tertiary rounded p-2 mx-2 text-white">
-          <div class="row">
-            <div class="col-9">
-              <div class="d-flex flex-column">
+        <a class="col text-decoration-none px-0" href="">
+          <div class="bg-body-tertiary rounded p-2 mx-2 text-white">
+            <div class="row">
+              <div class="col-9">
                 <h3 class="fw-normal mb-3">
-                  <a class="col text-decoration-none" href="{% url 'dashboard_car_update' maintenance.car.pk %}">
-                    {{ maintenance.car }}
-                  </a>
+                  {{ maintenance.car }}
                 </h3>
-                <div class="d-flex flex-row">
+                <div class="d-flex flex-row gap-2">
                   <h5 class="fw-normal mb-3">
                     {% trans 'Date of repair' %} {{ maintenance.date_of_repair|date:'Y-m-d' }}
                   </h5>
@@ -74,13 +58,14 @@
               </div>
             </div>
           </div>
-        </div>
+        </a>
       {% endfor %}
     </div>
     {% include 'car_rental/dashboard/pagination.html' %}
   </div>
-
   {% include 'car_rental/dashboard/modals/maintenance_modal.html' %}
+  {% include 'car_rental/dashboard/modals/filter_modal.html' %}
+
 {% endblock content %}
 
 {% block extra_body %}

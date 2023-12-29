@@ -8,6 +8,7 @@ from django_filters.views import FilterView
 
 from .filters import MaintenanceFilter
 from .filters import ContactFilter
+from .filters import CarRentalFilter
 from .forms import CarForm
 from .forms import CarMaintenanceForm
 from .forms import CarRentalForm
@@ -70,11 +71,12 @@ class DashboardMaintenanceListView(FilterView):
         return context
 
 
-class DashboardRentalListView(ListView):
+class DashboardRentalListView(FilterView):
     template_name = 'car_rental/dashboard/rental_list.html'
     model = CarRental
     paginate_by = 10
     ordering = 'end_date'
+    filterset_class = CarRentalFilter
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
