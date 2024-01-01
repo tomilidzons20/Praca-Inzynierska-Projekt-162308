@@ -327,6 +327,9 @@ class RentalAddress(models.Model):
         max_length=255,
     )
 
+    def __str__(self):
+        return f'{self.first_name} {self.last_name} {self.city} {self.street}'
+
     class Meta:
         verbose_name = _('Rental address')
         verbose_name_plural = _('Rental addresses')

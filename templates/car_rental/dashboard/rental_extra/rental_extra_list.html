@@ -16,7 +16,7 @@
 {% block content %}
   <div class="row">
     <div class="col-12 col-md-3 my-3">
-      <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#extra-modal">
+      <button class="btn btn-primary px-5" data-bs-toggle="modal" data-bs-target="#extra-modal">
         {% trans "Add extra" %}
       </button>
     </div>
@@ -29,13 +29,14 @@
           <div class="bg-body-tertiary rounded p-2 mx-2 text-white">
             <div class="row">
               <div class="col-12">
-                <div class="d-flex flex-row gap-5">
-                  <h3 class="fw-normal mb-3">
-                    {{ extra.name }}
-                  </h3>
-                  <h3 class="fw-normal mb-3">
+                <h3 class="fw-normal mb-3">
+                  {{ extra.name }}
+                </h3>
+                <div class="d-flex flex-row gap-2 text-center col-6 col-md-3">
+                  <p class="rounded-pill info-pill bg-secondary px-2 col"
+                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Cost' %}">
                     {{ extra.cost.amount }} {{ extra.cost.currency }}
-                  </h3>
+                  </p>
                 </div>
               </div>
             </div>
@@ -50,4 +51,5 @@
 
 {% block extra_body %}
   <script src="{% static 'js/car_rental/dashboard/extra_create.js' %}"></script>
+  <script src="{% static 'bootstrap/js/tooltips.js' %}"></script>
 {% endblock extra_body %}

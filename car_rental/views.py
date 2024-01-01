@@ -140,7 +140,7 @@ class CarRentalForDaysView(SessionWizardView):
             date_from = self.get_cleaned_data_for_step('days')['date_from']
             date_to = self.get_cleaned_data_for_step('days')['date_to']
 
-            all_cars = Car.objects.all().order_by('id')
+            all_cars = Car.objects.filter(status=Car.StatusChoices.AVAILABLE).order_by('id')
             available_cars = []
             for car in all_cars:
                 # if rentals already exist or maintenance scheduled or is in repair

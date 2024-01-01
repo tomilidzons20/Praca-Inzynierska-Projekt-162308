@@ -7,6 +7,9 @@
 
 {% block extra_head %}
 <style>
+  .info-pill {
+    min-width: fit-content;
+  }
   .django-ckeditor-widget {
     width: 100%;
   }
@@ -35,22 +38,23 @@
         <a class="col text-decoration-none px-0" href="{% url 'dashboard_news_update' news.id %}">
           <div class="bg-body-tertiary rounded p-2 mx-2 text-white">
             <div class="row">
-              <div class="col-12">
-                <div class="d-flex flex-row gap-5">
-                  <h3 class="fw-normal mb-3">
-                    {{ news.title }}
-                  </h3>
-                  <h3 class="fw-normal mb-3">
+              <div class="col-9">
+                <h3 class="fw-normal mb-3">
+                  {{ news.title }}
+                </h3>
+                <div class="d-flex flex-row gap-2 text-center col-6 col-md-3">
+                  <p class="rounded-pill info-pill bg-primary px-2 col"
+                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Date of creation' %}">
                     {{ news.add_date|date:'d.m.Y' }}
-                  </h3>
-                  <div class="">
-                    {% if news.main_picture %}
-                      <img src="{{ news.main_picture.url }}" alt="News picture" class="img-thumbnail" width="150px" height="150px" style="min-width: 150px;">
-                    {% else %}
-                      <img src="{% static 'img/car_pictures/default_car.png' %}" alt="News picture" class="img-thumbnail" width="150px" height="150px" style="min-width: 150px;">
-                    {% endif %}
-                  </div>
+                  </p>
                 </div>
+              </div>
+              <div class="col-3 d-flex justify-content-end">
+                {% if news.main_picture %}
+                  <img src="{{ news.main_picture.url }}" alt="News picture" class="img-thumbnail" width="150px" height="150px" style="min-width: 150px;">
+                {% else %}
+                  <img src="{% static 'img/car_pictures/default_car.png' %}" alt="News picture" class="img-thumbnail" width="150px" height="150px" style="min-width: 150px;">
+                {% endif %}
               </div>
             </div>
           </div>
@@ -67,4 +71,5 @@
   <script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
   <script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
   <script src="{% static 'js/car_rental/dashboard/news_create.js' %}"></script>
+  <script src="{% static 'bootstrap/js/tooltips.js' %}"></script>
 {% endblock extra_body %}

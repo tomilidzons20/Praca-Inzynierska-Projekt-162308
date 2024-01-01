@@ -14,7 +14,7 @@
         <div class="navbar-nav">
           {% if user.is_authenticated %}
             {% if user.is_superuser %}
-              <a href="{% url 'dashboard_home' %}" class="nav-link link-info">{% trans "Dashboard" %}</a>
+              <a href="{% url 'dashboard_car_list' %}" class="nav-link link-info">{% trans "Dashboard" %}</a>
             {% endif %}
             <a href="{% url 'view_profile' %}" class="nav-link">{% trans "Profile" %}</a>
             <a href="{% url 'account_logout' %}" class="nav-link">{% trans "Sign Out" %}</a>

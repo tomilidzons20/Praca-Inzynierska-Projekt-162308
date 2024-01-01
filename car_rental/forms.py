@@ -52,6 +52,12 @@ class CarMaintenanceForm(forms.ModelForm):
         }
 
 
+class CarMaintenanceUpdateForm(CarMaintenanceForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['car'].disabled = True
+
+
 class CarRentalForm(forms.ModelForm):
     def clean(self):
         data = self.cleaned_data
@@ -70,6 +76,7 @@ class CarRentalForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         set_form_styles(self.fields)
+        self.fields['address'].required = False
 
     class Meta:
         model = CarRental
@@ -100,6 +107,13 @@ class CarRentalForm(forms.ModelForm):
                 attrs={'class': 'form-select'},
             ),
         }
+
+
+class CarRentalUpdateForm(CarRentalForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['user'].disabled = True
+        self.fields['address'].disabled = True
 
 
 class NewsForm(forms.ModelForm):

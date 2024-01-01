@@ -2,7 +2,6 @@ from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView
-from django.views.generic import TemplateView
 from django.views.generic import UpdateView
 from django_filters.views import FilterView
 
@@ -12,7 +11,9 @@ from .filters import MaintenanceFilter
 from .filters import NewsFilter
 from .forms import CarForm
 from .forms import CarMaintenanceForm
+from .forms import CarMaintenanceUpdateForm
 from .forms import CarRentalForm
+from .forms import CarRentalUpdateForm
 from .forms import ContactForm
 from .forms import NewsForm
 from .forms import RentalExtraForm
@@ -24,10 +25,6 @@ from .models import ContactMessage
 from .models import News
 from .models import RentalExtra
 from .models import RentalProtection
-
-
-class DashboardHomeView(TemplateView):
-    template_name = 'car_rental/dashboard/home.html'
 
 
 class DashboardCarListView(ListView):
@@ -75,7 +72,7 @@ class DashboardMaintenanceListView(FilterView):
 class DashboardMaintenanceUpdateView(UpdateView):
     template_name = 'car_rental/dashboard/maintenance/maintenance_update.html'
     model = CarMaintenance
-    form_class = CarMaintenanceForm
+    form_class = CarMaintenanceUpdateForm
 
     def get_success_url(self):
         return reverse_lazy('dashboard_maintenance_update', kwargs={'pk': self.object.id})
@@ -97,7 +94,7 @@ class DashboardRentalListView(FilterView):
 class DashboardRentalUpdateView(UpdateView):
     template_name = 'car_rental/dashboard/rental/rental_update.html'
     model = CarRental
-    form_class = CarRentalForm
+    form_class = CarRentalUpdateForm
 
     def get_success_url(self):
         return reverse_lazy('dashboard_rental_update', kwargs={'pk': self.object.id})
@@ -255,5 +252,5 @@ def news_create_view(request):
     return redirect('dashboard_news_list')
 
 # TODO
-# rest of dashboard views | crud
-# update: contact, news, rental protection, rental extra
+# think how to do delete of records, only in admin panel or what
+# access control, dashboard only staff or something

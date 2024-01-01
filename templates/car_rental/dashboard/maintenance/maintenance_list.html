@@ -7,6 +7,9 @@
 
 {% block extra_head %}
 <style>
+  .info-pill {
+    min-width: fit-content;
+  }
   #id_cost_of_repair_1 {
     display: none;
   }
@@ -35,22 +38,24 @@
         <a class="col text-decoration-none px-0" href="{% url 'dashboard_maintenance_update' maintenance.id %}">
           <div class="bg-body-tertiary rounded p-2 mx-2 text-white">
             <div class="row">
-              <div class="col-9">
+              <div class="col-12">
                 <h3 class="fw-normal mb-3">
                   {{ maintenance.car }}
                 </h3>
-                <div class="d-flex flex-row gap-2">
-                  <h5 class="fw-normal mb-3">
-                    {% trans 'Date of repair' %} {{ maintenance.date_of_repair|date:'Y-m-d' }}
-                  </h5>
-                  <h5 class="fw-normal mb-3 mx-3">
-                    {% trans 'Cost of repair' %} {{ maintenance.cost_of_repair }}
-                  </h5>
+                <div class="d-flex flex-row gap-2 text-center col-12 col-md-6">
+                  <p class="rounded-pill info-pill bg-primary px-2 col"
+                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Date of repair' %}">
+                    {{ maintenance.date_of_repair|date:'d.m.Y' }}
+                  </p>
+                  <p class="rounded-pill info-pill bg-secondary px-2 col"
+                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Cost of repair' %}">
+                    {{ maintenance.cost_of_repair.amount }} {{ maintenance.cost_of_repair.currency }}
+                  </p>
                   <p class="rounded-pill info-pill
                     {% if maintenance.status == 'DO' %} bg-success 
                     {% elif maintenance.status == 'SCH' %} bg-info text-black 
                     {% elif maintenance.status == 'IR' %} bg-warning text-black
-                    {% endif %} px-2"
+                    {% endif %} px-2 col"
                     data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Status' %}">
                     {{ maintenance.get_status_display }}
                   </p>

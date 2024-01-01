@@ -7,6 +7,9 @@
 
 {% block extra_head %}
 <style>
+  .info-pill {
+    min-width: fit-content;
+  }
   #id_total_cost_1{
     display: none;
   }
@@ -36,19 +39,30 @@
           <div class="bg-body-tertiary rounded p-2 mx-2 text-white">
             <div class="row">
               <div class="col-12">
-                <div class="d-flex flex-row gap-5">
-                  <h3 class="fw-normal mb-3">
-                    {{ contact.user }}
-                  </h3>
-                  <h3 class="fw-normal mb-3">
-                    {{ contact.get_category_display }}
-                  </h3>
-                  <h3 class="fw-normal mb-3">
-                    {{ contact.get_status_display }}
-                  </h3>
-                  <h3 class="fw-normal mb-3">
+                <h3 class="fw-normal mb-3">
+                  {{ contact.user }}
+                </h3>
+                <div class="d-flex flex-row gap-2 text-center col-12 col-md-6">
+                  <p class="rounded-pill info-pill bg-primary px-2 col"
+                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Date of contact' %}">
                     {{ contact.add_date|date:'d.m.Y H:m' }}
-                  </h3>       
+                  </p>
+                  <p class="rounded-pill info-pill
+                    {% if contact.category == 'AC' %} bg-warning text-black
+                    {% elif contact.category == 'BR' %} bg-danger text-black
+                    {% elif contact.category == 'QU' %} bg-secondary
+                    {% elif contact.category == 'CO' %} bg-secondary-subtle
+                    {% endif %} px-2 col"
+                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Category' %}">
+                    {{ contact.get_category_display }}
+                  </p>
+                  <p class="rounded-pill info-pill
+                    {% if contact.status == 'NE' %} bg-info text-black 
+                    {% elif contact.status == 'CL' %} bg-success
+                    {% endif %} px-2 col"
+                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Status' %}">
+                    {{ contact.get_status_display }}
+                  </p>    
                 </div>
               </div>
             </div>
@@ -65,4 +79,5 @@
 
 {% block extra_body %}
   <script src="{% static 'js/car_rental/dashboard/contact_create.js' %}"></script>
+  <script src="{% static 'bootstrap/js/tooltips.js' %}"></script>
 {% endblock extra_body %}
