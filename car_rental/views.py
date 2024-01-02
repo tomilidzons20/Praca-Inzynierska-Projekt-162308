@@ -1,5 +1,6 @@
 from math import ceil
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -57,7 +58,7 @@ class NewsDetailView(DetailView):
         return context
 
 
-class CarRentalForDaysView(SessionWizardView):
+class CarRentalForDaysView(LoginRequiredMixin, SessionWizardView):
     form_list = [
         ('days', CarDaysRentalForm),
         ('car', CarChoiceForm),
@@ -72,6 +73,12 @@ class CarRentalForDaysView(SessionWizardView):
         'address': 'car_rental/main/car_rental_days/address.html',
         'review': 'car_rental/main/car_rental_days/review.html',
     }
+
+    def get_form_kwargs(self, step):
+        kwargs = super().get_form_kwargs(step)
+        if step == 'address':
+            kwargs['request'] = self.request
+        return kwargs
 
     def calculate_total_cost(self, date_to, date_from, car, protection, extra):
         rental_days = ceil(((date_to - date_from).total_seconds() / 3600) / 24)
@@ -180,7 +187,7 @@ class CarRentalForDaysView(SessionWizardView):
 
         if use_profile_address:
             user_address = self.request.user.address
-            if not user_address:
+            if not hasattr(self.request.user, 'address'):
                 message = _gettext("You don't have saved address in profile")
                 return render(
                     self.request,

@@ -33,10 +33,10 @@ class AdminCar(admin.ModelAdmin):
 @admin.register(CarRental)
 class AdminCarRental(admin.ModelAdmin):
     list_display = [
-        'start_date',
-        'end_date',
         'user',
         'car',
+        'start_date',
+        'end_date',
     ]
     list_filter = [
         'user',
@@ -103,9 +103,18 @@ class AdminRentalProtection(admin.ModelAdmin):
 
 @admin.register(RentalAddress)
 class AdminRentalAddress(admin.ModelAdmin):
-    list_display = ([
+    list_display = [
+        'user',
         'first_name',
-    ])
+        'last_name',
+        'city',
+        'street',
+        'building_number',
+        'post_code',
+    ]
+    list_filter = [
+        'user',
+    ]
 
 
 @admin.register(ContactMessage)

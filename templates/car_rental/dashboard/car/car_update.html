@@ -102,7 +102,7 @@
               {% for maintenance in maintenance_list %}
                 <tr>
                   <th scope="row">{{ forloop.counter }}</th>
-                  <td>{{ maintenance.date_of_repair|date:"d.m.Y" }}</td>
+                  <td>{{ maintenance.date_of_repair|date:'Y-m-d' }}</td>
                   <td>{{ maintenance.get_status_display }}</td>
                   <td>{{ maintenance.cost_of_repair.amount }} {{ maintenance.cost_of_repair.currency }}</td>
                 </tr>

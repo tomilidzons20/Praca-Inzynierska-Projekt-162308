@@ -218,8 +218,9 @@ class CarAddressForm(forms.ModelForm):
         required=False,
     )
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.request = request
         set_form_styles(self.fields)
         self.fields['first_name'].required = False
         self.fields['last_name'].required = False
@@ -230,7 +231,10 @@ class CarAddressForm(forms.ModelForm):
     def clean(self):
         data = self.cleaned_data
         if data.get('use_profile_address'):
-            return data
+            if hasattr(self.request.user, 'address'):
+                return data
+            else:
+                raise ValidationError(_('You dont have saved profile address.'))
         if (
             data.get('first_name') and
             data.get('last_name') and

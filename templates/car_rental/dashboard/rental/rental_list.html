@@ -42,12 +42,12 @@
                 <div class="d-flex flex-row gap-2 text-center col-12 col-md-10">
                   <p class="rounded-pill info-pill bg-primary px-2 col"
                     data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Start date' %}">
-                    {{ rental.start_date|date:'d.m.Y' }}
+                    {{ rental.start_date|date:'Y-m-d' }}
                   </p>
                   -
                   <p class="rounded-pill info-pill bg-primary px-2 col"
                     data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'End date' %}">
-                    {{ rental.end_date|date:'d.m.Y' }}
+                    {{ rental.end_date|date:'Y-m-d' }}
                   </p>
                   <p class="rounded-pill info-pill bg-secondary px-2 col"
                     data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Rental time' %}">

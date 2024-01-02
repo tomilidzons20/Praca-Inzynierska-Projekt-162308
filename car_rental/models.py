@@ -101,6 +101,17 @@ class CarMaintenance(models.Model):
         default=MaintenanceChoices.SCHEDULED,
     )
 
+    def save(self, *args, **kwargs):
+        today = timezone.now().date()
+        if self.car and today == self.date_of_repair:
+            match self.status:
+                case self.MaintenanceChoices.INREPAIR:
+                    self.car.status = Car.StatusChoices.MAINTENANCE
+                case self.MaintenanceChoices.DONE:
+                    self.car.status = Car.StatusChoices.AVAILABLE
+            self.car.save()
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return f'{self.car}, {self.date_of_repair} {self.cost_of_repair}'
 
@@ -176,6 +187,14 @@ class CarRental(models.Model):
             self.time_rented = self.end_date - self.start_date
         else:
             self.time_rented = None
+        today = timezone.now()
+        if self.car and self.start_date <= today <= self.end_date:
+            match self.status:
+                case self.StatusChoices.RENTED:
+                    self.car.status = Car.StatusChoices.RENTED
+                case self.StatusChoices.CANCELLED | self.StatusChoices.CLOSED:
+                    self.car.status = Car.StatusChoices.AVAILABLE
+            self.car.save()
         super().save(*args, **kwargs)
 
     class Meta:
@@ -304,10 +323,14 @@ class RentalAddress(models.Model):
     first_name = models.CharField(
         _('First name'),
         max_length=255,
+        blank=False,
+        null=False,
     )
     last_name = models.CharField(
         _('Last Name'),
         max_length=255,
+        blank=False,
+        null=False,
     )
     street = models.CharField(
         _('Street'),
@@ -317,14 +340,20 @@ class RentalAddress(models.Model):
     building_number = models.CharField(
         _('Building number'),
         max_length=255,
+        blank=False,
+        null=False,
     )
     post_code = models.CharField(
         _('Post code'),
         max_length=16,
+        blank=False,
+        null=False,
     )
     city = models.CharField(
         _('City'),
         max_length=255,
+        blank=False,
+        null=False,
     )
 
     def __str__(self):

@@ -1,9 +1,12 @@
+from phonenumber_field.formfields import PhoneNumberField, RegionalPhoneNumberWidget
 from allauth.account.forms import AddEmailForm
 from allauth.account.forms import ChangePasswordForm
 from allauth.account.forms import LoginForm
 from allauth.account.forms import ResetPasswordForm
 from allauth.account.forms import SignupForm
+
 from django import forms
+from django.utils.translation import gettext_lazy as _
 
 from car_rental.utils import set_form_styles
 
@@ -18,9 +21,41 @@ class CustomLoginForm(LoginForm):
 
 
 class CustomSignupForm(SignupForm):
+    first_name = forms.CharField(
+        label=_('First name'),
+        max_length=255,
+        required=True,
+        widget=forms.TextInput(
+            attrs={'placeholder': _('First name')}
+        ),
+    )
+    last_name = forms.CharField(
+        label=_('Last name'),
+        max_length=255,
+        required=True,
+        widget=forms.TextInput(
+            attrs={'placeholder': _('Last name')}
+        ),
+    )
+    phone_number = PhoneNumberField(
+        label=_('Phone number'),
+        required=True,
+        widget=RegionalPhoneNumberWidget(
+            attrs={'placeholder': _('Phone number')}
+        )
+    )
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         set_form_styles(self.fields)
+
+    def save(self, request):
+        user = super().save(request)
+        user.first_name = self.cleaned_data.get('first_name')
+        user.last_name = self.cleaned_data.get('last_name')
+        user.phone_number = self.cleaned_data.get('phone_number')
+        user.save()
+        return user
 
 
 class CustomChangePasswordForm(ChangePasswordForm):

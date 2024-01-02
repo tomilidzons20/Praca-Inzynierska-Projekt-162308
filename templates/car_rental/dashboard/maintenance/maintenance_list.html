@@ -45,7 +45,7 @@
                 <div class="d-flex flex-row gap-2 text-center col-12 col-md-6">
                   <p class="rounded-pill info-pill bg-primary px-2 col"
                     data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Date of repair' %}">
-                    {{ maintenance.date_of_repair|date:'d.m.Y' }}
+                    {{ maintenance.date_of_repair|date:'Y-m-d' }}
                   </p>
                   <p class="rounded-pill info-pill bg-secondary px-2 col"
                     data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Cost of repair' %}">

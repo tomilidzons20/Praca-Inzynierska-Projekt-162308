@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic import UpdateView
 from django_filters.views import FilterView
+from django.contrib.admin.views.decorators import user_passes_test
 
 from .filters import CarRentalFilter
 from .filters import ContactFilter
@@ -27,7 +28,18 @@ from .models import RentalExtra
 from .models import RentalProtection
 
 
-class DashboardCarListView(ListView):
+def is_staff(user):
+    return user.is_superuser or user.is_staff
+
+
+class StaffRequiredMixin:
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_staff or request.user.is_superuser:
+            return super().dispatch(request, *args, **kwargs)
+        return redirect('account_login')
+
+
+class DashboardCarListView(StaffRequiredMixin, ListView):
     template_name = 'car_rental/dashboard/car/car_list.html'
     model = Car
     paginate_by = 10
@@ -39,7 +51,7 @@ class DashboardCarListView(ListView):
         return context
 
 
-class DashboardCarUpdateView(UpdateView):
+class DashboardCarUpdateView(StaffRequiredMixin, UpdateView):
     template_name = 'car_rental/dashboard/car/car_update.html'
     model = Car
     form_class = CarForm
@@ -56,7 +68,7 @@ class DashboardCarUpdateView(UpdateView):
         return context
 
 
-class DashboardMaintenanceListView(FilterView):
+class DashboardMaintenanceListView(StaffRequiredMixin, FilterView):
     template_name = 'car_rental/dashboard/maintenance/maintenance_list.html'
     model = CarMaintenance
     paginate_by = 10
@@ -69,7 +81,7 @@ class DashboardMaintenanceListView(FilterView):
         return context
 
 
-class DashboardMaintenanceUpdateView(UpdateView):
+class DashboardMaintenanceUpdateView(StaffRequiredMixin, UpdateView):
     template_name = 'car_rental/dashboard/maintenance/maintenance_update.html'
     model = CarMaintenance
     form_class = CarMaintenanceUpdateForm
@@ -78,7 +90,7 @@ class DashboardMaintenanceUpdateView(UpdateView):
         return reverse_lazy('dashboard_maintenance_update', kwargs={'pk': self.object.id})
 
 
-class DashboardRentalListView(FilterView):
+class DashboardRentalListView(StaffRequiredMixin, FilterView):
     template_name = 'car_rental/dashboard/rental/rental_list.html'
     model = CarRental
     paginate_by = 10
@@ -91,7 +103,7 @@ class DashboardRentalListView(FilterView):
         return context
 
 
-class DashboardRentalUpdateView(UpdateView):
+class DashboardRentalUpdateView(StaffRequiredMixin, UpdateView):
     template_name = 'car_rental/dashboard/rental/rental_update.html'
     model = CarRental
     form_class = CarRentalUpdateForm
@@ -100,7 +112,7 @@ class DashboardRentalUpdateView(UpdateView):
         return reverse_lazy('dashboard_rental_update', kwargs={'pk': self.object.id})
 
 
-class DashboardContactListView(FilterView):
+class DashboardContactListView(StaffRequiredMixin, FilterView):
     template_name = 'car_rental/dashboard/contact/contact_list.html'
     model = ContactMessage
     paginate_by = 10
@@ -112,7 +124,7 @@ class DashboardContactListView(FilterView):
         return context
 
 
-class DashboardContactUpdateView(UpdateView):
+class DashboardContactUpdateView(StaffRequiredMixin, UpdateView):
     template_name = 'car_rental/dashboard/contact/contact_update.html'
     model = ContactMessage
     form_class = ContactForm
@@ -121,7 +133,7 @@ class DashboardContactUpdateView(UpdateView):
         return reverse_lazy('dashboard_contact_update', kwargs={'pk': self.object.id})
 
 
-class DashboardRentalProtectionListView(ListView):
+class DashboardRentalProtectionListView(StaffRequiredMixin, ListView):
     template_name = 'car_rental/dashboard/rental_protection/rental_protection_list.html'
     model = RentalProtection
     paginate_by = 10
@@ -132,7 +144,7 @@ class DashboardRentalProtectionListView(ListView):
         return context
 
 
-class DashboardRentalProtectionUpdateView(UpdateView):
+class DashboardRentalProtectionUpdateView(StaffRequiredMixin, UpdateView):
     template_name = 'car_rental/dashboard/rental_protection/rental_protection_update.html'
     model = RentalProtection
     form_class = RentalProtectionForm
@@ -141,7 +153,7 @@ class DashboardRentalProtectionUpdateView(UpdateView):
         return reverse_lazy('dashboard_protection_update', kwargs={'pk': self.object.id})
 
 
-class DashboardRentalExtraListView(ListView):
+class DashboardRentalExtraListView(StaffRequiredMixin, ListView):
     template_name = 'car_rental/dashboard/rental_extra/rental_extra_list.html'
     model = RentalExtra
     paginate_by = 10
@@ -152,7 +164,7 @@ class DashboardRentalExtraListView(ListView):
         return context
 
 
-class DashboardRentalExtraUpdateView(UpdateView):
+class DashboardRentalExtraUpdateView(StaffRequiredMixin, UpdateView):
     template_name = 'car_rental/dashboard/rental_extra/rental_extra_update.html'
     model = RentalExtra
     form_class = RentalExtraForm
@@ -161,7 +173,7 @@ class DashboardRentalExtraUpdateView(UpdateView):
         return reverse_lazy('dashboard_extra_update', kwargs={'pk': self.object.id})
 
 
-class DashboardNewsListView(FilterView):
+class DashboardNewsListView(StaffRequiredMixin, FilterView):
     template_name = 'car_rental/dashboard/news/news_list.html'
     model = News
     paginate_by = 10
@@ -173,7 +185,7 @@ class DashboardNewsListView(FilterView):
         return context
 
 
-class DashboardNewsUpdateView(UpdateView):
+class DashboardNewsUpdateView(StaffRequiredMixin, UpdateView):
     template_name = 'car_rental/dashboard/news/news_update.html'
     model = News
     form_class = NewsForm
@@ -182,6 +194,7 @@ class DashboardNewsUpdateView(UpdateView):
         return reverse_lazy('dashboard_news_update', kwargs={'pk': self.object.id})
 
 
+@user_passes_test(is_staff)
 def maintenance_create_view(request):
     if request.method == 'POST':
         form = CarMaintenanceForm(request.POST)
@@ -192,6 +205,7 @@ def maintenance_create_view(request):
     return redirect('dashboard_maintenance_list')
 
 
+@user_passes_test(is_staff)
 def car_create_view(request):
     if request.method == 'POST':
         form = CarForm(request.POST, request.FILES)
@@ -202,6 +216,7 @@ def car_create_view(request):
     return redirect('dashboard_car_list')
 
 
+@user_passes_test(is_staff)
 def rental_create_view(request):
     if request.method == 'POST':
         form = CarRentalForm(request.POST)
@@ -212,6 +227,7 @@ def rental_create_view(request):
     return redirect('dashboard_rental_list')
 
 
+@user_passes_test(is_staff)
 def contact_create_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -222,6 +238,7 @@ def contact_create_view(request):
     return redirect('dashboard_contact_list')
 
 
+@user_passes_test(is_staff)
 def rental_protection_create_view(request):
     if request.method == 'POST':
         form = RentalProtectionForm(request.POST)
@@ -232,6 +249,7 @@ def rental_protection_create_view(request):
     return redirect('dashboard_protection_list')
 
 
+@user_passes_test(is_staff)
 def rental_extra_create_view(request):
     if request.method == 'POST':
         form = RentalExtraForm(request.POST)
@@ -242,6 +260,7 @@ def rental_extra_create_view(request):
     return redirect('dashboard_extra_list')
 
 
+@user_passes_test(is_staff)
 def news_create_view(request):
     if request.method == 'POST':
         form = NewsForm(request.POST, request.FILES)
@@ -252,5 +271,7 @@ def news_create_view(request):
     return redirect('dashboard_news_list')
 
 # TODO
-# think how to do delete of records, only in admin panel or what
-# access control, dashboard only staff or something
+# update dashboard sidebar to offcanvas
+# create translations
+# update total cost when date changed in rental
+# maybe add end date of maintenance

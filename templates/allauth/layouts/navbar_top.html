@@ -13,7 +13,7 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
         <div class="navbar-nav">
           {% if user.is_authenticated %}
-            {% if user.is_superuser %}
+            {% if user.is_staff or user.is_superuser %}
               <a href="{% url 'dashboard_car_list' %}" class="nav-link link-info">{% trans "Dashboard" %}</a>
             {% endif %}
             <a href="{% url 'view_profile' %}" class="nav-link">{% trans "Profile" %}</a>

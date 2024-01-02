@@ -18,8 +18,8 @@
         <td>{{ rental.car }}</td>
         <td>{{ rental.total_cost.amount }} {{ rental.total_cost.currency }}</td>
         <td>{{ rental.get_status_display }}</td>
-        <td>{{ rental.start_date|date:"d.m.Y H:m" }}</td>
-        <td>{{ rental.end_date|date:"d.m.Y H:m" }}</td>
+        <td>{{ rental.start_date|date:'Y-m-d H:m' }}</td>
+        <td>{{ rental.end_date|date:'Y-m-d H:m' }}</td>
         <td>
           {% if rental.status == 'RS' %}
             <form method="post" data-url="{% url 'cancel_rental' %}" class="cancel-rental">

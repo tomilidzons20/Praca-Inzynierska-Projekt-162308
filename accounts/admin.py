@@ -38,4 +38,15 @@ class AdminCustomUser(UserAdmin):
 
 @admin.register(Address)
 class AdminAddress(admin.ModelAdmin):
-    pass
+    list_display = [
+        'account',
+        'first_name',
+        'last_name',
+        'city',
+        'street',
+        'building_number',
+        'post_code',
+    ]
+    list_filter = [
+        'account',
+    ]

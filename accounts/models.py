@@ -5,9 +5,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class CustomUser(AbstractUser):
-    phone_number = PhoneNumberField(
-        blank=True,
-    )
+    phone_number = PhoneNumberField()
     profile_picture = models.ImageField(
         upload_to='uploads/img/profile_pictures',
         blank=True,
@@ -31,10 +29,14 @@ class Address(models.Model):
     first_name = models.CharField(
         _('First name'),
         max_length=255,
+        blank=False,
+        null=False,
     )
     last_name = models.CharField(
         _('Last Name'),
         max_length=255,
+        blank=False,
+        null=False,
     )
     street = models.CharField(
         _('Street'),
@@ -44,14 +46,20 @@ class Address(models.Model):
     building_number = models.CharField(
         _('Building number'),
         max_length=255,
+        blank=False,
+        null=False,
     )
     post_code = models.CharField(
         _('Post code'),
         max_length=16,
+        blank=False,
+        null=False,
     )
     city = models.CharField(
         _('City'),
         max_length=255,
+        blank=False,
+        null=False,
     )
 
     def __str__(self):

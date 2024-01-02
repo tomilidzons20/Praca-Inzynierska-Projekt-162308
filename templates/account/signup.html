@@ -25,6 +25,21 @@
         {{ form.email }}
         {{ form.email.label_tag }}
       </div>
+      {{ form.first_name.errors }}
+      <div class="form-floating my-3">
+        {{ form.first_name }}
+        {{ form.first_name.label_tag }}
+      </div>
+      {{ form.last_name.errors }}
+      <div class="form-floating my-3">
+        {{ form.last_name }}
+        {{ form.last_name.label_tag }}
+      </div>
+      {{ form.phone_number.errors }}
+      <div class="form-floating my-3">
+        {{ form.phone_number }}
+        {{ form.phone_number.label_tag }}
+      </div>
       <div class="my-3">
         {{ form.password1.help_text }}
       </div>
