@@ -273,5 +273,3 @@ def news_create_view(request):
 # TODO
 # update dashboard sidebar to offcanvas
 # create translations
-# update total cost when date changed in rental
-# maybe add end date of maintenance

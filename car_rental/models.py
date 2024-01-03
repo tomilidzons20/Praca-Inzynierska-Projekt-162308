@@ -1,3 +1,5 @@
+from math import ceil
+
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -51,6 +53,7 @@ class Car(models.Model):
     )
     car_picture = models.ImageField(
         upload_to='uploads/img/car_pictures',
+        verbose_name=_('Car picture'),
         blank=True,
         null=True,
     )
@@ -195,7 +198,18 @@ class CarRental(models.Model):
                 case self.StatusChoices.CANCELLED | self.StatusChoices.CLOSED:
                     self.car.status = Car.StatusChoices.AVAILABLE
             self.car.save()
+        # on update
+        if self.id:
+            self.total_cost = self.get_total_cost()
         super().save(*args, **kwargs)
+
+    def get_total_cost(self):
+        rental_days = ceil(((self.end_date - self.start_date).total_seconds() / 3600) / 24)
+        extras_cost = sum([extra.cost for extra in self.extra.all()])
+        return self.protection.cost + extras_cost + self.car.day_cost * rental_days
+
+    def __str__(self):
+        return f'{self.user} {self.car} {self.total_cost} {self.start_date} - {self.end_date}'
 
     class Meta:
         verbose_name = _('Car rental')
@@ -204,6 +218,7 @@ class CarRental(models.Model):
 
 class News(models.Model):
     title = models.CharField(
+        _('Title'),
         max_length=128,
         blank=False,
         null=False,
@@ -211,6 +226,7 @@ class News(models.Model):
     description = BleachField()
     main_picture = models.ImageField(
         upload_to='uploads/img/news',
+        verbose_name=_('Main picture'),
         blank=True,
         null=True,
     )
@@ -218,7 +234,8 @@ class News(models.Model):
         max_length=140,
         null=False,
     )
-    add_date = models.DateField(
+    add_date = models.DateTimeField(
+        _('Add date'),
         default=timezone.now,
     )
 
@@ -399,6 +416,9 @@ class ContactMessage(models.Model):
         _('Date of contact message creation'),
         blank=True,
     )
+
+    def __str__(self):
+        return f'{self.user} {self.category} {self.status} {self.add_date}'
 
     class Meta:
         verbose_name = _('Contact message')

@@ -127,7 +127,7 @@ class NewsForm(forms.ModelForm):
         widgets = {
             'main_picture': forms.FileInput(),
             'add_date': forms.DateInput(
-                attrs={'type': 'date', 'required': True},
+                attrs={'type': 'datetime-local', 'required': True},
             ),
             'description': CKEditorWidget(),
         }
@@ -138,12 +138,14 @@ class NewsForm(forms.ModelForm):
 
 class CarDaysRentalForm(forms.Form):
     date_from = forms.DateTimeField(
+        label=_('Date from'),
         required=True,
         widget=forms.DateTimeInput(
             attrs={'type': 'datetime-local'}
         )
     )
     date_to = forms.DateTimeField(
+        label=_('Date to'),
         required=True,
         widget=forms.DateTimeInput(
             attrs={'type': 'datetime-local'}
@@ -184,6 +186,7 @@ class CarDaysRentalForm(forms.Form):
 
 class CarChoiceForm(forms.Form):
     car = forms.ModelChoiceField(
+        label=_('Car'),
         queryset=Car.objects.none(),
         required=True,
         widget=forms.RadioSelect(),
@@ -214,6 +217,7 @@ class CarExtraForm(forms.Form):
 
 class CarAddressForm(forms.ModelForm):
     use_profile_address = forms.BooleanField(
+        label=_('Use profile address'),
         widget=forms.CheckboxInput(),
         required=False,
     )
