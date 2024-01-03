@@ -223,7 +223,9 @@ class News(models.Model):
         blank=False,
         null=False,
     )
-    description = BleachField()
+    description = BleachField(
+        _('Description'),
+    )
     main_picture = models.ImageField(
         upload_to='uploads/img/news',
         verbose_name=_('Main picture'),
@@ -344,7 +346,7 @@ class RentalAddress(models.Model):
         null=False,
     )
     last_name = models.CharField(
-        _('Last Name'),
+        _('Last name'),
         max_length=255,
         blank=False,
         null=False,

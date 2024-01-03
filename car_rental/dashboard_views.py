@@ -1,10 +1,10 @@
+from django.contrib.admin.views.decorators import user_passes_test
 from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic import UpdateView
 from django_filters.views import FilterView
-from django.contrib.admin.views.decorators import user_passes_test
 
 from .filters import CarRentalFilter
 from .filters import ContactFilter
@@ -272,4 +272,4 @@ def news_create_view(request):
 
 # TODO
 # update dashboard sidebar to offcanvas
-# create translations
+# add lowest cost of car per day to main page

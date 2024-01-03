@@ -65,7 +65,7 @@ class CarRentalForm(forms.ModelForm):
         date_to = data.get('end_date')
 
         if date_to <= date_from:
-            raise forms.ValidationError(_('Date to must be later than date from.'))
+            raise forms.ValidationError(_('End date must be later than start date.'))
 
         date_diff_hours = (date_to - date_from).total_seconds() // 3600
         if date_diff_hours < 1:

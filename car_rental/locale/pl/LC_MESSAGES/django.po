@@ -1,0 +1,1788 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-03 11:59+0100\n"
+"PO-Revision-Date: 2024-01-03 11:59+0100\n"
+"Last-Translator: mirek miras <dssfadasdf@xd.pl>\n"
+"Language-Team: \n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"X-Generator: Poedit 2.3\n"
+"X-Translated-Using: django-rosetta 0.10.0\n"
+
+#: .\accounts\admin.py:16
+msgid "Personal info"
+msgstr "Informacje osobiste"
+
+#: .\accounts\admin.py:22 .\templates\account\profile\profile.html:6
+#: .\templates\account\profile\profile.html:15
+#: .\templates\allauth\layouts\navbar_top.html:19
+msgid "Profile"
+msgstr "Profil"
+
+#: .\accounts\admin.py:25
+msgid "Permissions"
+msgstr "Uprawnienia"
+
+#: .\accounts\admin.py:32
+msgid "Important dates"
+msgstr "Ważne daty"
+
+#: .\accounts\forms.py:25 .\accounts\forms.py:29 .\accounts\models.py:30
+#: .\car_rental\models.py:343
+msgid "First name"
+msgstr "Imię"
+
+#: .\accounts\forms.py:33 .\accounts\forms.py:37 .\accounts\models.py:36
+#: .\car_rental\models.py:349
+msgid "Last name"
+msgstr "Imię"
+
+#: .\accounts\forms.py:41 .\accounts\forms.py:44
+#: .\templates\car_rental\dashboard\_partials\user_info.html:19
+#: .\templates\car_rental\main\contact.html:42
+msgid "Phone number"
+msgstr "Numer telefonu"
+
+#: .\accounts\models.py:19
+#: .\templates\car_rental\dashboard\_partials\user_info.html:7
+#: .\car_rental\models.py:135 .\car_rental\models.py:338
+#: .\car_rental\models.py:399
+msgid "User"
+msgstr "Użytkownik"
+
+#: .\accounts\models.py:20
+msgid "Users"
+msgstr "Uzytkownicy"
+
+#: .\accounts\models.py:26
+msgid "Account"
+msgstr "Konto"
+
+#: .\accounts\models.py:42 .\car_rental\models.py:355
+msgid "Street"
+msgstr "Ulica"
+
+#: .\accounts\models.py:47 .\car_rental\models.py:360
+msgid "Building number"
+msgstr "Numer budynku"
+
+#: .\accounts\models.py:53 .\car_rental\models.py:366
+msgid "Post code"
+msgstr "Kod pocztowy"
+
+#: .\accounts\models.py:59 .\car_rental\models.py:372
+msgid "City"
+msgstr "Miasto"
+
+#: .\accounts\models.py:69
+#: .\templates\car_rental\dashboard\_partials\user_info.html:23
+#: .\templates\car_rental\dashboard\_partials\user_info.html:39
+#: .\car_rental\models.py:141
+msgid "Address"
+msgstr "Adres"
+
+#: .\accounts\models.py:70
+msgid "Addresses"
+msgstr "Adresy"
+
+#: .\project\settings.py:131
+msgid "English"
+msgstr "Angielski"
+
+#: .\project\settings.py:132
+msgid "Polish"
+msgstr "Polski"
+
+#: .\templates\account\email.html:4 .\templates\account\email.html:10
+msgid "Email Addresses"
+msgstr "Adresy e-mail"
+
+#: .\templates\account\email.html:13
+msgid "The following email addresses are associated with your account:"
+msgstr "Poniższe adresy e-mail są powiązane z Twoim kontem:"
+
+#: .\templates\account\email.html:25
+msgid "Verified"
+msgstr "Zweryfikowany"
+
+#: .\templates\account\email.html:29
+msgid "Unverified"
+msgstr "Brak weryfikacji"
+
+#: .\templates\account\email.html:34
+msgid "Primary"
+msgstr "Podstawowy"
+
+#: .\templates\account\email.html:45
+msgid "Make Primary"
+msgstr "Uczyń podstawowym"
+
+#: .\templates\account\email.html:48 .\templates\account\email_change.html:31
+msgid "Re-send Verification"
+msgstr "Prześlij ponownie wiadomość weryfikacyjną"
+
+#: .\templates\account\email.html:51
+msgid "Remove"
+msgstr "Usuń"
+
+#: .\templates\account\email.html:61
+msgid "Add Email Address"
+msgstr "Dodaj adres e-mail"
+
+#: .\templates\account\email.html:72
+msgid "Add Email"
+msgstr "Dodaj e-mail"
+
+#: .\templates\account\email.html:82
+msgid "Do you really want to remove the selected email address?"
+msgstr "Czy naprawdę chcesz usunąć wybrany adres e-mail?"
+
+#: .\templates\account\email\account_already_exists_message.txt:4
+#, python-format
+msgid ""
+"You are receiving this email because you or someone else tried to signup for an\n"
+"account using email address:\n"
+"\n"
+"%(email)s\n"
+"\n"
+"However, an account using that email address already exists.  In case you have\n"
+"forgotten about this, please use the password forgotten procedure to recover\n"
+"your account:\n"
+"\n"
+"%(password_reset_url)s"
+msgstr ""
+"Otrzymujesz tę wiadomość e-mail, ponieważ Ty lub ktoś inny próbował zarejestrować konto używając adresu e-mail:\n"
+"\n"
+"%(email)s\n"
+"\n"
+"Jednakże, konto z tym adresem e-mail już istnieje. Jeśli o tym zapomniałeś, proszę skorzystaj z procedury odzyskiwania hasła, aby odzyskać dostęp do swojego konta:\n"
+"\n"
+"%(password_reset_url)s"
+
+#: .\templates\account\email\account_already_exists_subject.txt:3
+msgid "Account Already Exists"
+msgstr "Konto już istnieje."
+
+#: .\templates\account\email\base_message.txt:1
+#, python-format
+msgid "Hello from %(site_name)s!"
+msgstr "Witamy z %(site_name)s!"
+
+#: .\templates\account\email\base_message.txt:5
+#, python-format
+msgid ""
+"Thank you for using %(site_name)s!\n"
+"%(site_domain)s"
+msgstr ""
+"Dziękujemy za korzystanie z %(site_name)s!\n"
+"%(site_domain)s"
+
+#: .\templates\account\email\email_confirmation_message.txt:5
+#, python-format
+msgid ""
+"You're receiving this email because user %(user_display)s has given your email address to register an account on %(site_domain)s.\n"
+"\n"
+"To confirm this is correct, go to %(activate_url)s"
+msgstr ""
+"Otrzymujesz tę wiadomość e-mail, ponieważ użytkownik %(user_display)s podał Twój adres e-mail w celu zarejestrowania konta w witrynie %(site_domain)s.\n"
+"\n"
+"Aby potwierdzić, że to prawda, przejdź do %(activate_url)s"
+
+#: .\templates\account\email\email_confirmation_subject.txt:3
+msgid "Please Confirm Your Email Address"
+msgstr "Proszę potwierdź adres e-mail"
+
+#: .\templates\account\email\password_reset_key_message.txt:4
+msgid ""
+"You're receiving this email because you or someone else has requested a password reset for your user account.\n"
+"It can be safely ignored if you did not request a password reset. Click the link below to reset your password."
+msgstr ""
+"Otrzymujesz tę wiadomość e-mail, ponieważ Ty lub ktoś inny zażądał zresetowania hasła do Twojego konta użytkownika.\n"
+"Można go bezpiecznie zignorować, jeśli nie zażądałeś zresetowania hasła. Kliknij poniższy link, aby zresetować hasło."
+
+#: .\templates\account\email\password_reset_key_message.txt:9
+#, python-format
+msgid "In case you forgot, your username is %(username)s."
+msgstr ""
+"Na wszelki wypadek przypominamy, że Twoja nazwa użytkownika to %(username)s."
+
+#: .\templates\account\email\password_reset_key_subject.txt:3
+#: .\templates\account\email\unknown_account_subject.txt:3
+msgid "Password Reset Email"
+msgstr "E-mail z łączem do zmiany hasła"
+
+#: .\templates\account\email\unknown_account_message.txt:4
+#, python-format
+msgid ""
+"You are receiving this email because you or someone else has requested a\n"
+"password for your user account. However, we do not have any record of a user\n"
+"with email %(email)s in our database.\n"
+"\n"
+"This mail can be safely ignored if you did not request a password reset.\n"
+"\n"
+"If it was you, you can sign up for an account using the link below."
+msgstr ""
+"Otrzymujesz tę wiadomość e-mail, ponieważ Ty lub ktoś inny zażądał hasła do Twojego konta użytkownika.\n"
+"hasło do konta użytkownika. Nie mamy jednak żadnych danych użytkownika\n"
+"z adresem e-mail %(email)s w naszej bazie danych.\n"
+"\n"
+"Tę wiadomość można bezpiecznie zignorować, jeśli nie zażądałeś zresetowania hasła.\n"
+"\n"
+"Jeśli to ty, możesz założyć konto, korzystając z poniższego łącza."
+
+#: .\templates\account\email_change.html:5
+#: .\templates\account\email_change.html:11
+msgid "Email Address"
+msgstr "Adres e-mail"
+
+#: .\templates\account\email_change.html:16
+msgid "The following email address is associated with your account:"
+msgstr "Z kontem użytkownika powiązany jest następujący adres e-mail:"
+
+#: .\templates\account\email_change.html:21
+msgid "Your email address is still pending verification:"
+msgstr "Twój adres e-mail nadal oczekuje na weryfikację:"
+
+#: .\templates\account\email_change.html:40
+msgid "Change Email Address"
+msgstr "Zmień adres e-mail"
+
+#: .\templates\account\email_change.html:51
+#: .\templates\account\profile\profile.html:42
+msgid "Change Email"
+msgstr "Zmień adres e-mail"
+
+#: .\templates\account\email_confirm.html:6
+#: .\templates\account\email_confirm.html:12
+msgid "Confirm Email Address"
+msgstr "Potwierdź adres e-mail"
+
+#: .\templates\account\email_confirm.html:18
+#, python-format
+msgid ""
+"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an email "
+"address for user %(user_display)s."
+msgstr ""
+"Proszę potwierdź, że adres <a href=\"mailto:%(email)s\">%(email)s</a> jest "
+"adresem e-mail dla użytkownika %(user_display)s."
+
+#: .\templates\account\email_confirm.html:25
+msgid "Confirm"
+msgstr "Potwierdź"
+
+#: .\templates\account\email_confirm.html:31
+#: .\templates\account\messages\email_confirmation_failed.txt:2
+#, python-format
+msgid ""
+"Unable to confirm %(email)s because it is already confirmed by a different "
+"account."
+msgstr ""
+"Nie można potwierdzić %(email)s, ponieważ zostało już potwierdzone przez "
+"inne konto."
+
+#: .\templates\account\email_confirm.html:37
+#, python-format
+msgid ""
+"This email confirmation link expired or is invalid. Please <a "
+"href=\"%(email_url)s\">issue a new email confirmation request</a>."
+msgstr ""
+"Ten link do potwierdzenia e-mail wygasł lub jest nieprawidłowy. <a "
+"href=\"%(email_url)s\">Wyślij nową prośbę o potwierdzenie e-mailem</a>."
+
+#: .\templates\account\login.html:5 .\templates\account\login.html:13
+#: .\templates\account\login.html:42
+#: .\templates\allauth\layouts\navbar_top.html:22
+msgid "Sign In"
+msgstr "Zaloguj"
+
+#: .\templates\account\login.html:45
+#, python-format
+msgid ""
+"If you have not created an account yet, then please\n"
+"          <a href=\"%(signup_url)s\">sign up</a> first."
+msgstr ""
+"Jeżeli nie masz jeszcze konta, to proszę <a "
+"href=\"%(signup_url)s\">zarejestruj się</a>."
+
+#: .\templates\account\logout.html:4 .\templates\account\logout.html:10
+#: .\templates\account\logout.html:25
+#: .\templates\allauth\layouts\navbar_top.html:20
+msgid "Sign Out"
+msgstr "Wyloguj się"
+
+#: .\templates\account\logout.html:12
+msgid "Are you sure you want to sign out?"
+msgstr "Czy na pewno chcesz się wylogować ?"
+
+#: .\templates\account\messages\cannot_delete_primary_email.txt:2
+#, python-format
+msgid "You cannot remove your primary email address (%(email)s)."
+msgstr "Nie możesz usunąć podstawowego adresu e-mail (%(email)s)."
+
+#: .\templates\account\messages\email_confirmation_sent.txt:2
+#, python-format
+msgid "Confirmation email sent to %(email)s."
+msgstr "E-mail z potwierdzeniem został wysłany na adres %(email)s."
+
+#: .\templates\account\messages\email_confirmed.txt:2
+#, python-format
+msgid "You have confirmed %(email)s."
+msgstr "Adres %(email)s został potwierdzony."
+
+#: .\templates\account\messages\email_deleted.txt:2
+#, python-format
+msgid "Removed email address %(email)s."
+msgstr "Adres e-mail %(email)s został usunięty."
+
+#: .\templates\account\messages\logged_in.txt:4
+#, python-format
+msgid "Successfully signed in as %(name)s."
+msgstr "Zalogowano jako %(name)s."
+
+#: .\templates\account\messages\logged_out.txt:2
+msgid "You have signed out."
+msgstr "Wylogowano."
+
+#: .\templates\account\messages\password_changed.txt:2
+msgid "Password successfully changed."
+msgstr "Hasło zostało zmienione."
+
+#: .\templates\account\messages\password_set.txt:2
+msgid "Password successfully set."
+msgstr "Hasło zostało ustawione."
+
+#: .\templates\account\messages\primary_email_set.txt:2
+msgid "Primary email address set."
+msgstr "Podstawowy adres e-mail został ustawiony."
+
+#: .\templates\account\messages\unverified_primary_email.txt:2
+msgid "Your primary email address must be verified."
+msgstr "Twój podstawowy adres e-mail musi być zweryfikowany."
+
+#: .\templates\account\password_change.html:4
+#: .\templates\account\password_change.html:12
+#: .\templates\account\password_change.html:39
+#: .\templates\account\password_reset_from_key.html:5
+#: .\templates\account\password_reset_from_key.html:12
+#: .\templates\account\password_reset_from_key.html:29
+#: .\templates\account\password_reset_from_key_done.html:5
+#: .\templates\account\password_reset_from_key_done.html:10
+#: .\templates\account\profile\profile.html:45
+msgid "Change Password"
+msgstr "Zmień hasło"
+
+#: .\templates\account\password_change.html:41
+msgid "Forgot Password?"
+msgstr "Nie pamiętasz hasła?"
+
+#: .\templates\account\password_reset.html:4
+#: .\templates\account\password_reset.html:12
+#: .\templates\account\password_reset_done.html:6
+#: .\templates\account\password_reset_done.html:12
+msgid "Password Reset"
+msgstr "Resetowanie hasła"
+
+#: .\templates\account\password_reset.html:18
+msgid ""
+"Forgotten your password? Enter your email address below, and we'll send you "
+"an email allowing you to reset it."
+msgstr ""
+"Zapomniałeś hasła? Wprowadź swój adres e-mail poniżej, a my wyślemy Ci "
+"wiadomość e-mail umożliwiającą zresetowanie hasła."
+
+#: .\templates\account\password_reset.html:31
+msgid "Reset My Password"
+msgstr "Zresetuj moje hasło"
+
+#: .\templates\account\password_reset.html:33
+msgid "Please contact us if you have any trouble resetting your password."
+msgstr ""
+"Skontaktuj się z nami, jeśli masz problem ze zresetowaniem swojego hasła."
+
+#: .\templates\account\password_reset_done.html:18
+msgid ""
+"We have sent you an email. If you have not received it please check your "
+"spam folder. Otherwise contact us if you do not receive it in a few minutes."
+msgstr ""
+"Wysłaliśmy wiadomość e-mail. Jeśli jej nie otrzymałeś, sprawdź folder spamu."
+" W przeciwnym razie skontaktuj się z nami, jeśli nie otrzymasz go w ciągu "
+"kilku minut."
+
+#: .\templates\account\password_reset_from_key.html:10
+msgid "Bad Token"
+msgstr "Nieprawidłowy klucz"
+
+#: .\templates\account\password_reset_from_key.html:18
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password "
+"reset</a>."
+msgstr ""
+"Łącze resetujące hasło jest niepoprawne, prawdopodobnie zostało już użyte.  "
+"<a href=\"%(passwd_reset_url)s\">Zresetuj hasło jeszcze raz.</a>"
+
+#: .\templates\account\password_reset_from_key_done.html:12
+msgid "Your password is now changed."
+msgstr "Twoje hasło zostało zmienione."
+
+#: .\templates\account\profile\car_rental_table.html:3
+msgid "Rentals:"
+msgstr "Wypożyczenia:"
+
+#: .\templates\account\profile\car_rental_table.html:7
+#: .\car_rental\forms.py:189 .\car_rental\models.py:73
+#: .\car_rental\models.py:85 .\car_rental\models.py:147
+msgid "Car"
+msgstr "Samochód"
+
+#: .\templates\account\profile\car_rental_table.html:8
+#: .\templates\car_rental\dashboard\rental_extra\rental_extra_list.html:37
+#: .\templates\car_rental\dashboard\rental_protection\rental_protection_list.html:46
+msgid "Cost"
+msgstr "Koszt"
+
+#: .\templates\account\profile\car_rental_table.html:9
+#: .\templates\car_rental\dashboard\car\car_list.html:62
+#: .\templates\car_rental\dashboard\car\car_update.html:97
+#: .\templates\car_rental\dashboard\contact\contact_list.html:63
+#: .\templates\car_rental\dashboard\maintenance\maintenance_list.html:59
+#: .\templates\car_rental\dashboard\rental\rental_list.html:66
+#: .\car_rental\models.py:46 .\car_rental\models.py:102
+#: .\car_rental\models.py:183 .\car_rental\models.py:413
+msgid "Status"
+msgstr "Status"
+
+#: .\templates\account\profile\car_rental_table.html:10
+#: .\templates\car_rental\dashboard\rental\rental_list.html:44
+#: .\car_rental\filters.py:136
+msgid "Start date"
+msgstr "Data rozpoczęcia"
+
+#: .\templates\account\profile\car_rental_table.html:11
+#: .\templates\car_rental\dashboard\rental\rental_list.html:49
+#: .\car_rental\filters.py:137
+msgid "End date"
+msgstr "Data zakończenia"
+
+#: .\templates\account\profile\car_rental_table.html:28
+#: .\templates\car_rental\dashboard\modals\car_modal.html:68
+#: .\templates\car_rental\dashboard\modals\contact_modal.html:46
+#: .\templates\car_rental\dashboard\modals\extra_modal.html:31
+#: .\templates\car_rental\dashboard\modals\filter_modal.html:25
+#: .\templates\car_rental\dashboard\modals\maintenance_modal.html:44
+#: .\templates\car_rental\dashboard\modals\news_modal.html:42
+#: .\templates\car_rental\dashboard\modals\protection_modal.html:56
+#: .\templates\car_rental\dashboard\modals\rental_modal.html:66
+msgid "Cancel"
+msgstr "Anuluj"
+
+#: .\templates\account\profile\profile.html:49
+#: .\templates\account\profile\profile.html:110
+msgid "Change Address"
+msgstr "Zmień adres e-mail"
+
+#: .\templates\account\profile\profile.html:93
+#: .\templates\car_rental\dashboard\car\car_update.html:79
+#: .\templates\car_rental\dashboard\contact\contact_update.html:30
+#: .\templates\car_rental\dashboard\maintenance\maintenance_update.html:38
+#: .\templates\car_rental\dashboard\news\news_update.html:54
+#: .\templates\car_rental\dashboard\rental\rental_update.html:46
+#: .\templates\car_rental\dashboard\rental_extra\rental_extra_update.html:37
+#: .\templates\car_rental\dashboard\rental_protection\rental_protection_update.html:74
+msgid "Confirm changes"
+msgstr "Potwierdź zmiany"
+
+#: .\templates\account\profile\profile.html:122
+msgid "Close"
+msgstr "Zamknij"
+
+#: .\templates\account\profile\profile.html:123
+msgid "Save changes"
+msgstr "Zapisz zmiany"
+
+#: .\templates\account\signup.html:4
+msgid "Signup"
+msgstr "Zarejestruj się"
+
+#: .\templates\account\signup.html:12 .\templates\account\signup.html:64
+#: .\templates\allauth\layouts\navbar_top.html:23
+msgid "Sign Up"
+msgstr "Zarejestruj się"
+
+#: .\templates\account\signup.html:67
+#, python-format
+msgid ""
+"Already have an account? Then please <a href=\"%(login_url)s\">sign in</a>."
+msgstr "Masz już konto? Jeżeli tak, to <a href=\"%(login_url)s\">zaloguj się</a>."
+
+#: .\templates\account\snippets\already_logged_in.html:7
+msgid "Note"
+msgstr "Uwaga"
+
+#: .\templates\account\snippets\already_logged_in.html:7
+#, python-format
+msgid "You are already logged in as %(user_display)s."
+msgstr "Jesteś już zalogowany jako %(user_display)s."
+
+#: .\templates\account\snippets\warn_no_email.html:3
+msgid "Warning:"
+msgstr "Uwaga:"
+
+#: .\templates\account\snippets\warn_no_email.html:3
+msgid ""
+"You currently do not have any email address set up. You should really add an"
+" email address so you can receive notifications, reset your password, etc."
+msgstr ""
+"Obecnie nie masz skonfigurowanego żadnego adresu e-mail. Powinieneś dodać "
+"adres e-mail, aby móc otrzymywać powiadomienia, resetować hasło itp."
+
+#: .\templates\account\verification_sent.html:5
+#: .\templates\account\verification_sent.html:11
+msgid "Verify Your Email Address"
+msgstr "Zweryfikuj swój adres e-mail"
+
+#: .\templates\account\verification_sent.html:14
+msgid ""
+"We have sent an email to you for verification. Follow the link provided to "
+"finalize the signup process. If you do not see the verification email in "
+"your main inbox, check your spam folder. Please contact us if you do not "
+"receive the verification email within a few minutes."
+msgstr ""
+"Wysłaliśmy do Ciebie wiadomość e-mail w celu weryfikacji. Skorzystaj z "
+"podanego linku, aby sfinalizować proces rejestracji. Jeśli nie widzisz "
+"wiadomości weryfikacyjnej w głównej skrzynce odbiorczej, sprawdź folder "
+"spamu. Jeśli nie otrzymasz wiadomości weryfikacyjnej w ciągu kilku minut, "
+"skontaktuj się z nami."
+
+#: .\templates\allauth\layouts\navbar_top.html:17
+#: .\templates\car_rental\dashboard\home.html:5
+#: .\templates\car_rental\layouts\dashboard_sidebar.html:6
+msgid "Dashboard"
+msgstr "Panel administracyjny"
+
+#: .\templates\car_rental\dashboard\_partials\user_info.html:13
+#: .\templates\car_rental\dashboard\_partials\user_info.html:36
+msgid "Name"
+msgstr "Imię i nazwisko"
+
+#: .\templates\car_rental\dashboard\_partials\user_info.html:16
+msgid "Email address"
+msgstr "Adres e-mail"
+
+#: .\templates\car_rental\dashboard\_partials\user_info.html:33
+#: .\car_rental\models.py:382
+msgid "Rental address"
+msgstr "Adres wypożyczającego"
+
+#: .\templates\car_rental\dashboard\car\car_list.html:5
+#: .\templates\car_rental\layouts\dashboard_sidebar.html:16
+#: .\car_rental\models.py:74
+msgid "Cars"
+msgstr "Samochody"
+
+#: .\templates\car_rental\dashboard\car\car_list.html:23
+#: .\templates\car_rental\dashboard\modals\car_modal.html:7
+msgid "Add car"
+msgstr "Dodaj samochód"
+
+#: .\templates\car_rental\dashboard\car\car_list.html:41
+#: .\templates\car_rental\main\_partials\car_card.html:20
+msgid "Year of production"
+msgstr "Rok produkcji"
+
+#: .\templates\car_rental\dashboard\car\car_list.html:45
+#: .\templates\car_rental\main\_partials\car_card.html:30
+#: .\car_rental\models.py:38
+msgid "Engine capacity"
+msgstr "Pojemność silnika"
+
+#: .\templates\car_rental\dashboard\car\car_list.html:49
+#: .\templates\car_rental\main\_partials\car_card.html:40
+#: .\car_rental\models.py:42
+msgid "Engine power"
+msgstr "Moc silnika"
+
+#: .\templates\car_rental\dashboard\car\car_list.html:53
+msgid "Day cost"
+msgstr "Koszt dzienny"
+
+#: .\templates\car_rental\dashboard\car\car_update.html:5
+msgid "Car update"
+msgstr "Aktualizacja samochodu"
+
+#: .\templates\car_rental\dashboard\car\car_update.html:89
+#: .\templates\car_rental\layouts\dashboard_sidebar.html:25
+#: .\car_rental\models.py:24
+msgid "Maintenance"
+msgstr "Serwis"
+
+#: .\templates\car_rental\dashboard\car\car_update.html:96
+#: .\templates\car_rental\dashboard\maintenance\maintenance_list.html:47
+#: .\car_rental\filters.py:36 .\car_rental\models.py:89
+msgid "Date of repair"
+msgstr "Data naprawy"
+
+#: .\templates\car_rental\dashboard\car\car_update.html:98
+#: .\templates\car_rental\dashboard\maintenance\maintenance_list.html:51
+#: .\car_rental\filters.py:37 .\car_rental\models.py:94
+msgid "Cost of repair"
+msgstr "Koszt naprawy"
+
+#: .\templates\car_rental\dashboard\car\car_update.html:113
+msgid "Total:"
+msgstr "Łącznie:"
+
+#: .\templates\car_rental\dashboard\car\car_update.html:122
+#: .\templates\car_rental\dashboard\maintenance\maintenance_list.html:24
+#: .\templates\car_rental\dashboard\modals\maintenance_modal.html:7
+msgid "Add maintenance"
+msgstr "Dodaj serwis"
+
+#: .\templates\car_rental\dashboard\car\car_update.html:151
+msgid "Save"
+msgstr "Zapisz"
+
+#: .\templates\car_rental\dashboard\contact\contact_list.html:5
+#: .\templates\car_rental\layouts\dashboard_sidebar.html:43
+msgid "Contacts"
+msgstr "Kontakty"
+
+#: .\templates\car_rental\dashboard\contact\contact_list.html:24
+#: .\templates\car_rental\dashboard\modals\contact_modal.html:7
+msgid "Add contact"
+msgstr "Dodaj kontakt"
+
+#: .\templates\car_rental\dashboard\contact\contact_list.html:47
+msgid "Date of contact"
+msgstr "Data kontaktu"
+
+#: .\templates\car_rental\dashboard\contact\contact_list.html:56
+#: .\car_rental\models.py:404
+msgid "Category"
+msgstr "Kategoria"
+
+#: .\templates\car_rental\dashboard\contact\contact_update.html:5
+msgid "Contact update"
+msgstr "Aktualizacja kontaktu"
+
+#: .\templates\car_rental\dashboard\maintenance\maintenance_list.html:5
+#: .\car_rental\models.py:122 .\car_rental\models.py:123
+msgid "Car maintenance"
+msgstr "Serwis samochodu"
+
+#: .\templates\car_rental\dashboard\maintenance\maintenance_update.html:5
+msgid "Maintenance update"
+msgstr "Aktualizacja samochodu"
+
+#: .\templates\car_rental\dashboard\modals\car_modal.html:71
+#: .\templates\car_rental\dashboard\modals\contact_modal.html:49
+#: .\templates\car_rental\dashboard\modals\extra_modal.html:34
+#: .\templates\car_rental\dashboard\modals\maintenance_modal.html:47
+#: .\templates\car_rental\dashboard\modals\news_modal.html:45
+#: .\templates\car_rental\dashboard\modals\protection_modal.html:59
+#: .\templates\car_rental\dashboard\modals\rental_modal.html:69
+msgid "Add"
+msgstr "Dodaj"
+
+#: .\templates\car_rental\dashboard\modals\extra_modal.html:7
+#: .\templates\car_rental\dashboard\rental_extra\rental_extra_list.html:20
+msgid "Add extra"
+msgstr "Dodaj dodatek"
+
+#: .\templates\car_rental\dashboard\modals\filter_modal.html:7
+#: .\templates\car_rental\dashboard\modals\filter_modal.html:28
+msgid "Sort"
+msgstr "Sortuj"
+
+#: .\templates\car_rental\dashboard\modals\news_modal.html:7
+#: .\templates\car_rental\dashboard\news\news_list.html:24
+msgid "Add news"
+msgstr "Dodaj wiadomość"
+
+#: .\templates\car_rental\dashboard\modals\protection_modal.html:7
+#: .\templates\car_rental\dashboard\rental_protection\rental_protection_list.html:29
+msgid "Add protection"
+msgstr "Dodaj ochronę"
+
+#: .\templates\car_rental\dashboard\modals\rental_modal.html:7
+msgid "Add car rental"
+msgstr "Dodaj wypożyczenie samochodu"
+
+#: .\templates\car_rental\dashboard\news\news_list.html:5
+#: .\templates\car_rental\layouts\dashboard_sidebar.html:72
+#: .\templates\car_rental\layouts\main_extra_nav.html:16
+#: .\templates\car_rental\main\news.html:4 .\car_rental\models.py:252
+#: .\car_rental\models.py:253
+msgid "News"
+msgstr "Wiadomość"
+
+#: .\templates\car_rental\dashboard\news\news_list.html:47
+#: .\car_rental\filters.py:86 .\car_rental\filters.py:163
+msgid "Date of creation"
+msgstr "Data utworzenia"
+
+#: .\templates\car_rental\dashboard\news\news_update.html:5
+msgid "News update"
+msgstr "Aktualizacja wiadomości"
+
+#: .\templates\car_rental\dashboard\rental\rental_list.html:5
+#: .\car_rental\models.py:216
+msgid "Car rentals"
+msgstr "Wypożyczenia samochodów"
+
+#: .\templates\car_rental\dashboard\rental\rental_list.html:21
+msgid "Add rental"
+msgstr "Dodaj wypożyczenie"
+
+#: .\templates\car_rental\dashboard\rental\rental_list.html:53
+msgid "Rental time"
+msgstr "Czas wypożyczenia"
+
+#: .\templates\car_rental\dashboard\rental\rental_list.html:57
+msgid "Total rental cost"
+msgstr "Całkowity koszt wypożyczenia"
+
+#: .\templates\car_rental\dashboard\rental\rental_update.html:5
+msgid "Rental update"
+msgstr "Aktualizacja wypożyczenia"
+
+#: .\templates\car_rental\dashboard\rental_extra\rental_extra_list.html:5
+msgid "Extras"
+msgstr "Dodatki"
+
+#: .\templates\car_rental\dashboard\rental_extra\rental_extra_update.html:5
+msgid "Extra update"
+msgstr "Aktualizacja dodatku"
+
+#: .\templates\car_rental\dashboard\rental_protection\rental_protection_list.html:5
+msgid "Protections"
+msgstr "Ochrony"
+
+#: .\templates\car_rental\dashboard\rental_protection\rental_protection_update.html:5
+msgid "Protection update"
+msgstr "Aktualizacja ochrony"
+
+#: .\templates\car_rental\layouts\dashboard_sidebar.html:34
+msgid "Rentals"
+msgstr "Wypożyczenia"
+
+#: .\templates\car_rental\layouts\dashboard_sidebar.html:52
+#: .\car_rental\models.py:308
+msgid "Rental protections"
+msgstr "Ochrony wypożyczenia"
+
+#: .\templates\car_rental\layouts\dashboard_sidebar.html:62
+#: .\car_rental\models.py:332
+msgid "Rental extras"
+msgstr "Dodatki wypożyczenia"
+
+#: .\templates\car_rental\layouts\main_extra_nav.html:10
+msgid "Rent a car"
+msgstr "Wypożycz samochód"
+
+#: .\templates\car_rental\layouts\main_extra_nav.html:22
+#: .\templates\car_rental\main\contact.html:4
+msgid "Contact"
+msgstr "Kontakt"
+
+#: .\templates\car_rental\main\_partials\car_card.html:51
+#: .\templates\car_rental\main\home.html:21
+msgid "day"
+msgstr "dzień"
+
+#: .\templates\car_rental\main\_partials\car_card.html:52
+msgid "total"
+msgstr "łącznie"
+
+#: .\templates\car_rental\main\_partials\protection_card.html:13
+msgid "TPL insurance"
+msgstr "Ubezpieczenie OC"
+
+#: .\templates\car_rental\main\_partials\protection_card.html:21
+msgid "Wheel protection"
+msgstr "Ochrona kół"
+
+#: .\templates\car_rental\main\_partials\protection_card.html:29
+#: .\car_rental\models.py:274
+msgid "Window protection"
+msgstr "Ochrona okien"
+
+#: .\templates\car_rental\main\_partials\protection_card.html:37
+msgid "Penalty cost:"
+msgstr "Koszt kary:"
+
+#: .\templates\car_rental\main\_partials\protection_card.html:41
+msgid "Deposit cost:"
+msgstr "Koszt depozytu:"
+
+#: .\templates\car_rental\main\car_rental_days\address.html:4
+#: .\templates\car_rental\main\car_rental_days\car_choice.html:4
+#: .\templates\car_rental\main\car_rental_days\date_range.html:4
+#: .\templates\car_rental\main\car_rental_days\extra_choice.html:4
+#: .\templates\car_rental\main\car_rental_days\rental_successful.html:4
+#: .\templates\car_rental\main\car_rental_days\rental_unsuccessful.html:4
+#: .\templates\car_rental\main\car_rental_days\review.html:4
+msgid "Rental for days"
+msgstr "Wypożyczenie na dni"
+
+#: .\templates\car_rental\main\car_rental_days\address.html:63
+#: .\templates\car_rental\main\car_rental_days\extra_choice.html:51
+msgid "Next"
+msgstr "Dalej"
+
+#: .\templates\car_rental\main\car_rental_days\car_choice.html:27
+msgid "Select a car:"
+msgstr "Wybierz samochód:"
+
+#: .\templates\car_rental\main\car_rental_days\car_choice.html:38
+msgid "No cars available"
+msgstr "Brak dostępnych samochodów"
+
+#: .\templates\car_rental\main\car_rental_days\car_choice.html:47
+msgid "Choose"
+msgstr "Wybierz"
+
+#: .\templates\car_rental\main\car_rental_days\date_range.html:25
+msgid "Select date range:"
+msgstr "Wybierz zakres dat:"
+
+#: .\templates\car_rental\main\car_rental_days\date_range.html:46
+msgid "Search car"
+msgstr "Szukaj samochodu"
+
+#: .\templates\car_rental\main\car_rental_days\extra_choice.html:28
+msgid "Select protection:"
+msgstr "Wybierz ochronę:"
+
+#: .\templates\car_rental\main\car_rental_days\extra_choice.html:37
+msgid "Select extra options:"
+msgstr "Wybierz dodatki:"
+
+#: .\templates\car_rental\main\car_rental_days\rental_successful.html:11
+msgid "Rental successful"
+msgstr "Wypożyczenie zakończone sukcesem"
+
+#: .\templates\car_rental\main\car_rental_days\rental_successful.html:14
+msgid "Succesfully rented car"
+msgstr "Pomyślnie wypożyczony samochód"
+
+#: .\templates\car_rental\main\car_rental_days\rental_unsuccessful.html:11
+msgid "Rental unsuccessful"
+msgstr "Wypożyczenie nieudane"
+
+#: .\templates\car_rental\main\car_rental_days\review.html:31
+msgid "Review:"
+msgstr "Podsumowanie:"
+
+#: .\templates\car_rental\main\car_rental_days\review.html:62
+msgid "Rent time: "
+msgstr "Czas wypożyczenia:"
+
+#: .\templates\car_rental\main\car_rental_days\review.html:66
+msgid "Address: "
+msgstr "Adresy:"
+
+#: .\templates\car_rental\main\car_rental_days\review.html:85
+msgid "Total cost: "
+msgstr "Łączny koszt:"
+
+#: .\templates\car_rental\main\car_rental_days\review.html:99
+msgid "Rent"
+msgstr "Wypożycz"
+
+#: .\templates\car_rental\main\car_rental_days\wizard_nav.html:7
+msgid "First step"
+msgstr "Pierwszy krok"
+
+#: .\templates\car_rental\main\car_rental_days\wizard_nav.html:12
+msgid "Prev step"
+msgstr "Poprzedni krok"
+
+#: .\templates\car_rental\main\contact.html:14
+msgid "Send a message"
+msgstr "Wyślij wiadomość"
+
+#: .\templates\car_rental\main\contact.html:30
+msgid "Send"
+msgstr "Wyślij"
+
+#: .\templates\car_rental\main\contact.html:36
+msgid "Direct contact"
+msgstr "Kontakt bezpośredni"
+
+#: .\templates\car_rental\main\contact.html:38
+msgid "Information"
+msgstr "Informacje"
+
+#: .\templates\car_rental\main\contact.html:46
+msgid "Email 1"
+msgstr "E-mail 1"
+
+#: .\templates\car_rental\main\contact.html:50
+msgid "Email 2"
+msgstr "E-mail 2"
+
+#: .\templates\car_rental\main\home.html:4
+msgid "Home"
+msgstr "Strona główna"
+
+#: .\templates\car_rental\main\home.html:10
+msgid "Rent a car for:"
+msgstr "Wypożycz samochód na:"
+
+#: .\templates\car_rental\main\home.html:16
+#: .\templates\car_rental\main\home.html:18
+msgid "Days"
+msgstr "Dni"
+
+#: .\templates\car_rental\main\home.html:21
+msgid "From"
+msgstr "Od"
+
+#: .\templates\car_rental\main\home.html:31
+msgid "News:"
+msgstr "Wiadomości:"
+
+#: .\templates\car_rental\main\news_detail.html:32
+msgid "Previous news:"
+msgstr "Poprzednia wiadomość:"
+
+#: .\templates\car_rental\main\news_detail.html:41
+msgid "Next news:"
+msgstr "Następna wiadomość:"
+
+#: .\car_rental\filters.py:21 .\car_rental\filters.py:28
+#: .\car_rental\filters.py:63 .\car_rental\filters.py:70
+#: .\car_rental\filters.py:78 .\car_rental\filters.py:113
+#: .\car_rental\filters.py:121 .\car_rental\filters.py:128
+msgid "All"
+msgstr "Wszystko"
+
+#: .\car_rental\filters.py:41 .\car_rental\filters.py:90
+#: .\car_rental\filters.py:141 .\car_rental\filters.py:167
+msgid "Order by:"
+msgstr "Uporządkuj przez:"
+
+#: .\car_rental\forms.py:68
+msgid "End date must be later than start date."
+msgstr "Data zakończenia musi być późniejsza niż data rozpoczęcia."
+
+#: .\car_rental\forms.py:72 .\car_rental\forms.py:178
+msgid "Minimum rent time is 1 hour"
+msgstr "Minimalny czas wypożyczenia wynosi 1 godzinę"
+
+#: .\car_rental\forms.py:141
+msgid "Date from"
+msgstr "Data od"
+
+#: .\car_rental\forms.py:148
+msgid "Date to"
+msgstr "Data do"
+
+#: .\car_rental\forms.py:162
+msgid "Date to must be later than date from."
+msgstr "Data do musi być późniejsza niż data od."
+
+#: .\car_rental\forms.py:166
+msgid "Date from cannot be in the past."
+msgstr "Data od nie może być w przeszłości."
+
+#: .\car_rental\forms.py:169
+msgid "Date to cannot be in the past."
+msgstr "Data do nie może być w przeszłości."
+
+#: .\car_rental\forms.py:173
+msgid "Date from not earlier than in "
+msgstr "Data od nie wcześniej niż"
+
+#: .\car_rental\forms.py:173
+msgid " hours"
+msgstr "godzin"
+
+#: .\car_rental\forms.py:220
+msgid "Use profile address"
+msgstr "Użyj adresu profilu"
+
+#: .\car_rental\forms.py:241
+msgid "You dont have saved profile address."
+msgstr "Nie masz zapisanego adresu profilu."
+
+#: .\car_rental\forms.py:251
+msgid "Please provide all address information."
+msgstr "Prosimy o podanie wszystkich danych adresowych."
+
+#: .\car_rental\models.py:16
+msgid "Year must be between 1900 and "
+msgstr "Rok musi zawierać się między 1900 a"
+
+#: .\car_rental\models.py:22
+msgid "Available"
+msgstr "Dostępny"
+
+#: .\car_rental\models.py:23
+msgid "Unavailable"
+msgstr "Niedostępny"
+
+#: .\car_rental\models.py:25 .\car_rental\models.py:129
+msgid "Rented"
+msgstr "Wypożyczony"
+
+#: .\car_rental\models.py:28
+msgid "Brand"
+msgstr "Marka"
+
+#: .\car_rental\models.py:33
+msgid "Model"
+msgstr "Model"
+
+#: .\car_rental\models.py:51
+msgid "Production year"
+msgstr "Rok produkcji"
+
+#: .\car_rental\models.py:56
+msgid "Car picture"
+msgstr "Zdjęcie samochodu"
+
+#: .\car_rental\models.py:61
+msgid "Cost of one day rental"
+msgstr "Koszt wynajmu na jeden dzień"
+
+#: .\car_rental\models.py:79
+msgid "In repair"
+msgstr "W naprawie"
+
+#: .\car_rental\models.py:80
+msgid "Done"
+msgstr "Skończone"
+
+#: .\car_rental\models.py:81
+msgid "Scheduled"
+msgstr "Zaplanowane"
+
+#: .\car_rental\models.py:128
+msgid "Reserved"
+msgstr "Zarezerwowany"
+
+#: .\car_rental\models.py:130 .\car_rental\models.py:389
+msgid "Closed"
+msgstr "Zamknięte"
+
+#: .\car_rental\models.py:131
+msgid "Cancelled"
+msgstr "Anulowane"
+
+#: .\car_rental\models.py:152
+msgid "Protection"
+msgstr "Ochrona"
+
+#: .\car_rental\models.py:158
+msgid "Extra"
+msgstr "Dodatek"
+
+#: .\car_rental\models.py:162
+msgid "Start date of car rental"
+msgstr "Data rozpoczęcia wypożyczenia samochodu"
+
+#: .\car_rental\models.py:166
+msgid "End date of car rental"
+msgstr "Data zakończenia wypożyczenia samochodu"
+
+#: .\car_rental\models.py:170
+msgid "Total time of car rental"
+msgstr "Całkowity czas wypożyczenia samochodu"
+
+#: .\car_rental\models.py:175
+msgid "Cost of rental"
+msgstr "Koszt wypożyczenia"
+
+#: .\car_rental\models.py:215
+msgid "Car rental"
+msgstr "Wypożyczenie samochodu"
+
+#: .\car_rental\models.py:221
+msgid "Title"
+msgstr "Tytuł"
+
+#: .\car_rental\models.py:227
+#| msgid "Question"
+msgid "Description"
+msgstr "Opis"
+
+#: .\car_rental\models.py:231
+msgid "Main picture"
+msgstr "Główne zdjęcie"
+
+#: .\car_rental\models.py:240
+msgid "Add date"
+msgstr "Data dodania"
+
+#: .\car_rental\models.py:258
+msgid "Protection name"
+msgstr "Nazwa ochrony"
+
+#: .\car_rental\models.py:264
+msgid "Third party liability insurance"
+msgstr "Ubezpieczenie OC"
+
+#: .\car_rental\models.py:269
+msgid "Tires and rims protection"
+msgstr "Ochrona opon i felg"
+
+#: .\car_rental\models.py:279
+msgid "Protection cost"
+msgstr "Koszt ochrony"
+
+#: .\car_rental\models.py:287
+msgid "Penalty cost"
+msgstr "Koszt kary"
+
+#: .\car_rental\models.py:295
+msgid "Deposit cost"
+msgstr "Koszt depozytu"
+
+#: .\car_rental\models.py:307
+msgid "Rental protection"
+msgstr "Ochrona wypożyczenia"
+
+#: .\car_rental\models.py:313
+msgid "Extra name"
+msgstr "Nazwa dodatku"
+
+#: .\car_rental\models.py:319
+msgid "Extra cost"
+msgstr "Koszt dodatku"
+
+#: .\car_rental\models.py:331
+msgid "Rental extra"
+msgstr "Dodatek wypożyczenia"
+
+#: .\car_rental\models.py:383
+msgid "Rental addresses"
+msgstr "Adresy wypożyczających"
+
+#: .\car_rental\models.py:388
+msgid "New"
+msgstr "Nowy"
+
+#: .\car_rental\models.py:392
+msgid "Accident"
+msgstr "Wypadek"
+
+#: .\car_rental\models.py:393
+msgid "Breakdown"
+msgstr "Awaria"
+
+#: .\car_rental\models.py:394
+msgid "Question"
+msgstr "Pytanie"
+
+#: .\car_rental\models.py:395
+msgid "Complaint"
+msgstr "Skarga"
+
+#: .\car_rental\models.py:409
+msgid "Message"
+msgstr "Wiadomość"
+
+#: .\car_rental\models.py:418
+msgid "Date of contact message creation"
+msgstr "Data utworzenia wiadomości kontaktowej"
+
+#: .\car_rental\models.py:426
+msgid "Contact message"
+msgstr "Wiadomość kontaktowa"
+
+#: .\car_rental\models.py:427
+msgid "Contact messages"
+msgstr "Wiadomości kontaktowe"
+
+#~ msgid "Username can not be used. Please use other username."
+#~ msgstr "Nie możesz użyć tej nazwy użytkownika. Proszę wybierz inną."
+
+#~ msgid "Too many failed login attempts. Try again later."
+#~ msgstr "Zbyt wiele nieudanych prób logowania. Spróbuj ponownie później."
+
+#~ msgid "A user is already registered with this email address."
+#~ msgstr "W systemie jest już zarejestrowany użytkownik o tym adresie e-mail."
+
+#, fuzzy
+#~ msgid "Incorrect password."
+#~ msgstr "Obecne hasło"
+
+#, python-brace-format
+#~ msgid "Password must be a minimum of {0} characters."
+#~ msgstr "Hasło musi składać się z co najmniej {0} znaków."
+
+#, fuzzy
+#~ msgid "Use your password"
+#~ msgstr "Nie pamiętasz hasła?"
+
+#, fuzzy
+#~ msgid "Use your authenticator app"
+#~ msgstr "Aplikacja autoryzacyjna"
+
+#, fuzzy
+#~ msgid "Mark selected email addresses as verified"
+#~ msgstr "Twój podstawowy adres e-mail musi być zweryfikowany."
+
+#~ msgid "Accounts"
+#~ msgstr "Konta"
+
+#~ msgid "You must type the same password each time."
+#~ msgstr "Musisz wpisać za każdym razem to samo hasło."
+
+#~ msgid "Password"
+#~ msgstr "Hasło"
+
+#~ msgid "Remember Me"
+#~ msgstr "Pamiętaj mnie"
+
+#~ msgid "This account is currently inactive."
+#~ msgstr "Konto jest obecnie nieaktywne."
+
+#~ msgid "The email address and/or password you specified are not correct."
+#~ msgstr "Podany adres e-mail i/lub hasło są niepoprawne."
+
+#~ msgid "The username and/or password you specified are not correct."
+#~ msgstr "Podana nazwa użytkownika i/lub hasło są niepoprawne."
+
+#~ msgid "Username or email"
+#~ msgstr "Nazwa użytkownika lub e-mail"
+
+#~ msgctxt "field label"
+#~ msgid "Login"
+#~ msgstr "Login"
+
+#, fuzzy
+#~ msgid "Forgot your password?"
+#~ msgstr "Nie pamiętasz hasła?"
+
+#~ msgid "Email (again)"
+#~ msgstr "E-mail (ponownie)"
+
+#~ msgid "Email (optional)"
+#~ msgstr "E-mail (opcjonalnie)"
+
+#~ msgid "You must type the same email each time."
+#~ msgstr "Musisz wpisać za każdym razem ten sam e-mail."
+
+#~ msgid "Password (again)"
+#~ msgstr "Hasło (ponownie)"
+
+#~ msgid "This email address is already associated with this account."
+#~ msgstr "Ten adres e-mail jest już powiązany z tym kontem."
+
+#, python-format
+#~ msgid "You cannot add more than %d email addresses."
+#~ msgstr "Nie możesz dodać więcej niż %d adresów e-mail."
+
+#~ msgid "Current Password"
+#~ msgstr "Obecne hasło"
+
+#~ msgid "New Password"
+#~ msgstr "Nowe hasło"
+
+#~ msgid "New Password (again)"
+#~ msgstr "Nowe hasło (ponownie)"
+
+#~ msgid "Please type your current password."
+#~ msgstr "Proszę wpisz swoje obecne hasło."
+
+#~ msgid "The email address is not assigned to any user account"
+#~ msgstr "Adres e-mail nie jest powiązany z żadnym kontem użytkownika"
+
+#~ msgid "The password reset token was invalid."
+#~ msgstr "Token resetowania hasła był nieprawidłowy."
+
+#~ msgid "user"
+#~ msgstr "użytkownik"
+
+#~ msgid "verified"
+#~ msgstr "zweryfikowany"
+
+#~ msgid "primary"
+#~ msgstr "podstawowy"
+
+#~ msgid "created"
+#~ msgstr "utworzono"
+
+#~ msgid "sent"
+#~ msgstr "wysłano"
+
+#~ msgid "key"
+#~ msgstr "klucz"
+
+#~ msgid "email confirmations"
+#~ msgstr "potwierdzenia adresów e-mail"
+
+#~ msgid ""
+#~ "You cannot activate two-factor authentication until you have verified your "
+#~ "email address."
+#~ msgstr ""
+#~ "Nie możesz aktywować uwierzytelniania dwuskładnikowego dopóki nie "
+#~ "zweryfikujesz swojego adresu e-mail."
+
+#~ msgid ""
+#~ "You cannot add an email address to an account protected by two-factor "
+#~ "authentication."
+#~ msgstr ""
+#~ "Nie można dodać adresu e-mail do konta chronionego dwuskładnikową "
+#~ "autoryzacją."
+
+#~ msgid "Incorrect code."
+#~ msgstr "Błędny kod."
+
+#, fuzzy
+#~ msgid "You cannot deactivate two-factor authentication."
+#~ msgstr ""
+#~ "Nie można dodać adresu e-mail do konta chronionego dwuskładnikową "
+#~ "autoryzacją."
+
+#~ msgid "MFA"
+#~ msgstr "MFA"
+
+#~ msgid "Code"
+#~ msgstr "Kod"
+
+#~ msgid "Authenticator code"
+#~ msgstr "Kod autentykacyjny"
+
+#~ msgid "Recovery codes"
+#~ msgstr "Kody odzyskiwania"
+
+#~ msgid "TOTP Authenticator"
+#~ msgstr "Autentykator TOTP"
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "An account already exists with this email address. Please sign in to that "
+#~ "account first, then connect your %s account."
+#~ msgstr ""
+#~ "Istnieje już konto dla tego adresu e-mail. Zaloguj się najpierw na to konto,"
+#~ " a następnie połącz swoje konto %s."
+
+#~ msgid "Your account has no password set up."
+#~ msgstr "Twoje konto nie posiada hasła."
+
+#~ msgid "Social Accounts"
+#~ msgstr "Konta społecznościowe"
+
+#~ msgid "provider"
+#~ msgstr "dostawca usług"
+
+#, fuzzy
+#~ msgid "provider ID"
+#~ msgstr "dostawca usług"
+
+#~ msgid "client id"
+#~ msgstr "id klienta"
+
+#~ msgid "App ID, or consumer key"
+#~ msgstr "ID aplikacji lub klucz odbiorcy"
+
+#~ msgid "secret key"
+#~ msgstr "klucz prywatny"
+
+#~ msgid "API secret, client secret, or consumer secret"
+#~ msgstr "Klucz prywatny API, klienta lub odbiorcy"
+
+#~ msgid "Key"
+#~ msgstr "Klucz"
+
+#~ msgid "social application"
+#~ msgstr "aplikacja społecznościowa"
+
+#~ msgid "social applications"
+#~ msgstr "aplikacje społecznościowe"
+
+#~ msgid "uid"
+#~ msgstr "uid"
+
+#~ msgid "last login"
+#~ msgstr "data ostatniego logowania"
+
+#~ msgid "date joined"
+#~ msgstr "data przyłączenia"
+
+#~ msgid "social account"
+#~ msgstr "konto społecznościowe"
+
+#~ msgid "social accounts"
+#~ msgstr "konta społecznościowe"
+
+#~ msgid "token"
+#~ msgstr "token"
+
+#~ msgid "\"oauth_token\" (OAuth1) or access token (OAuth2)"
+#~ msgstr "\"oauth_token\" (OAuth1) lub access token (OAuth2)"
+
+#~ msgid "token secret"
+#~ msgstr "token secret"
+
+#~ msgid "\"oauth_token_secret\" (OAuth1) or refresh token (OAuth2)"
+#~ msgstr "\"oauth_token_secret\" (OAuth1) lub refresh token (OAuth2)"
+
+#~ msgid "expires at"
+#~ msgstr "wygasa"
+
+#~ msgid "social application token"
+#~ msgstr "token aplikacji społecznościowej"
+
+#~ msgid "social application tokens"
+#~ msgstr "tokeny aplikacji społecznościowych"
+
+#~ msgid "Invalid profile data"
+#~ msgstr "Nieprawidłowe dane profilu"
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "Invalid response while obtaining request token from \"%s\". Response was: "
+#~ "%s."
+#~ msgstr "Błędna odpowiedź podczas pobierania tokena z \"%s\"."
+
+#, python-format
+#~ msgid "Invalid response while obtaining access token from \"%s\"."
+#~ msgstr "Błędna odpowiedź podczas pobierania tokena autoryzacji z \"%s\"."
+
+#, python-format
+#~ msgid "No request token saved for \"%s\"."
+#~ msgstr "Brak tokena zapisanego dla \"%s\"."
+
+#, python-format
+#~ msgid "No access token saved for \"%s\"."
+#~ msgstr "Brak zapisanego tokena autoryzacji \"%s\"."
+
+#, python-format
+#~ msgid "No access to private resources at \"%s\"."
+#~ msgstr "Brak dostępu do prywatnych zasobów na \"%s\"."
+
+#, python-format
+#~ msgid "Invalid response while obtaining request token from \"%s\"."
+#~ msgstr "Błędna odpowiedź podczas pobierania tokena z \"%s\"."
+
+#~ msgid "Account Inactive"
+#~ msgstr "Konto nieaktywne"
+
+#~ msgid "This account is inactive."
+#~ msgstr "To konto jest nieaktywne."
+
+#~ msgid "Set Password"
+#~ msgstr "Ustaw hasło"
+
+#, fuzzy
+#~ msgid "Enter your password:"
+#~ msgstr "Nie pamiętasz hasła?"
+
+#~ msgid "We are sorry, but the sign up is currently closed."
+#~ msgstr "Przepraszamy, ale w tej chwili rejestracja jest zamknięta."
+
+#, fuzzy
+#~ msgid ""
+#~ "This part of the site requires us to verify that\n"
+#~ "you are who you claim to be. For this purpose, we require that you\n"
+#~ "verify ownership of your email address. "
+#~ msgstr ""
+#~ "Ta część strony wymaga weryfikacji tego, kim jesteś. Dlatego wymagamy "
+#~ "weryfikacji Twojego adresu e-mail."
+
+#, fuzzy
+#~ msgid ""
+#~ "We have sent an email to you for\n"
+#~ "verification. Please click on the link inside that email. If you do not see the verification email in your main inbox, check your spam folder. Otherwise\n"
+#~ "contact us if you do not receive it within a few minutes."
+#~ msgstr ""
+#~ "Wysłaliśmy Ci wiadomość e-mail.\n"
+#~ "W celu weryfikacji musisz kliknąć w łącze zawarte w wiadomości. Proszę skontaktuj się z nami, jeśli nie dotarła do Ciebie w ciągu kilku minut."
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your "
+#~ "email address</a>."
+#~ msgstr ""
+#~ "<strong>Uwaga:</strong> możesz ciągle <a href=\"%(email_url)s\">zmienić Twój"
+#~ " adres e-mail</a>."
+
+#~ msgid "Menu:"
+#~ msgstr "Menu:"
+
+#~ msgid "Two-Factor Authentication"
+#~ msgstr "Autoryzacja dwuskładnikowa"
+
+#~ msgid ""
+#~ "Your account is protected by two-factor authentication. Please enter an "
+#~ "authenticator code:"
+#~ msgstr ""
+#~ "Twoje konto jest chronione przez uwierzytelnianie dwuskładnikowe. Proszę "
+#~ "wprowadzić kod uwierzytelniający:"
+
+#~ msgid "Authenticator App"
+#~ msgstr "Aplikacja autoryzacyjna"
+
+#~ msgid "Authentication using an authenticator app is active."
+#~ msgstr "Autoryzacja za pomocą aplikacji autoryzacyjnej jest aktywna."
+
+#~ msgid "An authenticator app is not active."
+#~ msgstr "Aplikacja autoryzacyjna nie jest aktywna."
+
+#~ msgid "Deactivate"
+#~ msgstr "Dezaktywuj"
+
+#~ msgid "Activate"
+#~ msgstr "Aktywuj"
+
+#~ msgid "Recovery Codes"
+#~ msgstr "Kody odzyskiwania"
+
+#, python-format
+#~ msgid ""
+#~ "There is %(unused_count)s out of %(total_count)s recovery codes available."
+#~ msgid_plural ""
+#~ "There are %(unused_count)s out of %(total_count)s recovery codes available."
+#~ msgstr[0] ""
+#~ "Dostępnych jest %(unused_count)s z %(total_count)s kodów odzyskiwania."
+#~ msgstr[1] ""
+#~ msgstr[2] ""
+#~ msgstr[3] ""
+
+#~ msgid "No recovery codes set up."
+#~ msgstr "Nie ustawiono żadnych kodów odzyskiwania."
+
+#~ msgid "View"
+#~ msgstr "Widok"
+
+#~ msgid "Download"
+#~ msgstr "Pobierz"
+
+#~ msgid "Generate"
+#~ msgstr "Generuj"
+
+#~ msgid "A new set of recovery codes has been generated."
+#~ msgstr "Wygenerowano nowy zestaw kodów odzyskiwania."
+
+#~ msgid "Authenticator app activated."
+#~ msgstr "Aplikacja autoryzacyjna została aktywowana."
+
+#~ msgid "Authenticator app deactivated."
+#~ msgstr "Aplikacja autoryzacyjna została dezaktywowana."
+
+#, fuzzy
+#~ msgid "Enter an authenticator code:"
+#~ msgstr "Kod autentykacyjny"
+
+#~ msgid ""
+#~ "You are about to generate a new set of recovery codes for your account."
+#~ msgstr "Zaraz wygenerujesz nowy zestaw kodów odzyskiwania dla Twojego konta."
+
+#~ msgid "This action will invalidate your existing codes."
+#~ msgstr "Ta czynność spowoduje unieważnienie istniejących kodów."
+
+#~ msgid "Are you sure?"
+#~ msgstr "Jesteś pewny?"
+
+#~ msgid "Unused codes"
+#~ msgstr "Niewykorzystane kody"
+
+#~ msgid "Download codes"
+#~ msgstr "Pobierz kody"
+
+#~ msgid "Generate new codes"
+#~ msgstr "Wygeneruj nowe kody."
+
+#~ msgid "Activate Authenticator App"
+#~ msgstr "Aktywuj aplikację uwierzytelniającą."
+
+#~ msgid ""
+#~ "To protect your account with two-factor authentication, scan the QR code "
+#~ "below with your authenticator app. Then, input the verification code "
+#~ "generated by the app below."
+#~ msgstr ""
+#~ "Aby zabezpieczyć swoje konto za pomocą uwierzytelniania dwuskładnikowego, "
+#~ "zeskanuj poniższy kod QR za pomocą aplikacji uwierzytelniającej. Następnie "
+#~ "wprowadź poniżej kod weryfikacyjny wygenerowany przez aplikację."
+
+#, fuzzy
+#~ msgid "Authenticator secret"
+#~ msgstr "token secret"
+
+#~ msgid ""
+#~ "You can store this secret and use it to reinstall your authenticator app at "
+#~ "a later time."
+#~ msgstr ""
+#~ "Możesz przechować ten sekret i użyć go później do ponownej instalacji "
+#~ "aplikacji uwierzytelniającej."
+
+#~ msgid "Deactivate Authenticator App"
+#~ msgstr "Wyłącz aplikację uwierzytelniającą."
+
+#~ msgid ""
+#~ "You are about to deactivate authenticator app based authentication. Are you "
+#~ "sure?"
+#~ msgstr ""
+#~ "Zamierzasz wyłączyć uwierzytelnianie oparte na aplikacji Authenticator. "
+#~ "Jesteś pewien?"
+
+#~ msgid "Social Network Login Failure"
+#~ msgstr "Błędne logowanie z konta społecznościowego"
+
+#~ msgid ""
+#~ "An error occurred while attempting to login via your social network account."
+#~ msgstr ""
+#~ "Wystąpił błąd podczas próby logowania za pomocą konta społecznościowego."
+
+#, fuzzy
+#~ msgid ""
+#~ "You can sign in to your account using any of the following third-party "
+#~ "accounts:"
+#~ msgstr ""
+#~ "Możesz zalogować się do swojego konta używając dowolnego z poniższych kont "
+#~ "zewnętrznych:"
+
+#~ msgid ""
+#~ "You currently have no social network accounts connected to this account."
+#~ msgstr ""
+#~ "Nie masz obecnie żadnych kont społecznościowych połączonych z tym kontem."
+
+#, fuzzy
+#~ msgid "Add a Third-Party Account"
+#~ msgstr "Dodaj konto zewnętrzne"
+
+#, python-format
+#~ msgid "Connect %(provider)s"
+#~ msgstr "Połącz z %(provider)s."
+
+#, python-format
+#~ msgid "You are about to connect a new third-party account from %(provider)s."
+#~ msgstr "Zamierzasz połączyć nowe konto zewnętrzne od dostawcy %(provider)s."
+
+#, python-format
+#~ msgid "Sign In Via %(provider)s"
+#~ msgstr "Zaloguj się za pomocą %(provider)s."
+
+#, python-format
+#~ msgid ""
+#~ "You are about to sign in using a third-party account from %(provider)s."
+#~ msgstr ""
+#~ "Zamierzasz zalogować się przy użyciu konta zewnętrznego dostawcy "
+#~ "%(provider)s."
+
+#~ msgid "Continue"
+#~ msgstr "Kontynuuj"
+
+#~ msgid "Login Cancelled"
+#~ msgstr "Logowanie anulowane"
+
+#, python-format
+#~ msgid ""
+#~ "You decided to cancel logging in to our site using one of your existing "
+#~ "accounts. If this was a mistake, please proceed to <a "
+#~ "href=\"%(login_url)s\">sign in</a>."
+#~ msgstr ""
+#~ "Wybrano anulowanie logowania przez jedno z istniejących kont. Jeżeli to była"
+#~ " pomyłka, proszę przejdź do <a href=\"%(login_url)s\">zaloguj</a>."
+
+#~ msgid "The social account has been connected."
+#~ msgstr "Konto społecznościowe zostało połączone."
+
+#~ msgid "The social account is already connected to a different account."
+#~ msgstr "To konto społecznościowe jest już połączone z innym kontem."
+
+#~ msgid "The social account has been disconnected."
+#~ msgstr "Konto społecznościowe zostało rozłączone."
+
+#, python-format
+#~ msgid ""
+#~ "You are about to use your %(provider_name)s account to login to\n"
+#~ "%(site_name)s. As a final step, please complete the following form:"
+#~ msgstr ""
+#~ "Masz zamiar użyć konta %(provider_name)s do zalogowania się w \n"
+#~ "%(site_name)s. Jako ostatni krok, proszę wypełnij formularz:"
+
+#~ msgid "Or use a third-party"
+#~ msgstr "Lub skorzystaj z serwisów społecznościowych"
+
+#~ msgid "To safeguard the security of your account, please enter your password:"
+#~ msgstr "Dla bezpieczeństwa konta, prosimy o podanie hasła:"
+
+#, python-format
+#~ msgid ""
+#~ "Please sign in with one\n"
+#~ "of your existing third party accounts. Or, <a href=\"%(signup_url)s\">sign up</a>\n"
+#~ "for a %(site_name)s account and sign in below:"
+#~ msgstr ""
+#~ "Proszę zaloguj się jednym\n"
+#~ "z Twoich zewnętrznych kont. Lub <a href=\"%(signup_url)s\">zarejestruj się</a> \n"
+#~ "w %(site_name)s i zaloguj poniżej:"
+
+#~ msgid "or"
+#~ msgstr "lub"
+
+#~ msgid "change password"
+#~ msgstr "zmień hasło"
+
+#~ msgid "OpenID Sign In"
+#~ msgstr "Zaloguj przez OpenID"
+
+#~ msgid "This email address is already associated with another account."
+#~ msgstr "Ten adres e-mail jest już powiązany z innym kontem."
+
+#~ msgid ""
+#~ "We have sent you an e-mail. Please contact us if you do not receive it "
+#~ "within a few minutes."
+#~ msgstr ""
+#~ "Wysłaliśmy Ci e-mail. Proszę skontaktuj się z nami, jeśli go nie otrzymasz w"
+#~ " ciągu paru minut."
+
+#~ msgid "The login and/or password you specified are not correct."
+#~ msgstr "Login i/lub hasło, które podałeś, są niepoprawne."
+
+#~ msgid "Usernames can only contain letters, digits and @/./+/-/_."
+#~ msgstr ""
+#~ "Nazwa użytkownika może zawierać tylko litery, cyfry oraz znaki @/./+/-/_."
+
+#~ msgid "This username is already taken. Please choose another."
+#~ msgstr "Nazwa użytkownika jest już w użyciu. Proszę wybierz inną."
+
+#~ msgid ""
+#~ "You have confirmed that <a href=\"mailto:%(email)s\">%(email)s</a> is an "
+#~ "e-mail address for user %(user_display)s."
+#~ msgstr ""
+#~ "Potwierdziłeś, że adres <a href=\"mailto:%(email)s\">%(email)s</a> jest "
+#~ "adresem e-mail użytkownika %(user_display)s."
+
+#~ msgid "Thanks for using our site!"
+#~ msgstr "Dziękujemy za używanie naszej strony!"
+
+#~ msgid "Socialaccount"
+#~ msgstr "Konta społecznościowe"
+
+#~ msgid "Key (Stack Exchange only)"
+#~ msgstr "Klucz (tylko dla Stack Exchange)"
+
+#~ msgid "Confirmation email sent to %(email)s"
+#~ msgstr "Wiadomość z potwierdzeniem została wysłana na adres %(email)s"
+
+#~ msgid "Delete Password"
+#~ msgstr "Skasuj hasło"
+
+#~ msgid ""
+#~ "You may delete your password since you are currently logged in using OpenID."
+#~ msgstr "Możesz skasować swoje hasło jeśli używasz OpenID."
+
+#~ msgid "delete my password"
+#~ msgstr "skasuj moje hasło"
+
+#~ msgid "Password Deleted"
+#~ msgstr "Hasło Skasowane"
+
+#~ msgid "Your password has been deleted."
+#~ msgstr "Twoje hasło zostało skasowane."

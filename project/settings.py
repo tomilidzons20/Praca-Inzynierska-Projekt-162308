@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 
 import environ
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'django_bleach',
     'formtools',
+    'rosetta',
 
     # Local
     'car_rental.apps.CarRentalConfig',
@@ -55,6 +57,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 AUTHENTICATION_BACKENDS = [
@@ -122,7 +125,16 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
+
+LANGUAGES = (
+    ('en', _('English')),
+    ('pl', _('Polish')),
+)
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'car_rental/locale/'),
+]
 
 TIME_ZONE = 'Poland'
 
@@ -140,12 +152,11 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_files/')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR / 'static'),
+    os.path.join(BASE_DIR / 'static/'),
 ]
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media_files/')
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

@@ -33,7 +33,7 @@ class Address(models.Model):
         null=False,
     )
     last_name = models.CharField(
-        _('Last Name'),
+        _('Last name'),
         max_length=255,
         blank=False,
         null=False,
