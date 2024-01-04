@@ -19,7 +19,7 @@
 {% block content %}
   <div class="row">
     <div class="col-12 col-md-3 my-3">
-      <button class="btn btn-primary px-5" data-bs-toggle="modal" data-bs-target="#car-modal">
+      <button class="btn btn-primary px-5 text-nowrap" data-bs-toggle="modal" data-bs-target="#car-modal">
         {% trans "Add car" %}
       </button>
     </div>
@@ -32,11 +32,11 @@
           <div class="bg-body-tertiary rounded p-2 mx-2 text-white">
             <div class="row">
               <!-- Info section -->
-              <div class="col-9">
+              <div class="col-12 col-md-8">
                 <h3 class="fw-normal mb-3">
                   {{ car.brand }} {{ car.model }}
                 </h3>
-                <div class="d-flex flex-row gap-2 text-center">
+                <div class="d-flex flex-row text-center gap-2 flex-wrap text-nowrap">
                   <p class="rounded-pill info-pill bg-primary px-2 col" data-bs-toggle="tooltip" data-bs-placement="top"
                     data-bs-title="{% trans 'Year of production' %}">
                     {{ car.production_year }}
@@ -58,16 +58,15 @@
                     {% elif car.status == 'UN' %} bg-danger 
                     {% elif car.status == 'MA' %} bg-warning text-black
                     {% elif car.status == 'RE' %} bg-info text-black
-                    {% endif %} px-2 col"
+                    {% endif %} px-2 col-12 col-md"
                     data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Status' %}">
                     {{ car.get_status_display }}
                   </p>
-                  <div class="col-4"></div>
                 </div>
               </div>
 
               <!-- Picture section -->
-              <div class="col-3 d-flex justify-content-end">
+              <div class="col-12 offset-md-1 col-md-3 d-flex justify-content-md-end justify-content-center">
                 {% if car.car_picture %}
                   <img src="{{ car.car_picture.url }}" alt="Car picture" class="img-thumbnail" width="150px" height="150px" style="min-width: 150px;">
                 {% else %}

@@ -269,7 +269,3 @@ def news_create_view(request):
             return JsonResponse({'success': True}, status=200)
         return JsonResponse({'errors': form.errors}, status=400)
     return redirect('dashboard_news_list')
-
-# TODO
-# update dashboard sidebar to offcanvas
-# add lowest cost of car per day to main page

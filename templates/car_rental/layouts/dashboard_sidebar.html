@@ -1,8 +1,10 @@
 {% load i18n static %}
-
-<div class="position-fixed h-100">
-
-  <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary h-100" style="width: 280px;">
+<div class="col-12 col-md-3 bg-body-tertiary pb-3">
+  <button class="btn d-md-none mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar">
+    <span class="navbar-toggler-icon"></span>
+    <span class="text-center">{% trans 'Menu' %}</span>
+  </button>
+  <div class="collapse d-md-block sticky-top pt-3" style="top: 56px;" id="sidebar">
     <span class="fs-4">{% trans 'Dashboard' %}</span>
     <hr>
 
@@ -72,8 +74,7 @@
           {% trans "News" %}
         </a>
       </li>
-    </ul>
-    
+    </ul>  
   </div>
-
+  
 </div>

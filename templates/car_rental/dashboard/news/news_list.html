@@ -20,7 +20,7 @@
   <div class="row">
     <div class="col-12 my-3">
       <div class="d-flex justify-content-between">
-        <button class="btn btn-primary px-5" data-bs-toggle="modal" data-bs-target="#news-modal">
+        <button class="btn btn-primary px-5 text-nowrap" data-bs-toggle="modal" data-bs-target="#news-modal">
           {% trans "Add news" %}
         </button>
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filter-modal">
@@ -45,7 +45,7 @@
                 <div class="d-flex flex-row gap-2 text-center col-6 col-md-3">
                   <p class="rounded-pill info-pill bg-primary px-2 col"
                     data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Date of creation' %}">
-                    {{ news.add_date|date:'Y-m-d H:m' }}
+                    {{ news.add_date|date:'Y-m-d H:i' }}
                   </p>
                 </div>
               </div>

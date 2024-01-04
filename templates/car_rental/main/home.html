@@ -18,7 +18,7 @@
               <img src="{% static 'img/car_pictures/default_car.png' %}" class="img-thumbnail" alt="{% trans 'Days' %}" width="350px" height="200px">
             </div>
             <p class="card-text mt-3">
-              {% trans 'From' %} / {% trans 'day' %}
+              {% trans 'From' %} {{ lowest_car_cost }}/ {% trans 'day' %}
             </p>
           </div>
         </a>

@@ -17,7 +17,7 @@
   <div class="row">
     <div class="col-12 my-3">
       <div class="d-flex justify-content-between">
-        <button class="btn btn-primary px-5" data-bs-toggle="modal" data-bs-target="#rental-modal">
+        <button class="btn btn-primary px-5 text-nowrap" data-bs-toggle="modal" data-bs-target="#rental-modal">
           {% trans "Add rental" %}
         </button>
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filter-modal">
@@ -39,15 +39,15 @@
                 <h3 class="fw-normal mb-3">
                   {{ rental.car }} | {{ rental.user }}
                 </h3>
-                <div class="d-flex flex-row gap-2 text-center col-12 col-md-10">
+                <div class="d-flex flex-row gap-2 text-center col-12 col-md-10 flex-wrap text-nowrap">
                   <p class="rounded-pill info-pill bg-primary px-2 col"
                     data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Start date' %}">
-                    {{ rental.start_date|date:'Y-m-d' }}
+                    {{ rental.start_date|date:'Y-m-d H:i' }}
                   </p>
                   -
                   <p class="rounded-pill info-pill bg-primary px-2 col"
                     data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'End date' %}">
-                    {{ rental.end_date|date:'Y-m-d' }}
+                    {{ rental.end_date|date:'Y-m-d H:i' }}
                   </p>
                   <p class="rounded-pill info-pill bg-secondary px-2 col"
                     data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Rental time' %}">

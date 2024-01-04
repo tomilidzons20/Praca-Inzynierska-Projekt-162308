@@ -32,6 +32,7 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['latest_news'] = News.objects.all().order_by('-add_date')[:3]
+        context['lowest_car_cost'] = Car.objects.all().order_by('day_cost').first().day_cost
         return context
 
 
@@ -147,7 +148,9 @@ class CarRentalForDaysView(LoginRequiredMixin, SessionWizardView):
             date_from = self.get_cleaned_data_for_step('days')['date_from']
             date_to = self.get_cleaned_data_for_step('days')['date_to']
 
-            all_cars = Car.objects.filter(status=Car.StatusChoices.AVAILABLE).order_by('id')
+            all_cars = Car.objects.filter(
+                ~Q(status=Car.StatusChoices.UNAVAILABLE)
+            ).order_by('id')
             available_cars = []
             for car in all_cars:
                 # if rentals already exist or maintenance scheduled or is in repair
@@ -155,9 +158,11 @@ class CarRentalForDaysView(LoginRequiredMixin, SessionWizardView):
                 car_rentals = CarRental.objects.filter(
                     Q(status=CarRental.StatusChoices.RESERVED) |
                     Q(status=CarRental.StatusChoices.RENTED),
-                    start_date__gte=date_from,
-                    start_date__lte=date_to,
-                    car=car,
+                    Q(start_date__lte=date_from, end_date__gte=date_from) |
+                    Q(start_date__lte=date_to, end_date__gte=date_to) |
+                    Q(start_date__gte=date_from, start_date__lte=date_to) &
+                    Q(end_date__gte=date_from, end_date__lte=date_to),
+                    car=car.id,
                 )
                 if car_rentals:
                     continue
