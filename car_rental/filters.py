@@ -1,6 +1,7 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
 from django_filters import FilterSet
+from django_filters.filters import AllValuesFilter
 from django_filters.filters import ChoiceFilter
 from django_filters.filters import ModelChoiceFilter
 from django_filters.filters import OrderingFilter
@@ -33,7 +34,13 @@ class MaintenanceFilter(FilterSet):
     )
     ordering = OrderingFilter(
         fields=(
+            ('date_of_repair', 'date_of_repair'),
+            ('cost_of_repair', 'cost_of_repair'),
+        ),
+        choices=(
+            ('-date_of_repair', _('Date of repair (descending)')),
             ('date_of_repair', _('Date of repair')),
+            ('-cost_of_repair', _('Cost of repair (descending)')),
             ('cost_of_repair', _('Cost of repair')),
         ),
         null_label=None,
@@ -85,6 +92,10 @@ class ContactFilter(FilterSet):
         fields=(
             ('add_date', _('Date of creation')),
         ),
+        choices=(
+            ('-add_date', _('Date of creation (descending)')),
+            ('add_date', _('Date of creation')),
+        ),
         null_label=None,
         empty_label=None,
         label=_('Order by:'),
@@ -134,7 +145,13 @@ class CarRentalFilter(FilterSet):
     ordering = OrderingFilter(
         fields=(
             ('start_date', _('Start date')),
-            ('end_date', _('End date'))
+            ('end_date', _('End date')),
+        ),
+        choices=(
+            ('-start_date', _('Start date (descending)')),
+            ('start_date', _('Start date')),
+            ('-end_date', _('End date (descending)')),
+            ('end_date', _('End date')),
         ),
         null_label=None,
         empty_label=None,
@@ -162,6 +179,10 @@ class NewsFilter(FilterSet):
         fields=(
             ('add_date', _('Date of creation')),
         ),
+        choices=(
+            ('-add_date', _('Date of creation (descending)')),
+            ('add_date', _('Date of creation')),
+        ),
         null_label=None,
         empty_label=None,
         label=_('Order by:'),
@@ -177,3 +198,47 @@ class NewsFilter(FilterSet):
     class Meta:
         model = News
         fields = ''
+
+
+class CarFilter(FilterSet):
+    brand = AllValuesFilter(
+        field_name='brand',
+        empty_label=_('All'),
+        widget=forms.Select(
+            attrs={'class': 'form-select'},
+        ),
+    )
+    status = ChoiceFilter(
+        field_name='status',
+        empty_label=_('All'),
+        choices=Car.StatusChoices.choices,
+        widget=forms.Select(
+            attrs={'class': 'form-select'},
+        ),
+    )
+    ordering = OrderingFilter(
+        fields=(
+            ('day_cost', _('Day cost')),
+        ),
+        choices=(
+            ('-day_cost', _('Day cost (descending)')),
+            ('day_cost', _('Day cost')),
+        ),
+        null_label=None,
+        empty_label=None,
+        label=_('Order by:'),
+        widget=forms.Select,
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.filters['ordering'].field.widget.attrs.update({
+            'class': 'form-select',
+        })
+
+    class Meta:
+        model = Car
+        fields = [
+            'brand',
+            'status',
+        ]

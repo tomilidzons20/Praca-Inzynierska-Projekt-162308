@@ -17,6 +17,10 @@ def validate_year(value):
         raise ValidationError(f'{message}{current_year}')
 
 
+def day_difference():
+    return timezone.now() + timezone.timedelta(days=1)
+
+
 class Car(models.Model):
     class StatusChoices(models.TextChoices):
         AVAILABLE = 'AV', _('Available')
@@ -160,11 +164,11 @@ class CarRental(models.Model):
     )
     start_date = models.DateTimeField(
         _('Start date of car rental'),
-        blank=True,
+        default=timezone.now,
     )
     end_date = models.DateTimeField(
         _('End date of car rental'),
-        blank=True,
+        default=day_difference,
     )
     time_rented = models.DurationField(
         _('Total time of car rental'),
@@ -255,28 +259,28 @@ class News(models.Model):
 
 class RentalProtection(models.Model):
     name = models.CharField(
-        _('Protection name'),
+        _('Protection name:'),
         max_length=64,
         blank=False,
         null=False,
     )
     tpl_insurance = models.BooleanField(
-        _('Third party liability insurance'),
+        _('Third party liability insurance:'),
         null=False,
         blank=False,
     )
     wheel_protection = models.BooleanField(
-        _('Tires and rims protection'),
+        _('Tires and rims protection:'),
         null=False,
         blank=False,
     )
     window_protection = models.BooleanField(
-        _('Window protection'),
+        _('Window protection:'),
         null=False,
         blank=False,
     )
     cost = MoneyField(
-        _('Protection cost'),
+        _('Protection cost:'),
         max_digits=19,
         decimal_places=2,
         default_currency='PLN',
@@ -284,7 +288,7 @@ class RentalProtection(models.Model):
         blank=False,
     )
     penalty = MoneyField(
-        _('Penalty cost'),
+        _('Penalty cost:'),
         max_digits=19,
         decimal_places=0,
         default_currency='PLN',
@@ -292,7 +296,7 @@ class RentalProtection(models.Model):
         blank=False,
     )
     deposit = MoneyField(
-        _('Deposit cost'),
+        _('Deposit cost:'),
         max_digits=19,
         decimal_places=0,
         default_currency='PLN',
@@ -416,7 +420,7 @@ class ContactMessage(models.Model):
     )
     add_date = models.DateTimeField(
         _('Date of contact message creation'),
-        blank=True,
+        default=timezone.now,
     )
 
     def __str__(self):

@@ -212,3 +212,6 @@ BLEACH_STRIP_COMMENTS = True
 
 # Use the CKEditorWidget for bleached HTML fields
 BLEACH_DEFAULT_WIDGET = 'ckeditor.widgets.CKEditorWidget'
+
+MINIMUM_HOURS_BEFORE_RENT = 3
+MINIMUM_RENT_HOURS = 1

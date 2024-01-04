@@ -6,6 +6,7 @@ from django.views.generic import ListView
 from django.views.generic import UpdateView
 from django_filters.views import FilterView
 
+from .filters import CarFilter
 from .filters import CarRentalFilter
 from .filters import ContactFilter
 from .filters import MaintenanceFilter
@@ -39,11 +40,12 @@ class StaffRequiredMixin:
         return redirect('account_login')
 
 
-class DashboardCarListView(StaffRequiredMixin, ListView):
+class DashboardCarListView(StaffRequiredMixin, FilterView):
     template_name = 'car_rental/dashboard/car/car_list.html'
     model = Car
     paginate_by = 10
-    ordering = 'brand'
+    ordering = '-day_cost'
+    filterset_class = CarFilter
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -72,7 +74,7 @@ class DashboardMaintenanceListView(StaffRequiredMixin, FilterView):
     template_name = 'car_rental/dashboard/maintenance/maintenance_list.html'
     model = CarMaintenance
     paginate_by = 10
-    ordering = 'date_of_repair'
+    ordering = '-date_of_repair'
     filterset_class = MaintenanceFilter
 
     def get_context_data(self, **kwargs):
@@ -94,7 +96,7 @@ class DashboardRentalListView(StaffRequiredMixin, FilterView):
     template_name = 'car_rental/dashboard/rental/rental_list.html'
     model = CarRental
     paginate_by = 10
-    ordering = 'end_date'
+    ordering = '-start_date'
     filterset_class = CarRentalFilter
 
     def get_context_data(self, **kwargs):
@@ -116,6 +118,7 @@ class DashboardContactListView(StaffRequiredMixin, FilterView):
     template_name = 'car_rental/dashboard/contact/contact_list.html'
     model = ContactMessage
     paginate_by = 10
+    ordering = '-add_date'
     filterset_class = ContactFilter
 
     def get_context_data(self, **kwargs):
@@ -136,6 +139,7 @@ class DashboardContactUpdateView(StaffRequiredMixin, UpdateView):
 class DashboardRentalProtectionListView(StaffRequiredMixin, ListView):
     template_name = 'car_rental/dashboard/rental_protection/rental_protection_list.html'
     model = RentalProtection
+    ordering = 'name'
     paginate_by = 10
 
     def get_context_data(self, **kwargs):
@@ -156,6 +160,7 @@ class DashboardRentalProtectionUpdateView(StaffRequiredMixin, UpdateView):
 class DashboardRentalExtraListView(StaffRequiredMixin, ListView):
     template_name = 'car_rental/dashboard/rental_extra/rental_extra_list.html'
     model = RentalExtra
+    ordering = 'name'
     paginate_by = 10
 
     def get_context_data(self, **kwargs):
@@ -177,6 +182,7 @@ class DashboardNewsListView(StaffRequiredMixin, FilterView):
     template_name = 'car_rental/dashboard/news/news_list.html'
     model = News
     paginate_by = 10
+    ordering = '-add_date'
     filterset_class = NewsFilter
 
     def get_context_data(self, **kwargs):
@@ -269,3 +275,6 @@ def news_create_view(request):
             return JsonResponse({'success': True}, status=200)
         return JsonResponse({'errors': form.errors}, status=400)
     return redirect('dashboard_news_list')
+
+# TODO
+# modal/confirmation to rental cancel in profile

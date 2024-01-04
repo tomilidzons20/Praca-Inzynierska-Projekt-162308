@@ -150,7 +150,7 @@ class CarRentalForDaysView(LoginRequiredMixin, SessionWizardView):
 
             all_cars = Car.objects.filter(
                 ~Q(status=Car.StatusChoices.UNAVAILABLE)
-            ).order_by('id')
+            )
             available_cars = []
             for car in all_cars:
                 # if rentals already exist or maintenance scheduled or is in repair
@@ -176,7 +176,9 @@ class CarRentalForDaysView(LoginRequiredMixin, SessionWizardView):
                 if car_maintenance:
                     continue
                 available_cars.append(car.id)
-            form.fields['car'].queryset = Car.objects.filter(id__in=available_cars)
+            form.fields['car'].queryset = Car.objects.filter(
+                id__in=available_cars
+            ).order_by('id')
         return form
 
     def done(self, form_list, form_dict, **kwargs):

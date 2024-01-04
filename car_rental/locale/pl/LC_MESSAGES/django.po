@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-03 11:59+0100\n"
-"PO-Revision-Date: 2024-01-03 11:59+0100\n"
+"POT-Creation-Date: 2024-01-04 17:37+0100\n"
+"PO-Revision-Date: 2024-01-04 17:38+0100\n"
 "Last-Translator: mirek miras <dssfadasdf@xd.pl>\n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -37,12 +37,12 @@ msgid "Important dates"
 msgstr "Ważne daty"
 
 #: .\accounts\forms.py:25 .\accounts\forms.py:29 .\accounts\models.py:30
-#: .\car_rental\models.py:343
+#: .\car_rental\models.py:347
 msgid "First name"
 msgstr "Imię"
 
 #: .\accounts\forms.py:33 .\accounts\forms.py:37 .\accounts\models.py:36
-#: .\car_rental\models.py:349
+#: .\car_rental\models.py:353
 msgid "Last name"
 msgstr "Imię"
 
@@ -54,8 +54,8 @@ msgstr "Numer telefonu"
 
 #: .\accounts\models.py:19
 #: .\templates\car_rental\dashboard\_partials\user_info.html:7
-#: .\car_rental\models.py:135 .\car_rental\models.py:338
-#: .\car_rental\models.py:399
+#: .\car_rental\models.py:139 .\car_rental\models.py:342
+#: .\car_rental\models.py:403
 msgid "User"
 msgstr "Użytkownik"
 
@@ -67,26 +67,26 @@ msgstr "Uzytkownicy"
 msgid "Account"
 msgstr "Konto"
 
-#: .\accounts\models.py:42 .\car_rental\models.py:355
+#: .\accounts\models.py:42 .\car_rental\models.py:359
 msgid "Street"
 msgstr "Ulica"
 
-#: .\accounts\models.py:47 .\car_rental\models.py:360
+#: .\accounts\models.py:47 .\car_rental\models.py:364
 msgid "Building number"
 msgstr "Numer budynku"
 
-#: .\accounts\models.py:53 .\car_rental\models.py:366
+#: .\accounts\models.py:53 .\car_rental\models.py:370
 msgid "Post code"
 msgstr "Kod pocztowy"
 
-#: .\accounts\models.py:59 .\car_rental\models.py:372
+#: .\accounts\models.py:59 .\car_rental\models.py:376
 msgid "City"
 msgstr "Miasto"
 
 #: .\accounts\models.py:69
 #: .\templates\car_rental\dashboard\_partials\user_info.html:23
 #: .\templates\car_rental\dashboard\_partials\user_info.html:39
-#: .\car_rental\models.py:141
+#: .\car_rental\models.py:145
 msgid "Address"
 msgstr "Adres"
 
@@ -108,7 +108,7 @@ msgstr "Adresy e-mail"
 
 #: .\templates\account\email.html:13
 msgid "The following email addresses are associated with your account:"
-msgstr "Poniższe adresy e-mail są powiązane z Twoim kontem:"
+msgstr "Poniższe adresy e-mail są powiązane z Twoim kontem: "
 
 #: .\templates\account\email.html:25
 msgid "Verified"
@@ -246,11 +246,11 @@ msgstr "Adres e-mail"
 
 #: .\templates\account\email_change.html:16
 msgid "The following email address is associated with your account:"
-msgstr "Z kontem użytkownika powiązany jest następujący adres e-mail:"
+msgstr "Z kontem użytkownika powiązany jest następujący adres e-mail: "
 
 #: .\templates\account\email_change.html:21
 msgid "Your email address is still pending verification:"
-msgstr "Twój adres e-mail nadal oczekuje na weryfikację:"
+msgstr "Twój adres e-mail nadal oczekuje na weryfikację: "
 
 #: .\templates\account\email_change.html:40
 msgid "Change Email Address"
@@ -437,11 +437,11 @@ msgstr "Twoje hasło zostało zmienione."
 
 #: .\templates\account\profile\car_rental_table.html:3
 msgid "Rentals:"
-msgstr "Wypożyczenia:"
+msgstr "Wypożyczenia: "
 
 #: .\templates\account\profile\car_rental_table.html:7
-#: .\car_rental\forms.py:189 .\car_rental\models.py:73
-#: .\car_rental\models.py:85 .\car_rental\models.py:147
+#: .\car_rental\forms.py:208 .\car_rental\models.py:77
+#: .\car_rental\models.py:89 .\car_rental\models.py:151
 msgid "Car"
 msgstr "Samochód"
 
@@ -452,25 +452,25 @@ msgid "Cost"
 msgstr "Koszt"
 
 #: .\templates\account\profile\car_rental_table.html:9
-#: .\templates\car_rental\dashboard\car\car_list.html:62
+#: .\templates\car_rental\dashboard\car\car_list.html:69
 #: .\templates\car_rental\dashboard\car\car_update.html:97
 #: .\templates\car_rental\dashboard\contact\contact_list.html:63
 #: .\templates\car_rental\dashboard\maintenance\maintenance_list.html:59
 #: .\templates\car_rental\dashboard\rental\rental_list.html:66
-#: .\car_rental\models.py:46 .\car_rental\models.py:102
-#: .\car_rental\models.py:183 .\car_rental\models.py:413
+#: .\car_rental\models.py:50 .\car_rental\models.py:106
+#: .\car_rental\models.py:187 .\car_rental\models.py:417
 msgid "Status"
 msgstr "Status"
 
 #: .\templates\account\profile\car_rental_table.html:10
 #: .\templates\car_rental\dashboard\rental\rental_list.html:44
-#: .\car_rental\filters.py:136
+#: .\car_rental\filters.py:146 .\car_rental\filters.py:151
 msgid "Start date"
 msgstr "Data rozpoczęcia"
 
 #: .\templates\account\profile\car_rental_table.html:11
 #: .\templates\car_rental\dashboard\rental\rental_list.html:49
-#: .\car_rental\filters.py:137
+#: .\car_rental\filters.py:147 .\car_rental\filters.py:153
 msgid "End date"
 msgstr "Data zakończenia"
 
@@ -536,7 +536,7 @@ msgstr "Jesteś już zalogowany jako %(user_display)s."
 
 #: .\templates\account\snippets\warn_no_email.html:3
 msgid "Warning:"
-msgstr "Uwaga:"
+msgstr "Uwaga: "
 
 #: .\templates\account\snippets\warn_no_email.html:3
 msgid ""
@@ -566,7 +566,7 @@ msgstr ""
 
 #: .\templates\allauth\layouts\navbar_top.html:17
 #: .\templates\car_rental\dashboard\home.html:5
-#: .\templates\car_rental\layouts\dashboard_sidebar.html:6
+#: .\templates\car_rental\layouts\dashboard_sidebar.html:8
 msgid "Dashboard"
 msgstr "Panel administracyjny"
 
@@ -580,39 +580,40 @@ msgid "Email address"
 msgstr "Adres e-mail"
 
 #: .\templates\car_rental\dashboard\_partials\user_info.html:33
-#: .\car_rental\models.py:382
+#: .\car_rental\models.py:386
 msgid "Rental address"
 msgstr "Adres wypożyczającego"
 
 #: .\templates\car_rental\dashboard\car\car_list.html:5
-#: .\templates\car_rental\layouts\dashboard_sidebar.html:16
-#: .\car_rental\models.py:74
+#: .\templates\car_rental\layouts\dashboard_sidebar.html:18
+#: .\car_rental\models.py:78
 msgid "Cars"
 msgstr "Samochody"
 
-#: .\templates\car_rental\dashboard\car\car_list.html:23
+#: .\templates\car_rental\dashboard\car\car_list.html:24
 #: .\templates\car_rental\dashboard\modals\car_modal.html:7
 msgid "Add car"
 msgstr "Dodaj samochód"
 
-#: .\templates\car_rental\dashboard\car\car_list.html:41
+#: .\templates\car_rental\dashboard\car\car_list.html:48
 #: .\templates\car_rental\main\_partials\car_card.html:20
 msgid "Year of production"
 msgstr "Rok produkcji"
 
-#: .\templates\car_rental\dashboard\car\car_list.html:45
+#: .\templates\car_rental\dashboard\car\car_list.html:52
 #: .\templates\car_rental\main\_partials\car_card.html:30
-#: .\car_rental\models.py:38
+#: .\car_rental\models.py:42
 msgid "Engine capacity"
 msgstr "Pojemność silnika"
 
-#: .\templates\car_rental\dashboard\car\car_list.html:49
+#: .\templates\car_rental\dashboard\car\car_list.html:56
 #: .\templates\car_rental\main\_partials\car_card.html:40
-#: .\car_rental\models.py:42
+#: .\car_rental\models.py:46
 msgid "Engine power"
 msgstr "Moc silnika"
 
-#: .\templates\car_rental\dashboard\car\car_list.html:53
+#: .\templates\car_rental\dashboard\car\car_list.html:60
+#: .\car_rental\filters.py:220 .\car_rental\filters.py:224
 msgid "Day cost"
 msgstr "Koszt dzienny"
 
@@ -621,26 +622,26 @@ msgid "Car update"
 msgstr "Aktualizacja samochodu"
 
 #: .\templates\car_rental\dashboard\car\car_update.html:89
-#: .\templates\car_rental\layouts\dashboard_sidebar.html:25
-#: .\car_rental\models.py:24
+#: .\templates\car_rental\layouts\dashboard_sidebar.html:27
+#: .\car_rental\models.py:28
 msgid "Maintenance"
 msgstr "Serwis"
 
 #: .\templates\car_rental\dashboard\car\car_update.html:96
 #: .\templates\car_rental\dashboard\maintenance\maintenance_list.html:47
-#: .\car_rental\filters.py:36 .\car_rental\models.py:89
+#: .\car_rental\filters.py:41 .\car_rental\models.py:93
 msgid "Date of repair"
 msgstr "Data naprawy"
 
 #: .\templates\car_rental\dashboard\car\car_update.html:98
 #: .\templates\car_rental\dashboard\maintenance\maintenance_list.html:51
-#: .\car_rental\filters.py:37 .\car_rental\models.py:94
+#: .\car_rental\filters.py:43 .\car_rental\models.py:98
 msgid "Cost of repair"
 msgstr "Koszt naprawy"
 
 #: .\templates\car_rental\dashboard\car\car_update.html:113
 msgid "Total:"
-msgstr "Łącznie:"
+msgstr "Łącznie: "
 
 #: .\templates\car_rental\dashboard\car\car_update.html:122
 #: .\templates\car_rental\dashboard\maintenance\maintenance_list.html:24
@@ -653,7 +654,7 @@ msgid "Save"
 msgstr "Zapisz"
 
 #: .\templates\car_rental\dashboard\contact\contact_list.html:5
-#: .\templates\car_rental\layouts\dashboard_sidebar.html:43
+#: .\templates\car_rental\layouts\dashboard_sidebar.html:45
 msgid "Contacts"
 msgstr "Kontakty"
 
@@ -667,7 +668,7 @@ msgid "Date of contact"
 msgstr "Data kontaktu"
 
 #: .\templates\car_rental\dashboard\contact\contact_list.html:56
-#: .\car_rental\models.py:404
+#: .\car_rental\models.py:408
 msgid "Category"
 msgstr "Kategoria"
 
@@ -676,7 +677,7 @@ msgid "Contact update"
 msgstr "Aktualizacja kontaktu"
 
 #: .\templates\car_rental\dashboard\maintenance\maintenance_list.html:5
-#: .\car_rental\models.py:122 .\car_rental\models.py:123
+#: .\car_rental\models.py:126 .\car_rental\models.py:127
 msgid "Car maintenance"
 msgstr "Serwis samochodu"
 
@@ -719,15 +720,16 @@ msgid "Add car rental"
 msgstr "Dodaj wypożyczenie samochodu"
 
 #: .\templates\car_rental\dashboard\news\news_list.html:5
-#: .\templates\car_rental\layouts\dashboard_sidebar.html:72
+#: .\templates\car_rental\layouts\dashboard_sidebar.html:74
 #: .\templates\car_rental\layouts\main_extra_nav.html:16
-#: .\templates\car_rental\main\news.html:4 .\car_rental\models.py:252
-#: .\car_rental\models.py:253
+#: .\templates\car_rental\main\news.html:4 .\car_rental\models.py:256
+#: .\car_rental\models.py:257
 msgid "News"
-msgstr "Wiadomość"
+msgstr "Wiadomości"
 
 #: .\templates\car_rental\dashboard\news\news_list.html:47
-#: .\car_rental\filters.py:86 .\car_rental\filters.py:163
+#: .\car_rental\filters.py:92 .\car_rental\filters.py:96
+#: .\car_rental\filters.py:179 .\car_rental\filters.py:183
 msgid "Date of creation"
 msgstr "Data utworzenia"
 
@@ -736,7 +738,7 @@ msgid "News update"
 msgstr "Aktualizacja wiadomości"
 
 #: .\templates\car_rental\dashboard\rental\rental_list.html:5
-#: .\car_rental\models.py:216
+#: .\car_rental\models.py:220
 msgid "Car rentals"
 msgstr "Wypożyczenia samochodów"
 
@@ -772,17 +774,21 @@ msgstr "Ochrony"
 msgid "Protection update"
 msgstr "Aktualizacja ochrony"
 
-#: .\templates\car_rental\layouts\dashboard_sidebar.html:34
+#: .\templates\car_rental\layouts\dashboard_sidebar.html:5
+msgid "Menu"
+msgstr "Menu"
+
+#: .\templates\car_rental\layouts\dashboard_sidebar.html:36
 msgid "Rentals"
 msgstr "Wypożyczenia"
 
-#: .\templates\car_rental\layouts\dashboard_sidebar.html:52
-#: .\car_rental\models.py:308
+#: .\templates\car_rental\layouts\dashboard_sidebar.html:54
+#: .\car_rental\models.py:312
 msgid "Rental protections"
 msgstr "Ochrony wypożyczenia"
 
-#: .\templates\car_rental\layouts\dashboard_sidebar.html:62
-#: .\car_rental\models.py:332
+#: .\templates\car_rental\layouts\dashboard_sidebar.html:64
+#: .\car_rental\models.py:336
 msgid "Rental extras"
 msgstr "Dodatki wypożyczenia"
 
@@ -813,17 +819,18 @@ msgid "Wheel protection"
 msgstr "Ochrona kół"
 
 #: .\templates\car_rental\main\_partials\protection_card.html:29
-#: .\car_rental\models.py:274
 msgid "Window protection"
 msgstr "Ochrona okien"
 
 #: .\templates\car_rental\main\_partials\protection_card.html:37
+#: .\car_rental\models.py:291
 msgid "Penalty cost:"
-msgstr "Koszt kary:"
+msgstr "Koszt kary: "
 
 #: .\templates\car_rental\main\_partials\protection_card.html:41
+#: .\car_rental\models.py:299
 msgid "Deposit cost:"
-msgstr "Koszt depozytu:"
+msgstr "Koszt depozytu: "
 
 #: .\templates\car_rental\main\car_rental_days\address.html:4
 #: .\templates\car_rental\main\car_rental_days\car_choice.html:4
@@ -842,7 +849,7 @@ msgstr "Dalej"
 
 #: .\templates\car_rental\main\car_rental_days\car_choice.html:27
 msgid "Select a car:"
-msgstr "Wybierz samochód:"
+msgstr "Wybierz samochód: "
 
 #: .\templates\car_rental\main\car_rental_days\car_choice.html:38
 msgid "No cars available"
@@ -854,7 +861,7 @@ msgstr "Wybierz"
 
 #: .\templates\car_rental\main\car_rental_days\date_range.html:25
 msgid "Select date range:"
-msgstr "Wybierz zakres dat:"
+msgstr "Wybierz zakres dat: "
 
 #: .\templates\car_rental\main\car_rental_days\date_range.html:46
 msgid "Search car"
@@ -862,11 +869,11 @@ msgstr "Szukaj samochodu"
 
 #: .\templates\car_rental\main\car_rental_days\extra_choice.html:28
 msgid "Select protection:"
-msgstr "Wybierz ochronę:"
+msgstr "Wybierz ochronę: "
 
 #: .\templates\car_rental\main\car_rental_days\extra_choice.html:37
 msgid "Select extra options:"
-msgstr "Wybierz dodatki:"
+msgstr "Wybierz dodatki: "
 
 #: .\templates\car_rental\main\car_rental_days\rental_successful.html:11
 msgid "Rental successful"
@@ -882,19 +889,19 @@ msgstr "Wypożyczenie nieudane"
 
 #: .\templates\car_rental\main\car_rental_days\review.html:31
 msgid "Review:"
-msgstr "Podsumowanie:"
+msgstr "Podsumowanie: "
 
 #: .\templates\car_rental\main\car_rental_days\review.html:62
 msgid "Rent time: "
-msgstr "Czas wypożyczenia:"
+msgstr "Czas wypożyczenia: "
 
 #: .\templates\car_rental\main\car_rental_days\review.html:66
 msgid "Address: "
-msgstr "Adresy:"
+msgstr "Adresy: "
 
 #: .\templates\car_rental\main\car_rental_days\review.html:85
 msgid "Total cost: "
-msgstr "Łączny koszt:"
+msgstr "Łączny koszt: "
 
 #: .\templates\car_rental\main\car_rental_days\review.html:99
 msgid "Rent"
@@ -938,7 +945,7 @@ msgstr "Strona główna"
 
 #: .\templates\car_rental\main\home.html:10
 msgid "Rent a car for:"
-msgstr "Wypożycz samochód na:"
+msgstr "Wypożycz samochód na: "
 
 #: .\templates\car_rental\main\home.html:16
 #: .\templates\car_rental\main\home.html:18
@@ -951,73 +958,104 @@ msgstr "Od"
 
 #: .\templates\car_rental\main\home.html:31
 msgid "News:"
-msgstr "Wiadomości:"
+msgstr "Wiadomości: "
 
 #: .\templates\car_rental\main\news_detail.html:32
 msgid "Previous news:"
-msgstr "Poprzednia wiadomość:"
+msgstr "Poprzednia wiadomość: "
 
 #: .\templates\car_rental\main\news_detail.html:41
 msgid "Next news:"
-msgstr "Następna wiadomość:"
+msgstr "Następna wiadomość: "
 
 #: .\car_rental\filters.py:21 .\car_rental\filters.py:28
-#: .\car_rental\filters.py:63 .\car_rental\filters.py:70
-#: .\car_rental\filters.py:78 .\car_rental\filters.py:113
-#: .\car_rental\filters.py:121 .\car_rental\filters.py:128
+#: .\car_rental\filters.py:69 .\car_rental\filters.py:76
+#: .\car_rental\filters.py:84 .\car_rental\filters.py:123
+#: .\car_rental\filters.py:131 .\car_rental\filters.py:138
+#: .\car_rental\filters.py:205 .\car_rental\filters.py:212
 msgid "All"
 msgstr "Wszystko"
 
-#: .\car_rental\filters.py:41 .\car_rental\filters.py:90
-#: .\car_rental\filters.py:141 .\car_rental\filters.py:167
-msgid "Order by:"
-msgstr "Uporządkuj przez:"
+#: .\car_rental\filters.py:40
+msgid "Date of repair (descending)"
+msgstr "Data naprawy (malejąco)"
 
-#: .\car_rental\forms.py:68
+#: .\car_rental\filters.py:42
+msgid "Cost of repair (descending)"
+msgstr "Koszt naprawy (malejąco)"
+
+#: .\car_rental\filters.py:47 .\car_rental\filters.py:100
+#: .\car_rental\filters.py:157 .\car_rental\filters.py:187
+#: .\car_rental\filters.py:228
+msgid "Order by:"
+msgstr "Uporządkuj przez"
+
+#: .\car_rental\filters.py:95 .\car_rental\filters.py:182
+msgid "Date of creation (descending)"
+msgstr "Data utworzenia (malejąco)"
+
+#: .\car_rental\filters.py:150
+msgid "Start date (descending)"
+msgstr "Data rozpoczęcia (malejąco)"
+
+#: .\car_rental\filters.py:152
+msgid "End date (descending)"
+msgstr "Data zakończenia (malejąco)"
+
+#: .\car_rental\filters.py:223
+#| msgid "Start date (descending)"
+msgid "Day cost (descending)"
+msgstr "Koszt dzienny (malejąco)"
+
+#: .\car_rental\forms.py:74
 msgid "End date must be later than start date."
 msgstr "Data zakończenia musi być późniejsza niż data rozpoczęcia."
 
-#: .\car_rental\forms.py:72 .\car_rental\forms.py:178
-msgid "Minimum rent time is 1 hour"
-msgstr "Minimalny czas wypożyczenia wynosi 1 godzinę"
+#: .\car_rental\forms.py:78 .\car_rental\forms.py:188
+msgid "Minimum rent time is "
+msgstr "Minimalny czas wypożyczenia wynosi"
 
-#: .\car_rental\forms.py:141
+#: .\car_rental\forms.py:78 .\car_rental\forms.py:188
+msgid " hour/s"
+msgstr "godzin/a"
+
+#: .\car_rental\forms.py:150
 msgid "Date from"
 msgstr "Data od"
 
-#: .\car_rental\forms.py:148
+#: .\car_rental\forms.py:158
 msgid "Date to"
 msgstr "Data do"
 
-#: .\car_rental\forms.py:162
+#: .\car_rental\forms.py:172
 msgid "Date to must be later than date from."
 msgstr "Data do musi być późniejsza niż data od."
 
-#: .\car_rental\forms.py:166
+#: .\car_rental\forms.py:176
 msgid "Date from cannot be in the past."
 msgstr "Data od nie może być w przeszłości."
 
-#: .\car_rental\forms.py:169
+#: .\car_rental\forms.py:179
 msgid "Date to cannot be in the past."
 msgstr "Data do nie może być w przeszłości."
 
-#: .\car_rental\forms.py:173
+#: .\car_rental\forms.py:183
 msgid "Date from not earlier than in "
-msgstr "Data od nie wcześniej niż"
+msgstr "Data od nie wcześniej niż za "
 
-#: .\car_rental\forms.py:173
+#: .\car_rental\forms.py:183
 msgid " hours"
-msgstr "godzin"
+msgstr " godzin"
 
-#: .\car_rental\forms.py:220
+#: .\car_rental\forms.py:239
 msgid "Use profile address"
 msgstr "Użyj adresu profilu"
 
-#: .\car_rental\forms.py:241
-msgid "You dont have saved profile address."
+#: .\car_rental\forms.py:260
+msgid "You don't have saved profile address."
 msgstr "Nie masz zapisanego adresu profilu."
 
-#: .\car_rental\forms.py:251
+#: .\car_rental\forms.py:270
 msgid "Please provide all address information."
 msgstr "Prosimy o podanie wszystkich danych adresowych."
 
@@ -1025,186 +1063,190 @@ msgstr "Prosimy o podanie wszystkich danych adresowych."
 msgid "Year must be between 1900 and "
 msgstr "Rok musi zawierać się między 1900 a"
 
-#: .\car_rental\models.py:22
+#: .\car_rental\models.py:26
 msgid "Available"
 msgstr "Dostępny"
 
-#: .\car_rental\models.py:23
+#: .\car_rental\models.py:27
 msgid "Unavailable"
 msgstr "Niedostępny"
 
-#: .\car_rental\models.py:25 .\car_rental\models.py:129
+#: .\car_rental\models.py:29 .\car_rental\models.py:133
 msgid "Rented"
 msgstr "Wypożyczony"
 
-#: .\car_rental\models.py:28
+#: .\car_rental\models.py:32
 msgid "Brand"
 msgstr "Marka"
 
-#: .\car_rental\models.py:33
+#: .\car_rental\models.py:37
 msgid "Model"
 msgstr "Model"
 
-#: .\car_rental\models.py:51
+#: .\car_rental\models.py:55
 msgid "Production year"
 msgstr "Rok produkcji"
 
-#: .\car_rental\models.py:56
+#: .\car_rental\models.py:60
 msgid "Car picture"
 msgstr "Zdjęcie samochodu"
 
-#: .\car_rental\models.py:61
+#: .\car_rental\models.py:65
 msgid "Cost of one day rental"
 msgstr "Koszt wynajmu na jeden dzień"
 
-#: .\car_rental\models.py:79
+#: .\car_rental\models.py:83
 msgid "In repair"
 msgstr "W naprawie"
 
-#: .\car_rental\models.py:80
+#: .\car_rental\models.py:84
 msgid "Done"
 msgstr "Skończone"
 
-#: .\car_rental\models.py:81
+#: .\car_rental\models.py:85
 msgid "Scheduled"
 msgstr "Zaplanowane"
 
-#: .\car_rental\models.py:128
+#: .\car_rental\models.py:132
 msgid "Reserved"
 msgstr "Zarezerwowany"
 
-#: .\car_rental\models.py:130 .\car_rental\models.py:389
+#: .\car_rental\models.py:134 .\car_rental\models.py:393
 msgid "Closed"
 msgstr "Zamknięte"
 
-#: .\car_rental\models.py:131
+#: .\car_rental\models.py:135
 msgid "Cancelled"
 msgstr "Anulowane"
 
-#: .\car_rental\models.py:152
+#: .\car_rental\models.py:156
 msgid "Protection"
 msgstr "Ochrona"
 
-#: .\car_rental\models.py:158
+#: .\car_rental\models.py:162
 msgid "Extra"
 msgstr "Dodatek"
 
-#: .\car_rental\models.py:162
+#: .\car_rental\models.py:166
 msgid "Start date of car rental"
 msgstr "Data rozpoczęcia wypożyczenia samochodu"
 
-#: .\car_rental\models.py:166
+#: .\car_rental\models.py:170
 msgid "End date of car rental"
 msgstr "Data zakończenia wypożyczenia samochodu"
 
-#: .\car_rental\models.py:170
+#: .\car_rental\models.py:174
 msgid "Total time of car rental"
 msgstr "Całkowity czas wypożyczenia samochodu"
 
-#: .\car_rental\models.py:175
+#: .\car_rental\models.py:179
 msgid "Cost of rental"
 msgstr "Koszt wypożyczenia"
 
-#: .\car_rental\models.py:215
+#: .\car_rental\models.py:219
 msgid "Car rental"
 msgstr "Wypożyczenie samochodu"
 
-#: .\car_rental\models.py:221
+#: .\car_rental\models.py:225
 msgid "Title"
 msgstr "Tytuł"
 
-#: .\car_rental\models.py:227
-#| msgid "Question"
+#: .\car_rental\models.py:231
 msgid "Description"
 msgstr "Opis"
 
-#: .\car_rental\models.py:231
+#: .\car_rental\models.py:235
 msgid "Main picture"
 msgstr "Główne zdjęcie"
 
-#: .\car_rental\models.py:240
+#: .\car_rental\models.py:244
 msgid "Add date"
 msgstr "Data dodania"
 
-#: .\car_rental\models.py:258
-msgid "Protection name"
-msgstr "Nazwa ochrony"
+#: .\car_rental\models.py:262
+msgid "Protection name:"
+msgstr "Nazwa ochrony: "
 
-#: .\car_rental\models.py:264
-msgid "Third party liability insurance"
-msgstr "Ubezpieczenie OC"
+#: .\car_rental\models.py:268
+msgid "Third party liability insurance:"
+msgstr "Ubezpieczenie OC: "
 
-#: .\car_rental\models.py:269
-msgid "Tires and rims protection"
-msgstr "Ochrona opon i felg"
+#: .\car_rental\models.py:273
+msgid "Tires and rims protection:"
+msgstr "Ochrona opon i felg: "
 
-#: .\car_rental\models.py:279
-msgid "Protection cost"
-msgstr "Koszt ochrony"
+#: .\car_rental\models.py:278
+msgid "Window protection:"
+msgstr "Ochrona okien: "
 
-#: .\car_rental\models.py:287
-msgid "Penalty cost"
-msgstr "Koszt kary"
+#: .\car_rental\models.py:283
+msgid "Protection cost:"
+msgstr "Koszt ochrony: "
 
-#: .\car_rental\models.py:295
-msgid "Deposit cost"
-msgstr "Koszt depozytu"
-
-#: .\car_rental\models.py:307
+#: .\car_rental\models.py:311
 msgid "Rental protection"
 msgstr "Ochrona wypożyczenia"
 
-#: .\car_rental\models.py:313
+#: .\car_rental\models.py:317
 msgid "Extra name"
 msgstr "Nazwa dodatku"
 
-#: .\car_rental\models.py:319
+#: .\car_rental\models.py:323
 msgid "Extra cost"
 msgstr "Koszt dodatku"
 
-#: .\car_rental\models.py:331
+#: .\car_rental\models.py:335
 msgid "Rental extra"
 msgstr "Dodatek wypożyczenia"
 
-#: .\car_rental\models.py:383
+#: .\car_rental\models.py:387
 msgid "Rental addresses"
 msgstr "Adresy wypożyczających"
 
-#: .\car_rental\models.py:388
+#: .\car_rental\models.py:392
 msgid "New"
 msgstr "Nowy"
 
-#: .\car_rental\models.py:392
+#: .\car_rental\models.py:396
 msgid "Accident"
 msgstr "Wypadek"
 
-#: .\car_rental\models.py:393
+#: .\car_rental\models.py:397
 msgid "Breakdown"
 msgstr "Awaria"
 
-#: .\car_rental\models.py:394
+#: .\car_rental\models.py:398
 msgid "Question"
 msgstr "Pytanie"
 
-#: .\car_rental\models.py:395
+#: .\car_rental\models.py:399
 msgid "Complaint"
 msgstr "Skarga"
 
-#: .\car_rental\models.py:409
+#: .\car_rental\models.py:413
 msgid "Message"
 msgstr "Wiadomość"
 
-#: .\car_rental\models.py:418
+#: .\car_rental\models.py:422
 msgid "Date of contact message creation"
 msgstr "Data utworzenia wiadomości kontaktowej"
 
-#: .\car_rental\models.py:426
+#: .\car_rental\models.py:430
 msgid "Contact message"
 msgstr "Wiadomość kontaktowa"
 
-#: .\car_rental\models.py:427
+#: .\car_rental\models.py:431
 msgid "Contact messages"
 msgstr "Wiadomości kontaktowe"
+
+#~ msgid "Cost of one day rental (descending)"
+#~ msgstr "Koszt wynajmu na jeden dzień (malejąco)"
+
+#~ msgid "Penalty cost"
+#~ msgstr "Koszt kary"
+
+#~ msgid "Deposit cost"
+#~ msgstr "Koszt depozytu"
 
 #~ msgid "Username can not be used. Please use other username."
 #~ msgstr "Nie możesz użyć tej nazwy użytkownika. Proszę wybierz inną."
@@ -1511,9 +1553,6 @@ msgstr "Wiadomości kontaktowe"
 #~ msgstr ""
 #~ "<strong>Uwaga:</strong> możesz ciągle <a href=\"%(email_url)s\">zmienić Twój"
 #~ " adres e-mail</a>."
-
-#~ msgid "Menu:"
-#~ msgstr "Menu:"
 
 #~ msgid "Two-Factor Authentication"
 #~ msgstr "Autoryzacja dwuskładnikowa"
