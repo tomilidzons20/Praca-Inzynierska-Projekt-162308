@@ -22,11 +22,10 @@
         <td>{{ rental.end_date|date:'Y-m-d H:i' }}</td>
         <td>
           {% if rental.status == 'RS' %}
-            <form method="post" data-url="{% url 'cancel_rental' %}" class="cancel-rental">
-              {% csrf_token %}
-              <input type="hidden" name="id" value="{{ rental.id }}">
-              <button class="btn btn-danger" type="submit">{% trans 'Cancel' %}</button>
-            </form>
+            <button class="btn btn-danger rental-button"
+              data-bs-toggle="modal" data-bs-target="#cancel-modal" data-rental-id="{{ rental.id }}">
+              {% trans 'Cancel' %}
+            </button>
           {% endif %}
         </td>
       </tr>

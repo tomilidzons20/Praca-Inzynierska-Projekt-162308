@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-04 17:37+0100\n"
-"PO-Revision-Date: 2024-01-04 17:38+0100\n"
+"POT-Creation-Date: 2024-01-05 11:05+0100\n"
+"PO-Revision-Date: 2024-01-05 11:06+0100\n"
 "Last-Translator: mirek miras <dssfadasdf@xd.pl>\n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -435,12 +435,49 @@ msgstr ""
 msgid "Your password is now changed."
 msgstr "Twoje hasło zostało zmienione."
 
+#: .\templates\account\profile\address_modal.html:8
+#: .\templates\account\profile\profile.html:49
+msgid "Change Address"
+msgstr "Zmień adres"
+
+#: .\templates\account\profile\address_modal.html:20
+#: .\templates\account\profile\cancel_modal.html:21
+msgid "Close"
+msgstr "Zamknij"
+
+#: .\templates\account\profile\address_modal.html:21
+msgid "Save changes"
+msgstr "Zapisz zmiany"
+
+#: .\templates\account\profile\cancel_modal.html:8
+#| msgid "Car rental"
+msgid "Cancel rental"
+msgstr "Anuluj wypożyczenie"
+
+#: .\templates\account\profile\cancel_modal.html:17
+#| msgid "Are you sure you want to sign out?"
+msgid "Are you sure you want to cancel this rental?"
+msgstr "Czy na pewno chcesz się anulować to wypożyczenie?"
+
+#: .\templates\account\profile\cancel_modal.html:22
+#: .\templates\account\profile\car_rental_table.html:27
+#: .\templates\car_rental\dashboard\modals\car_modal.html:68
+#: .\templates\car_rental\dashboard\modals\contact_modal.html:46
+#: .\templates\car_rental\dashboard\modals\extra_modal.html:31
+#: .\templates\car_rental\dashboard\modals\filter_modal.html:25
+#: .\templates\car_rental\dashboard\modals\maintenance_modal.html:44
+#: .\templates\car_rental\dashboard\modals\news_modal.html:42
+#: .\templates\car_rental\dashboard\modals\protection_modal.html:56
+#: .\templates\car_rental\dashboard\modals\rental_modal.html:66
+msgid "Cancel"
+msgstr "Anuluj"
+
 #: .\templates\account\profile\car_rental_table.html:3
 msgid "Rentals:"
 msgstr "Wypożyczenia: "
 
 #: .\templates\account\profile\car_rental_table.html:7
-#: .\car_rental\forms.py:208 .\car_rental\models.py:77
+#: .\car_rental\forms.py:211 .\car_rental\models.py:77
 #: .\car_rental\models.py:89 .\car_rental\models.py:151
 msgid "Car"
 msgstr "Samochód"
@@ -464,32 +501,15 @@ msgstr "Status"
 
 #: .\templates\account\profile\car_rental_table.html:10
 #: .\templates\car_rental\dashboard\rental\rental_list.html:44
-#: .\car_rental\filters.py:146 .\car_rental\filters.py:151
+#: .\car_rental\filters.py:147 .\car_rental\filters.py:152
 msgid "Start date"
 msgstr "Data rozpoczęcia"
 
 #: .\templates\account\profile\car_rental_table.html:11
 #: .\templates\car_rental\dashboard\rental\rental_list.html:49
-#: .\car_rental\filters.py:147 .\car_rental\filters.py:153
+#: .\car_rental\filters.py:148 .\car_rental\filters.py:154
 msgid "End date"
 msgstr "Data zakończenia"
-
-#: .\templates\account\profile\car_rental_table.html:28
-#: .\templates\car_rental\dashboard\modals\car_modal.html:68
-#: .\templates\car_rental\dashboard\modals\contact_modal.html:46
-#: .\templates\car_rental\dashboard\modals\extra_modal.html:31
-#: .\templates\car_rental\dashboard\modals\filter_modal.html:25
-#: .\templates\car_rental\dashboard\modals\maintenance_modal.html:44
-#: .\templates\car_rental\dashboard\modals\news_modal.html:42
-#: .\templates\car_rental\dashboard\modals\protection_modal.html:56
-#: .\templates\car_rental\dashboard\modals\rental_modal.html:66
-msgid "Cancel"
-msgstr "Anuluj"
-
-#: .\templates\account\profile\profile.html:49
-#: .\templates\account\profile\profile.html:110
-msgid "Change Address"
-msgstr "Zmień adres e-mail"
 
 #: .\templates\account\profile\profile.html:93
 #: .\templates\car_rental\dashboard\car\car_update.html:79
@@ -501,14 +521,6 @@ msgstr "Zmień adres e-mail"
 #: .\templates\car_rental\dashboard\rental_protection\rental_protection_update.html:74
 msgid "Confirm changes"
 msgstr "Potwierdź zmiany"
-
-#: .\templates\account\profile\profile.html:122
-msgid "Close"
-msgstr "Zamknij"
-
-#: .\templates\account\profile\profile.html:123
-msgid "Save changes"
-msgstr "Zapisz zmiany"
 
 #: .\templates\account\signup.html:4
 msgid "Signup"
@@ -613,7 +625,7 @@ msgid "Engine power"
 msgstr "Moc silnika"
 
 #: .\templates\car_rental\dashboard\car\car_list.html:60
-#: .\car_rental\filters.py:220 .\car_rental\filters.py:224
+#: .\car_rental\filters.py:221 .\car_rental\filters.py:225
 msgid "Day cost"
 msgstr "Koszt dzienny"
 
@@ -629,13 +641,13 @@ msgstr "Serwis"
 
 #: .\templates\car_rental\dashboard\car\car_update.html:96
 #: .\templates\car_rental\dashboard\maintenance\maintenance_list.html:47
-#: .\car_rental\filters.py:41 .\car_rental\models.py:93
+#: .\car_rental\filters.py:42 .\car_rental\models.py:93
 msgid "Date of repair"
 msgstr "Data naprawy"
 
 #: .\templates\car_rental\dashboard\car\car_update.html:98
 #: .\templates\car_rental\dashboard\maintenance\maintenance_list.html:51
-#: .\car_rental\filters.py:43 .\car_rental\models.py:98
+#: .\car_rental\filters.py:44 .\car_rental\models.py:98
 msgid "Cost of repair"
 msgstr "Koszt naprawy"
 
@@ -728,8 +740,8 @@ msgid "News"
 msgstr "Wiadomości"
 
 #: .\templates\car_rental\dashboard\news\news_list.html:47
-#: .\car_rental\filters.py:92 .\car_rental\filters.py:96
-#: .\car_rental\filters.py:179 .\car_rental\filters.py:183
+#: .\car_rental\filters.py:93 .\car_rental\filters.py:97
+#: .\car_rental\filters.py:180 .\car_rental\filters.py:184
 msgid "Date of creation"
 msgstr "Data utworzenia"
 
@@ -968,94 +980,93 @@ msgstr "Poprzednia wiadomość: "
 msgid "Next news:"
 msgstr "Następna wiadomość: "
 
-#: .\car_rental\filters.py:21 .\car_rental\filters.py:28
-#: .\car_rental\filters.py:69 .\car_rental\filters.py:76
-#: .\car_rental\filters.py:84 .\car_rental\filters.py:123
-#: .\car_rental\filters.py:131 .\car_rental\filters.py:138
-#: .\car_rental\filters.py:205 .\car_rental\filters.py:212
+#: .\car_rental\filters.py:22 .\car_rental\filters.py:29
+#: .\car_rental\filters.py:70 .\car_rental\filters.py:77
+#: .\car_rental\filters.py:85 .\car_rental\filters.py:124
+#: .\car_rental\filters.py:132 .\car_rental\filters.py:139
+#: .\car_rental\filters.py:206 .\car_rental\filters.py:213
 msgid "All"
 msgstr "Wszystko"
 
-#: .\car_rental\filters.py:40
+#: .\car_rental\filters.py:41
 msgid "Date of repair (descending)"
 msgstr "Data naprawy (malejąco)"
 
-#: .\car_rental\filters.py:42
+#: .\car_rental\filters.py:43
 msgid "Cost of repair (descending)"
 msgstr "Koszt naprawy (malejąco)"
 
-#: .\car_rental\filters.py:47 .\car_rental\filters.py:100
-#: .\car_rental\filters.py:157 .\car_rental\filters.py:187
-#: .\car_rental\filters.py:228
+#: .\car_rental\filters.py:48 .\car_rental\filters.py:101
+#: .\car_rental\filters.py:158 .\car_rental\filters.py:188
+#: .\car_rental\filters.py:229
 msgid "Order by:"
 msgstr "Uporządkuj przez"
 
-#: .\car_rental\filters.py:95 .\car_rental\filters.py:182
+#: .\car_rental\filters.py:96 .\car_rental\filters.py:183
 msgid "Date of creation (descending)"
 msgstr "Data utworzenia (malejąco)"
 
-#: .\car_rental\filters.py:150
+#: .\car_rental\filters.py:151
 msgid "Start date (descending)"
 msgstr "Data rozpoczęcia (malejąco)"
 
-#: .\car_rental\filters.py:152
+#: .\car_rental\filters.py:153
 msgid "End date (descending)"
 msgstr "Data zakończenia (malejąco)"
 
-#: .\car_rental\filters.py:223
-#| msgid "Start date (descending)"
+#: .\car_rental\filters.py:224
 msgid "Day cost (descending)"
 msgstr "Koszt dzienny (malejąco)"
 
-#: .\car_rental\forms.py:74
+#: .\car_rental\forms.py:73
 msgid "End date must be later than start date."
 msgstr "Data zakończenia musi być późniejsza niż data rozpoczęcia."
 
-#: .\car_rental\forms.py:78 .\car_rental\forms.py:188
+#: .\car_rental\forms.py:78 .\car_rental\forms.py:190
 msgid "Minimum rent time is "
 msgstr "Minimalny czas wypożyczenia wynosi"
 
-#: .\car_rental\forms.py:78 .\car_rental\forms.py:188
+#: .\car_rental\forms.py:78 .\car_rental\forms.py:190
 msgid " hour/s"
 msgstr "godzin/a"
 
-#: .\car_rental\forms.py:150
+#: .\car_rental\forms.py:151
 msgid "Date from"
 msgstr "Data od"
 
-#: .\car_rental\forms.py:158
+#: .\car_rental\forms.py:159
 msgid "Date to"
 msgstr "Data do"
 
-#: .\car_rental\forms.py:172
+#: .\car_rental\forms.py:173
 msgid "Date to must be later than date from."
 msgstr "Data do musi być późniejsza niż data od."
 
-#: .\car_rental\forms.py:176
+#: .\car_rental\forms.py:177
 msgid "Date from cannot be in the past."
 msgstr "Data od nie może być w przeszłości."
 
-#: .\car_rental\forms.py:179
+#: .\car_rental\forms.py:180
 msgid "Date to cannot be in the past."
 msgstr "Data do nie może być w przeszłości."
 
-#: .\car_rental\forms.py:183
+#: .\car_rental\forms.py:184
 msgid "Date from not earlier than in "
 msgstr "Data od nie wcześniej niż za "
 
-#: .\car_rental\forms.py:183
+#: .\car_rental\forms.py:184
 msgid " hours"
 msgstr " godzin"
 
-#: .\car_rental\forms.py:239
+#: .\car_rental\forms.py:242
 msgid "Use profile address"
 msgstr "Użyj adresu profilu"
 
-#: .\car_rental\forms.py:260
+#: .\car_rental\forms.py:263
 msgid "You don't have saved profile address."
 msgstr "Nie masz zapisanego adresu profilu."
 
-#: .\car_rental\forms.py:270
+#: .\car_rental\forms.py:273
 msgid "Please provide all address information."
 msgstr "Prosimy o podanie wszystkich danych adresowych."
 

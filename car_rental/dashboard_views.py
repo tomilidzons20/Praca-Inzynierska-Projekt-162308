@@ -275,6 +275,3 @@ def news_create_view(request):
             return JsonResponse({'success': True}, status=200)
         return JsonResponse({'errors': form.errors}, status=400)
     return redirect('dashboard_news_list')
-
-# TODO
-# modal/confirmation to rental cancel in profile
