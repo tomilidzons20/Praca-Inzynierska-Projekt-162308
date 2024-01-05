@@ -18,6 +18,7 @@ class CustomLoginForm(LoginForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         set_form_styles(self.fields)
+        self.fields['login'].widget.attrs.update({'autofocus': True})
 
 
 class CustomSignupForm(SignupForm):
@@ -48,6 +49,7 @@ class CustomSignupForm(SignupForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         set_form_styles(self.fields)
+        self.fields['username'].widget.attrs.update({'autofocus': True})
 
     def save(self, request):
         user = super().save(request)
