@@ -3,7 +3,6 @@ from django.contrib import admin
 from django.db import models
 
 from .models import Car
-from .models import CarLongTermRental
 from .models import CarMaintenance
 from .models import CarRental
 from .models import ContactMessage
@@ -34,10 +33,10 @@ class AdminCar(admin.ModelAdmin):
 @admin.register(CarRental)
 class AdminCarRental(admin.ModelAdmin):
     list_display = [
-        'start_date',
-        'end_date',
         'user',
         'car',
+        'start_date',
+        'end_date',
     ]
     list_filter = [
         'user',
@@ -104,9 +103,18 @@ class AdminRentalProtection(admin.ModelAdmin):
 
 @admin.register(RentalAddress)
 class AdminRentalAddress(admin.ModelAdmin):
-    list_display = ([
+    list_display = [
+        'user',
         'first_name',
-    ])
+        'last_name',
+        'city',
+        'street',
+        'building_number',
+        'post_code',
+    ]
+    list_filter = [
+        'user',
+    ]
 
 
 @admin.register(ContactMessage)
@@ -115,25 +123,11 @@ class AdminContactMessage(admin.ModelAdmin):
         'user',
         'status',
         'category',
+        'add_date',
     ]
     list_filter = [
         'user',
         'status',
         'category',
-    ]
-
-
-@admin.register(CarLongTermRental)
-class AdminCarLongTermRental(admin.ModelAdmin):
-    list_display = [
-        'user',
-        'start_date',
-        'number_of_months',
-        'status',
-    ]
-    list_filter = [
-        'user',
-        'start_date',
-        'number_of_months',
-        'status',
+        'add_date',
     ]

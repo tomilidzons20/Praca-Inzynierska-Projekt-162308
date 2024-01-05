@@ -1,8 +1,10 @@
 from math import ceil
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _gettext
 from django.views.generic import CreateView
 from django.views.generic import DetailView
@@ -14,11 +16,9 @@ from .forms import CarAddressForm
 from .forms import CarChoiceForm
 from .forms import CarDaysRentalForm
 from .forms import CarExtraForm
-from .forms import CarLongTermRentalForm
 from .forms import ClientContactForm
 from .forms import RentalReviewForm
 from .models import Car
-from .models import CarLongTermRental
 from .models import CarMaintenance
 from .models import CarRental
 from .models import ContactMessage
@@ -32,6 +32,7 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['latest_news'] = News.objects.all().order_by('-add_date')[:3]
+        context['lowest_car_cost'] = Car.objects.all().order_by('day_cost').first().day_cost
         return context
 
 
@@ -58,7 +59,7 @@ class NewsDetailView(DetailView):
         return context
 
 
-class CarRentalForDaysView(SessionWizardView):
+class CarRentalForDaysView(LoginRequiredMixin, SessionWizardView):
     form_list = [
         ('days', CarDaysRentalForm),
         ('car', CarChoiceForm),
@@ -73,6 +74,12 @@ class CarRentalForDaysView(SessionWizardView):
         'address': 'car_rental/main/car_rental_days/address.html',
         'review': 'car_rental/main/car_rental_days/review.html',
     }
+
+    def get_form_kwargs(self, step):
+        kwargs = super().get_form_kwargs(step)
+        if step == 'address':
+            kwargs['request'] = self.request
+        return kwargs
 
     def calculate_total_cost(self, date_to, date_from, car, protection, extra):
         rental_days = ceil(((date_to - date_from).total_seconds() / 3600) / 24)
@@ -141,7 +148,9 @@ class CarRentalForDaysView(SessionWizardView):
             date_from = self.get_cleaned_data_for_step('days')['date_from']
             date_to = self.get_cleaned_data_for_step('days')['date_to']
 
-            all_cars = Car.objects.all().order_by('id')
+            all_cars = Car.objects.filter(
+                ~Q(status=Car.StatusChoices.UNAVAILABLE)
+            )
             available_cars = []
             for car in all_cars:
                 # if rentals already exist or maintenance scheduled or is in repair
@@ -149,9 +158,11 @@ class CarRentalForDaysView(SessionWizardView):
                 car_rentals = CarRental.objects.filter(
                     Q(status=CarRental.StatusChoices.RESERVED) |
                     Q(status=CarRental.StatusChoices.RENTED),
-                    start_date__gte=date_from,
-                    start_date__lte=date_to,
-                    car=car,
+                    Q(start_date__lte=date_from, end_date__gte=date_from) |
+                    Q(start_date__lte=date_to, end_date__gte=date_to) |
+                    Q(start_date__gte=date_from, start_date__lte=date_to) &
+                    Q(end_date__gte=date_from, end_date__lte=date_to),
+                    car=car.id,
                 )
                 if car_rentals:
                     continue
@@ -165,7 +176,9 @@ class CarRentalForDaysView(SessionWizardView):
                 if car_maintenance:
                     continue
                 available_cars.append(car.id)
-            form.fields['car'].queryset = Car.objects.filter(id__in=available_cars)
+            form.fields['car'].queryset = Car.objects.filter(
+                id__in=available_cars
+            ).order_by('id')
         return form
 
     def done(self, form_list, form_dict, **kwargs):
@@ -181,7 +194,7 @@ class CarRentalForDaysView(SessionWizardView):
 
         if use_profile_address:
             user_address = self.request.user.address
-            if not user_address:
+            if not hasattr(self.request.user, 'address'):
                 message = _gettext("You don't have saved address in profile")
                 return render(
                     self.request,
@@ -232,23 +245,9 @@ class ContactCreateView(CreateView):
     def form_valid(self, form):
         message = form.save(commit=False)
         message.user = self.request.user
+        message.add_date = timezone.now()
         message.save()
         return super().form_valid(form)
 
     def get_success_url(self):
         return reverse_lazy('contact')
-
-
-class CarRentalLongTermView(CreateView):
-    model = CarLongTermRental
-    form_class = CarLongTermRentalForm
-    template_name = 'car_rental/main/long_term_rental.html'
-
-    def form_valid(self, form):
-        long_term_rental = form.save(commit=False)
-        long_term_rental.user = self.request.user
-        long_term_rental.save()
-        return super().form_valid(form)
-
-    def get_success_url(self):
-        return reverse_lazy('long_term_rental')

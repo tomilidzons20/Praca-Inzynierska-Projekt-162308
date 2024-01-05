@@ -1,0 +1,57 @@
+{% load i18n static %}
+
+<div class="modal fade" id="contact-modal" tabindex="-1" aria-labelledby="contact-modal-label" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content p-2">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="contact-modal-label">{% trans "Add contact" %}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <form action="POST" class="my-3 px-2 w-100" enctype="multipart/form-data" id="contact-form"
+        data-url="{% url 'dashboard_contact_create' %}">
+        {% csrf_token %}
+        <div class="row row-cols-1">
+          {{ contact_form.non_field_errors }}
+          
+          {{ contact_form.user.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ contact_form.user }}
+            {{ contact_form.user.label_tag }}
+          </div>
+          {{ contact_form.category.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ contact_form.category }}
+            {{ contact_form.category.label_tag }}
+          </div>
+          {{ contact_form.status.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ contact_form.status }}
+            {{ contact_form.status.label_tag }}
+          </div>
+          {{ contact_form.message.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ contact_form.message }}
+            {{ contact_form.message.label_tag }}
+          </div>
+          {{ contact_form.add_date.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ contact_form.add_date }}
+            {{ contact_form.add_date.label_tag }}
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            {% trans "Cancel" %}
+          </button>
+          <button type="submit" class="btn btn-primary">
+            {% trans "Add" %}
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

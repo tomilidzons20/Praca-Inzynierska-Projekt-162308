@@ -23,20 +23,24 @@
     {% block body %}
       <!-- Navbar -->
       {% include 'allauth/layouts/navbar_top.html' %}
-      {% include 'car_rental/layouts/dashboard_sidebar.html' %}
-      <div class="h-100 pt-5 pe-5" style="padding-left: 300px;">
-        <div class="pb-2">
-          {% block content %}
-          {% endblock content %}
+      <div class="container-fluid h-100">
+        <div class="row h-100">
+          {% include 'car_rental/layouts/dashboard_sidebar.html' %}
+          <div class="col">
+            <div class="pb-2">
+              {% block content %}
+              {% endblock content %}
+            </div>
+          </div>
         </div>
       </div>
     {% endblock body %}
 
-      <script src="{% static 'bootstrap/js/popper.min.js' %}"></script>
-      <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
-      <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-      <script src="{% static 'datatables/datatables.min.js' %}"></script>
-      
+    <script src="{% static 'bootstrap/js/popper.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'datatables/datatables.min.js' %}"></script>
+    
     {% block extra_body %}
     {% endblock extra_body %}
   </body>

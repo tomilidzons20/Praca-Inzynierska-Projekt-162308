@@ -5,12 +5,12 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView
 
+from car_rental.models import CarRental
+
 from .forms import AddressForm
 from .forms import ProfileForm
 from .models import Address
 from .models import CustomUser
-from car_rental.models import CarRental
-from car_rental.models import CarLongTermRental
 
 
 class ProfileView(LoginRequiredMixin, UpdateView):
@@ -20,12 +20,13 @@ class ProfileView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        address, _ = Address.objects.get_or_create(account=self.request.user)
+        try:
+            address = Address.objects.get(account=self.request.user)
+        except Address.DoesNotExist:
+            address = None
         rentals = CarRental.objects.filter(user=self.request.user).order_by('-start_date')
-        long_term_rentals = CarLongTermRental.objects.filter(user=self.request.user).order_by('-start_date')
         context['address_form'] = AddressForm(instance=address)
         context['rentals'] = rentals
-        context['long_term_rentals'] = long_term_rentals
         return context
 
     def get_object(self, queryset=CustomUser):

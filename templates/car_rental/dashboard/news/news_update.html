@@ -1,0 +1,68 @@
+{% extends 'car_rental/layouts/dashboard_base.html' %}
+{% load i18n allauth static %}
+
+{% block head_title %}
+  {% trans "News update" %}
+{% endblock head_title %}
+
+{% block extra_head %}
+<style>
+  .django-ckeditor-widget {
+    width: 100%;
+  }
+</style>
+{% endblock extra_head %}
+
+{% block content %}
+<div class="bg-body-secondary rounded p-2 col-12 col-md-10 offset-md-1">
+
+  <h3 class="fw-normal mb-3">
+    {{ object.title }}
+  </h3>
+
+  <div class="row">
+
+    <div class="col-12">
+      <div class="bg-body rounded p-3">
+        <form method="POST" class="my-3 px-2 w-100" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.media }}
+          {{ form.non_field_errors }}
+          
+          <div class="col mb-3 p-1">
+            {{ form.main_picture.label_tag }}
+            {{ form.main_picture }}
+            {{ form.main_picture.errors }}
+          </div>
+          {{ form.title.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ form.title }}
+            {{ form.title.label_tag }}
+          </div>
+          {{ form.add_date.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ form.add_date }}
+            {{ form.add_date.label_tag }}
+          </div>
+          {{ form.description.errors }}
+          {{ form.description.label_tag }}
+          <div class="col form-floating mb-3 p-1">
+            {{ form.description }}
+          </div>
+          <div class="col-12 col-md-6 offset-md-3 text-center">
+            <button type="submit" class="btn btn-primary w-100">
+              {% trans "Confirm changes" %}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock content %}
+
+{% block extra_body %}
+  <script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+  <script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+{% endblock extra_body %}

@@ -6,13 +6,15 @@
 
 {% block content %}
 <div class="container my-5">
-  <p>
-    {% trans 'Rental unsuccessful' %}
-  </p>
-  <p>
-    {% if message %}
-      {{ message }}
-    {% endif %}
-  </p>
+  <div class="d-flex flex-column justify-content-center align-items-center bg-body rounded p-3">
+    <h3 class="fw-normal">
+      {% trans 'Rental unsuccessful' %}
+    </h3>
+    <p>
+      {% if message %}
+        {{ message }}
+      {% endif %}
+    </p>
+  </div>
 </div>
 {% endblock content %}

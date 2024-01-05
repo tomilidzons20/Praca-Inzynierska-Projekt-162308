@@ -1,0 +1,28 @@
+{% load static i18n %}
+
+<div class="modal fade" id="cancel-modal" tabindex="-1" aria-labelledby="cancel-modal-label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h1 class="modal-title fs-5" id="cancel-modal-label">{% trans "Cancel rental" %}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+      </div>
+
+      <form data-url="{% url 'cancel_rental' %}" method="post" id="cancel-rental">
+        {% csrf_token %}
+        <input type="hidden" id="rental-id" name="id" value="">
+        <div class="modal-body">
+          <p>{% trans 'Are you sure you want to cancel this rental?' %}</p>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Close" %}</button>
+          <button type="submit" class="btn btn-danger">{% trans "Cancel" %}</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>

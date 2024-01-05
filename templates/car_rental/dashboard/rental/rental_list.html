@@ -1,0 +1,86 @@
+{% extends 'car_rental/layouts/dashboard_base.html' %}
+{% load i18n allauth static %}
+
+{% block head_title %}
+  {% trans "Car rentals" %}
+{% endblock head_title %}
+
+{% block extra_head %}
+<style>
+  #id_total_cost_1{
+    display: none;
+  }
+</style>
+{% endblock extra_head %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-12 my-3">
+      <div class="d-flex justify-content-between">
+        <button class="btn btn-primary px-5 text-nowrap" data-bs-toggle="modal" data-bs-target="#rental-modal">
+          {% trans "Add rental" %}
+        </button>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filter-modal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
+            <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-body-secondary rounded p-2 mb-5">
+    <div class="row row-cols-1 gy-2 mt-2">
+      {% for rental in object_list %}
+        <a class="col text-decoration-none px-0" href="{% url 'dashboard_rental_update' rental.id %}">
+          <div class="bg-body-tertiary rounded p-2 mx-2 text-white">
+            <div class="row">
+              <div class="col-12">
+                <h3 class="fw-normal mb-3">
+                  {{ rental.car }} | {{ rental.user }}
+                </h3>
+                <div class="d-flex flex-row gap-2 text-center col-12 col-md-10 flex-wrap text-nowrap">
+                  <p class="rounded-pill info-pill bg-primary px-2 col"
+                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Start date' %}">
+                    {{ rental.start_date|date:'Y-m-d H:i' }}
+                  </p>
+                  -
+                  <p class="rounded-pill info-pill bg-primary px-2 col"
+                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'End date' %}">
+                    {{ rental.end_date|date:'Y-m-d H:i' }}
+                  </p>
+                  <p class="rounded-pill info-pill bg-secondary px-2 col"
+                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Rental time' %}">
+                    {{ rental.time_rented }}
+                  </p>  
+                  <p class="rounded-pill info-pill bg-secondary px-2 col"
+                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Total rental cost' %}">
+                    {{ rental.total_cost.amount }} {{ rental.total_cost.currency }}
+                  </p>    
+                  <p class="rounded-pill info-pill
+                    {% if rental.status == 'RS' %} bg-info text-black 
+                    {% elif rental.status == 'RE' %} bg-success
+                    {% elif rental.status == 'CL' %} bg-warning text-black 
+                    {% elif rental.status == 'CA' %} bg-danger text-black
+                    {% endif %} px-2 col"
+                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Status' %}">
+                    {{ rental.get_status_display }}
+                  </p>       
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+    {% include 'car_rental/dashboard/pagination.html' %}
+  </div>
+  {% include 'car_rental/dashboard/modals/rental_modal.html' %}
+  {% include 'car_rental/dashboard/modals/filter_modal.html' %}
+
+{% endblock content %}
+
+{% block extra_body %}
+  <script src="{% static 'js/car_rental/dashboard/rental_create.js' %}"></script>
+  <script src="{% static 'bootstrap/js/tooltips.js' %}"></script>
+{% endblock extra_body %}

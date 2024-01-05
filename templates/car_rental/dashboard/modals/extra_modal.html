@@ -1,0 +1,42 @@
+{% load i18n static %}
+
+<div class="modal fade" id="extra-modal" tabindex="-1" aria-labelledby="extra-modal-label" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content p-2">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="extra-modal-label">{% trans "Add extra" %}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <form action="POST" class="my-3 px-2 w-100" enctype="multipart/form-data" id="extra-form"
+        data-url="{% url 'dashboard_extra_create' %}">
+        {% csrf_token %}
+        <div class="row row-cols-1">
+          {{ extra_form.non_field_errors }}
+          
+          {{ extra_form.name.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ extra_form.name }}
+            {{ extra_form.name.label_tag }}
+          </div>
+          {{ extra_form.cost.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ extra_form.cost }}
+            {{ extra_form.cost.label_tag }}
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            {% trans "Cancel" %}
+          </button>
+          <button type="submit" class="btn btn-primary">
+            {% trans "Add" %}
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

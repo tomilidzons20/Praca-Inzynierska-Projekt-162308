@@ -1,0 +1,75 @@
+{% extends 'car_rental/layouts/dashboard_base.html' %}
+{% load i18n allauth static %}
+
+{% block head_title %}
+  {% trans "News" %}
+{% endblock head_title %}
+
+{% block extra_head %}
+<style>
+  .info-pill {
+    min-width: fit-content;
+  }
+  .django-ckeditor-widget {
+    width: 100%;
+  }
+</style>
+{% endblock extra_head %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-12 my-3">
+      <div class="d-flex justify-content-between">
+        <button class="btn btn-primary px-5 text-nowrap" data-bs-toggle="modal" data-bs-target="#news-modal">
+          {% trans "Add news" %}
+        </button>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filter-modal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
+            <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-body-secondary rounded p-2 mb-5">
+    <div class="row row-cols-1 gy-2 mt-2">
+      {% for news in object_list %}
+        <a class="col text-decoration-none px-0" href="{% url 'dashboard_news_update' news.id %}">
+          <div class="bg-body-tertiary rounded p-2 mx-2 text-white">
+            <div class="row">
+              <div class="col-9">
+                <h3 class="fw-normal mb-3">
+                  {{ news.title }}
+                </h3>
+                <div class="d-flex flex-row gap-2 text-center col-6 col-md-3">
+                  <p class="rounded-pill info-pill bg-primary px-2 col"
+                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Date of creation' %}">
+                    {{ news.add_date|date:'Y-m-d H:i' }}
+                  </p>
+                </div>
+              </div>
+              <div class="col-3 d-flex justify-content-end">
+                {% if news.main_picture %}
+                  <img src="{{ news.main_picture.url }}" alt="News picture" class="img-thumbnail" width="150px" height="150px" style="min-width: 150px;">
+                {% else %}
+                  <img src="{% static 'img/car_pictures/default_car.png' %}" alt="News picture" class="img-thumbnail" width="150px" height="150px" style="min-width: 150px;">
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+    {% include 'car_rental/dashboard/pagination.html' %}
+  </div>
+  {% include 'car_rental/dashboard/modals/news_modal.html' %}
+  {% include 'car_rental/dashboard/modals/filter_modal.html' %}
+{% endblock content %}
+
+{% block extra_body %}
+  <script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+  <script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+  <script src="{% static 'js/car_rental/dashboard/news_create.js' %}"></script>
+  <script src="{% static 'bootstrap/js/tooltips.js' %}"></script>
+{% endblock extra_body %}

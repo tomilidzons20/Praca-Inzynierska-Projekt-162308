@@ -1,0 +1,53 @@
+{% load i18n static %}
+
+<div class="modal fade" id="news-modal" tabindex="-1" aria-labelledby="news-modal-label" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content p-2">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="news-modal-label">{% trans "Add news" %}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <form action="POST" class="my-3 px-2 w-100" enctype="multipart/form-data" id="news-form"
+        data-url="{% url 'dashboard_news_create' %}">
+        {% csrf_token %}
+        <div class="row row-cols-1">
+          {{ news_form.media }}
+          {{ news_form.non_field_errors }}
+          
+          <div class="col mb-3 p-1">
+            {{ news_form.main_picture.label_tag }}
+            {{ news_form.main_picture }}
+            {{ news_form.main_picture.errors }}
+          </div>
+          {{ news_form.title.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ news_form.title }}
+            {{ news_form.title.label_tag }}
+          </div>
+          {{ news_form.add_date.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ news_form.add_date }}
+            {{ news_form.add_date.label_tag }}
+          </div>
+          {{ news_form.description.errors }}
+          {{ news_form.description.label_tag }}
+          <div class="col form-floating mb-3 p-1">
+            {{ news_form.description }}
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            {% trans "Cancel" %}
+          </button>
+          <button type="submit" class="btn btn-primary">
+            {% trans "Add" %}
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

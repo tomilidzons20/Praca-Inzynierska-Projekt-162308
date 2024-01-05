@@ -1,0 +1,77 @@
+{% load i18n static %}
+
+<div class="modal fade" id="rental-modal" tabindex="-1" aria-labelledby="rental-modal-label" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content p-2">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="rental-modal-label">{% trans "Add car rental" %}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <form action="POST" class="my-3 px-2 w-100" enctype="multipart/form-data" id="rental-form"
+        data-url="{% url 'dashboard_rental_create' %}">
+        {% csrf_token %}
+        <div class="row row-cols-1">
+          {{ rental_form.non_field_errors }}
+          
+          {{ rental_form.car.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ rental_form.car }}
+            {{ rental_form.car.label_tag }}
+          </div>
+          {{ rental_form.user.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ rental_form.user }}
+            {{ rental_form.user.label_tag }}
+          </div>
+          {{ rental_form.address.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ rental_form.address }}
+            {{ rental_form.address.label_tag }}
+          </div>
+          {{ rental_form.protection.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ rental_form.protection }}
+            {{ rental_form.protection.label_tag }}
+          </div>
+          {{ rental_form.extra.errors }}
+          <div class="col mb-3 p-1">
+            {{ rental_form.extra.label_tag }}
+            {{ rental_form.extra }}
+          </div>
+          {{ rental_form.start_date.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ rental_form.start_date }}
+            {{ rental_form.start_date.label_tag }}
+          </div>
+          {{ rental_form.end_date.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ rental_form.end_date }}
+            {{ rental_form.end_date.label_tag }}
+          </div>
+          {{ rental_form.total_cost.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ rental_form.total_cost }}
+            {{ rental_form.total_cost.label_tag }}
+          </div>
+          {{ rental_form.status.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ rental_form.status }}
+            {{ rental_form.status.label_tag }}
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            {% trans "Cancel" %}
+          </button>
+          <button type="submit" class="btn btn-primary">
+            {% trans "Add" %}
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

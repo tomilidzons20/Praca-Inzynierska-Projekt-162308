@@ -1,0 +1,47 @@
+{% load i18n static %}
+
+{% with object.user as person %}
+  <div class="col-12 col-md-6">
+    <div class="bg-body rounded p-3">
+      <h3 class="fw-normal mb-3">
+        {% trans 'User' %}: {{ person }}
+      </h3>
+      {% if person.profile_picture %}
+        <img src="{{ person.profile_picture.url }}" alt="Profile picture" class="mb-3" height="100" width="100">
+      {% endif %}
+      <p>
+        {% trans 'Name' %}: <b>{{ person.first_name }} {{ person.last_name }}</b>
+      </p>
+      <p>
+        {% trans 'Email address' %}: <b>{{ person.email }}</b>
+      </p>
+      <p>
+        {% trans 'Phone number' %}: <b>{{ person.phone_number }}</b>
+      </p>
+      {% if person.address %}
+        <p>
+          {% trans 'Address' %}:<br>
+          <b>{{ person.address.city }} {{ person.address.street }} {{ person.address.building_number }}</b><br>
+          <b>{{ person.address.post_code }}</b>
+        </p>
+      {% endif %}
+    </div>
+    {% if object.address %}
+      {% with object.address as address %}
+        <div class="bg-body rounded p-3 mt-3">
+          <h3 class="fw-normal mb-3">
+            {% trans 'Rental address' %}:
+          </h3>
+          <p>
+            {% trans 'Name' %}: <b>{{ address.first_name }} {{ address.last_name }}</b>
+          </p>
+          <p>
+            {% trans 'Address' %}:<br>
+            <b>{{ address.city }} {{ address.street }} {{ address.building_number }}</b><br>
+            <b>{{ address.post_code }}</b>
+          </p>
+        </div>
+      {% endwith %}
+    {% endif %}
+  </div>
+{% endwith %}

@@ -1,0 +1,57 @@
+{% extends 'car_rental/layouts/dashboard_base.html' %}
+{% load i18n allauth static %}
+
+{% block head_title %}
+  {% trans "Rental update" %}
+{% endblock head_title %}
+
+{% block extra_head %}
+<style>
+  #id_total_cost_1{
+    display: none;
+  }
+</style>
+{% endblock extra_head %}
+
+{% block content %}
+<div class="bg-body-secondary rounded p-2 col-12 col-md-10 offset-md-1">
+
+  <h3 class="fw-normal mb-3">
+    {{ object.user }} {{ object.car }}
+  </h3>
+
+  <div class="row">
+
+    <div class="col-12 col-md-6">
+      <div class="bg-body rounded p-3">
+        <form method="POST" class="my-3 px-2 w-100" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.non_field_errors }}
+          {% for field in form %}
+            {{ field.errors }}
+            {% if field.name == 'extra' %}
+              <div class="mb-3">
+                {{ field.label_tag }}
+                {{ field }}
+              </div>
+            {% else %}
+              <div class="form-floating mb-3">
+                {{ field }}
+                {{ field.label_tag }}
+              </div>
+            {% endif %}
+          {% endfor %}
+          <div class="col-12 col-md-6 offset-md-3 text-center">
+            <button type="submit" class="btn btn-primary w-100">
+              {% trans "Confirm changes" %}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    {% include 'car_rental/dashboard/_partials/user_info.html' %}
+
+  </div>
+</div>
+{% endblock content %}

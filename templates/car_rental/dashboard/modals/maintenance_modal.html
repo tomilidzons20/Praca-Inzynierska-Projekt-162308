@@ -9,7 +9,7 @@
       </div>
 
       <form action="POST" class="my-3 px-2 w-100" enctype="multipart/form-data" id="maintenance-form"
-        data-url="{% url 'api_maintenance_create' %}">
+        data-url="{% url 'dashboard_maintenance_create' %}">
         {% csrf_token %}
         <div class="row">
           {{ maintenance_form.non_field_errors }}

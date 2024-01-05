@@ -1,3 +1,5 @@
+from math import ceil
+
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -13,6 +15,10 @@ def validate_year(value):
     if value < 1900 or value > current_year:
         message = _('Year must be between 1900 and ')
         raise ValidationError(f'{message}{current_year}')
+
+
+def day_difference():
+    return timezone.now() + timezone.timedelta(days=1)
 
 
 class Car(models.Model):
@@ -51,6 +57,7 @@ class Car(models.Model):
     )
     car_picture = models.ImageField(
         upload_to='uploads/img/car_pictures',
+        verbose_name=_('Car picture'),
         blank=True,
         null=True,
     )
@@ -101,6 +108,17 @@ class CarMaintenance(models.Model):
         default=MaintenanceChoices.SCHEDULED,
     )
 
+    def save(self, *args, **kwargs):
+        today = timezone.now().date()
+        if self.car and today == self.date_of_repair:
+            match self.status:
+                case self.MaintenanceChoices.INREPAIR:
+                    self.car.status = Car.StatusChoices.MAINTENANCE
+                case self.MaintenanceChoices.DONE:
+                    self.car.status = Car.StatusChoices.AVAILABLE
+            self.car.save()
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return f'{self.car}, {self.date_of_repair} {self.cost_of_repair}'
 
@@ -146,11 +164,11 @@ class CarRental(models.Model):
     )
     start_date = models.DateTimeField(
         _('Start date of car rental'),
-        blank=True,
+        default=timezone.now,
     )
     end_date = models.DateTimeField(
         _('End date of car rental'),
-        blank=True,
+        default=day_difference,
     )
     time_rented = models.DurationField(
         _('Total time of car rental'),
@@ -176,7 +194,26 @@ class CarRental(models.Model):
             self.time_rented = self.end_date - self.start_date
         else:
             self.time_rented = None
+        today = timezone.now()
+        if self.car and self.start_date <= today <= self.end_date:
+            match self.status:
+                case self.StatusChoices.RENTED:
+                    self.car.status = Car.StatusChoices.RENTED
+                case self.StatusChoices.CANCELLED | self.StatusChoices.CLOSED:
+                    self.car.status = Car.StatusChoices.AVAILABLE
+            self.car.save()
+        # on update
+        if self.id:
+            self.total_cost = self.get_total_cost()
         super().save(*args, **kwargs)
+
+    def get_total_cost(self):
+        rental_days = ceil(((self.end_date - self.start_date).total_seconds() / 3600) / 24)
+        extras_cost = sum([extra.cost for extra in self.extra.all()])
+        return self.protection.cost + extras_cost + self.car.day_cost * rental_days
+
+    def __str__(self):
+        return f'{self.user} {self.car} {self.total_cost} {self.start_date} - {self.end_date}'
 
     class Meta:
         verbose_name = _('Car rental')
@@ -185,13 +222,17 @@ class CarRental(models.Model):
 
 class News(models.Model):
     title = models.CharField(
+        _('Title'),
         max_length=128,
         blank=False,
         null=False,
     )
-    description = BleachField()
+    description = BleachField(
+        _('Description'),
+    )
     main_picture = models.ImageField(
         upload_to='uploads/img/news',
+        verbose_name=_('Main picture'),
         blank=True,
         null=True,
     )
@@ -199,7 +240,8 @@ class News(models.Model):
         max_length=140,
         null=False,
     )
-    add_date = models.DateField(
+    add_date = models.DateTimeField(
+        _('Add date'),
         default=timezone.now,
     )
 
@@ -217,28 +259,28 @@ class News(models.Model):
 
 class RentalProtection(models.Model):
     name = models.CharField(
-        _('Protection name'),
+        _('Protection name:'),
         max_length=64,
         blank=False,
         null=False,
     )
     tpl_insurance = models.BooleanField(
-        _('Third party liability insurance'),
+        _('Third party liability insurance:'),
         null=False,
         blank=False,
     )
     wheel_protection = models.BooleanField(
-        _('Tires and rims protection'),
+        _('Tires and rims protection:'),
         null=False,
         blank=False,
     )
     window_protection = models.BooleanField(
-        _('Window protection'),
+        _('Window protection:'),
         null=False,
         blank=False,
     )
     cost = MoneyField(
-        _('Protection cost'),
+        _('Protection cost:'),
         max_digits=19,
         decimal_places=2,
         default_currency='PLN',
@@ -246,7 +288,7 @@ class RentalProtection(models.Model):
         blank=False,
     )
     penalty = MoneyField(
-        _('Penalty cost'),
+        _('Penalty cost:'),
         max_digits=19,
         decimal_places=0,
         default_currency='PLN',
@@ -254,7 +296,7 @@ class RentalProtection(models.Model):
         blank=False,
     )
     deposit = MoneyField(
-        _('Deposit cost'),
+        _('Deposit cost:'),
         max_digits=19,
         decimal_places=0,
         default_currency='PLN',
@@ -304,10 +346,14 @@ class RentalAddress(models.Model):
     first_name = models.CharField(
         _('First name'),
         max_length=255,
+        blank=False,
+        null=False,
     )
     last_name = models.CharField(
-        _('Last Name'),
+        _('Last name'),
         max_length=255,
+        blank=False,
+        null=False,
     )
     street = models.CharField(
         _('Street'),
@@ -317,15 +363,24 @@ class RentalAddress(models.Model):
     building_number = models.CharField(
         _('Building number'),
         max_length=255,
+        blank=False,
+        null=False,
     )
     post_code = models.CharField(
         _('Post code'),
         max_length=16,
+        blank=False,
+        null=False,
     )
     city = models.CharField(
         _('City'),
         max_length=255,
+        blank=False,
+        null=False,
     )
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name} {self.city} {self.street}'
 
     class Meta:
         verbose_name = _('Rental address')
@@ -363,43 +418,14 @@ class ContactMessage(models.Model):
         choices=StatusChoices.choices,
         default=StatusChoices.NEW,
     )
+    add_date = models.DateTimeField(
+        _('Date of contact message creation'),
+        default=timezone.now,
+    )
+
+    def __str__(self):
+        return f'{self.user} {self.category} {self.status} {self.add_date}'
 
     class Meta:
         verbose_name = _('Contact message')
         verbose_name_plural = _('Contact messages')
-
-
-class CarLongTermRental(models.Model):
-    class StatusChoices(models.TextChoices):
-        NEW = 'NE', _('New')
-        IN_PROGRESS = 'IP', _('In progress')
-        CLOSED = 'CL', _('Closed')
-        CANCELLED = 'CA', _('Cancelled')
-
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        verbose_name=_('User'),
-        on_delete=models.CASCADE,
-        null=True,
-    )
-    start_date = models.DateTimeField(
-        _('Start date of car rental'),
-        blank=False,
-    )
-    number_of_months = models.PositiveIntegerField(
-        _('Number of months'),
-        blank=False
-    )
-    message = models.TextField(
-        _('Message'),
-        blank=False,
-    )
-    status = models.CharField(
-        _('Status'),
-        choices=StatusChoices.choices,
-        default=StatusChoices.NEW,
-    )
-
-    class Meta:
-        verbose_name = _('Long term rental')
-        verbose_name_plural = _('Long term rentals')

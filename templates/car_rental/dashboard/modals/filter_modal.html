@@ -1,0 +1,36 @@
+{% load i18n static %}
+
+<div class="modal fade" id="filter-modal" tabindex="-1" aria-labelledby="filter-modal-label" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content p-2">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="filter-modal-label">{% trans "Sort" %}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <form method="GET">
+        <div class="w-100">
+          {{ filter.form.non_field_errors }}
+          {% for field in filter.form %}
+            {{ field.errors }}
+            <div class="form-floating p-1">
+              {{ field }}
+              {{ field.label_tag }}
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            {% trans "Cancel" %}
+          </button>
+          <button type="submit" class="btn btn-primary">
+            {% trans "Sort" %}
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

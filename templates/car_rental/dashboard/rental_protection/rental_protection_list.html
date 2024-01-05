@@ -1,0 +1,64 @@
+{% extends 'car_rental/layouts/dashboard_base.html' %}
+{% load i18n allauth static %}
+
+{% block head_title %}
+  {% trans "Protections" %}
+{% endblock head_title %}
+
+{% block extra_head %}
+<style>
+  .info-pill {
+    min-width: fit-content;
+  }
+  #id_cost_1{
+    display: none;
+  }
+  #id_penalty_1{
+    display: none;
+  }
+  #id_deposit_1{
+    display: none;
+  }
+</style>
+{% endblock extra_head %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-12 col-md-3 my-3">
+      <button class="btn btn-primary px-5 text-nowrap" data-bs-toggle="modal" data-bs-target="#protection-modal">
+        {% trans "Add protection" %}
+      </button>
+    </div>
+  </div>
+
+  <div class="bg-body-secondary rounded p-2 mb-5">
+    <div class="row row-cols-1 gy-2 mt-2">
+      {% for protection in object_list %}
+        <a class="col text-decoration-none px-0" href="{% url 'dashboard_protection_update' protection.id %}">
+          <div class="bg-body-tertiary rounded p-2 mx-2 text-white">
+            <div class="row">
+              <div class="col-12">
+                <h3 class="fw-normal mb-3">
+                  {{ protection.name }}
+                </h3>
+                <div class="d-flex flex-row gap-2 text-center col-6 col-md-3">
+                  <p class="rounded-pill info-pill bg-secondary px-2 col"
+                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{% trans 'Cost' %}">
+                    {{ protection.cost.amount }} {{ protection.cost.currency }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+    {% include 'car_rental/dashboard/pagination.html' %}
+  </div>
+  {% include 'car_rental/dashboard/modals/protection_modal.html' %}
+{% endblock content %}
+
+{% block extra_body %}
+  <script src="{% static 'js/car_rental/dashboard/protection_create.js' %}"></script>
+  <script src="{% static 'bootstrap/js/tooltips.js' %}"></script>
+{% endblock extra_body %}

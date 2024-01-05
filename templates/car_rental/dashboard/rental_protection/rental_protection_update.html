@@ -1,0 +1,83 @@
+{% extends 'car_rental/layouts/dashboard_base.html' %}
+{% load i18n allauth static %}
+
+{% block head_title %}
+  {% trans "Protection update" %}
+{% endblock head_title %}
+
+{% block extra_head %}
+<style>
+  #id_cost_1{
+    display: none;
+  }
+  #id_penalty_1{
+    display: none;
+  }
+  #id_deposit_1{
+    display: none;
+  }
+</style>
+{% endblock extra_head %}
+
+{% block content %}
+<div class="bg-body-secondary rounded p-2 col-12 col-md-10 offset-md-1">
+
+  <h3 class="fw-normal mb-3">
+    {{ object.name }}
+  </h3>
+
+  <div class="row">
+
+    <div class="col-12">
+      <div class="bg-body rounded p-3">
+        <form method="POST" class="my-3 px-2 w-100" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.non_field_errors }}
+          
+          {{ form.name.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ form.name }}
+            {{ form.name.label_tag }}
+          </div>
+          {{ form.tpl_insurance.errors }}
+          <div class="col form-check mb-3 p-1 ms-4">
+            {{ form.tpl_insurance }}
+            {{ form.tpl_insurance.label_tag }}
+          </div>
+          {{ form.wheel_protection.errors }}
+          <div class="col form-check mb-3 p-1 ms-4">
+            {{ form.wheel_protection }}
+            {{ form.wheel_protection.label_tag }}
+          </div>
+          {{ form.window_protection.errors }}
+          <div class="col form-check mb-3 p-1 ms-4">
+            {{ form.window_protection }}
+            {{ form.window_protection.label_tag }}
+          </div>
+          {{ form.cost.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ form.cost }}
+            {{ form.cost.label_tag }}
+          </div>
+          {{ form.penalty.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ form.penalty }}
+            {{ form.penalty.label_tag }}
+          </div>
+          {{ form.deposit.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ form.deposit }}
+            {{ form.deposit.label_tag }}
+          </div>
+          <div class="col-12 col-md-6 offset-md-3 text-center">
+            <button type="submit" class="btn btn-primary w-100">
+              {% trans "Confirm changes" %}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock content %}

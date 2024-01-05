@@ -1,4 +1,12 @@
-$(document).on('submit', '.cancel-rental', (e) => {
+$(document).ready(() => {
+  $('.rental-button').on('click', (e) => {
+    const argument = $(e.currentTarget).attr('data-rental-id');
+    $('#rental-id').val(argument);
+  });
+})
+
+
+$(document).on('submit', '#cancel-rental', (e) => {
   e.preventDefault();
   const form = $(e.currentTarget);
   $.ajax({

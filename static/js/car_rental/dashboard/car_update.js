@@ -20,7 +20,7 @@ const createDataTable = (id) => {
       // Remove the formatting to get integer data for summation
       let Val = function (i) {
         return typeof i === 'string'
-          ? i.replace(/[\ PLN]/g, '') * 1
+          ? i.replace(/[\ PLN]/g, '').replace(',', '.') * 1
           : typeof i === 'number'
             ? i
             : 0;

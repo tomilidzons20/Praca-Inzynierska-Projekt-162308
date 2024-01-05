@@ -1,0 +1,67 @@
+{% load i18n static %}
+
+<div class="modal fade" id="protection-modal" tabindex="-1" aria-labelledby="protection-modal-label" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content p-2">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="protection-modal-label">{% trans "Add protection" %}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <form action="POST" class="my-3 px-2 w-100" enctype="multipart/form-data" id="protection-form"
+        data-url="{% url 'dashboard_protection_create' %}">
+        {% csrf_token %}
+        <div class="row row-cols-1">
+          {{ protection_form.non_field_errors }}
+          
+          {{ protection_form.name.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ protection_form.name }}
+            {{ protection_form.name.label_tag }}
+          </div>
+          {{ protection_form.tpl_insurance.errors }}
+          <div class="col form-check mb-3 p-1 ms-4">
+            {{ protection_form.tpl_insurance }}
+            {{ protection_form.tpl_insurance.label_tag }}
+          </div>
+          {{ protection_form.wheel_protection.errors }}
+          <div class="col form-check mb-3 p-1 ms-4">
+            {{ protection_form.wheel_protection }}
+            {{ protection_form.wheel_protection.label_tag }}
+          </div>
+          {{ protection_form.window_protection.errors }}
+          <div class="col form-check mb-3 p-1 ms-4">
+            {{ protection_form.window_protection }}
+            {{ protection_form.window_protection.label_tag }}
+          </div>
+          {{ protection_form.cost.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ protection_form.cost }}
+            {{ protection_form.cost.label_tag }}
+          </div>
+          {{ protection_form.penalty.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ protection_form.penalty }}
+            {{ protection_form.penalty.label_tag }}
+          </div>
+          {{ protection_form.deposit.errors }}
+          <div class="col form-floating mb-3 p-1">
+            {{ protection_form.deposit }}
+            {{ protection_form.deposit.label_tag }}
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            {% trans "Cancel" %}
+          </button>
+          <button type="submit" class="btn btn-primary">
+            {% trans "Add" %}
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
