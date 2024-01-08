@@ -10,7 +10,7 @@
 
 {% block content %}
 <div class="container my-5">
-  <h5>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</h5>
+  <h5>{% trans 'Step' %} {{ wizard.steps.step1 }} {% trans 'of' %} {{ wizard.steps.count }}</h5>
   <form method="POST">
     {% csrf_token %}
     <div>

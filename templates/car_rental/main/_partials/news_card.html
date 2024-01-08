@@ -7,7 +7,7 @@
         {% if news.main_picture %}
           <img src="{{ news.main_picture.url }}" class="img-thumbnail" alt="{{ news.title }}">
         {% else %}
-          <img src="{% static 'img/car_pictures/default_car.png' %}" class="img-thumbnail" alt="{{ news.title }}">
+          <img src="{% static 'img/news_pictures/news.png' %}" class="img-thumbnail" alt="{{ news.title }}">
         {% endif %}
       </div>
       <h5 class="card-title text-start pt-3" style="min-height: 125px;">{{ news.title }}</h5>

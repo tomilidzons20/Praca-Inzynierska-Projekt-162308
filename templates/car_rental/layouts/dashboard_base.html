@@ -16,6 +16,16 @@
       html, body {
         height: 100%;
       }
+      @media (min-width: 576px) {
+        #main-row {
+          min-height: auto;
+        }
+      }
+      @media (min-width: 768px) { 
+        #main-row {
+          min-height: 100%;
+        }
+      }
     </style>
   </head>
 
@@ -24,7 +34,7 @@
       <!-- Navbar -->
       {% include 'allauth/layouts/navbar_top.html' %}
       <div class="container-fluid h-100">
-        <div class="row h-100">
+        <div class="row" id="main-row">
           {% include 'car_rental/layouts/dashboard_sidebar.html' %}
           <div class="col">
             <div class="pb-2">

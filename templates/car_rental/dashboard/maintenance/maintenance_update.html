@@ -16,7 +16,7 @@
 {% block content %}
 <div class="bg-body-secondary rounded p-2 col-12 col-md-10 offset-md-1">
 
-  <h3 class="fw-normal mb-3">
+  <h3 class="col-12 col-md fw-normal mb-3">
     {{ object.date_of_repair }} | {{ object.car }}
   </h3>
 
@@ -42,6 +42,15 @@
       </div>
     </div>
 
+    <div class="col-12 col-md-6 offset-md-3 mt-4">
+      {% if user.is_superuser %}
+        <button type="button" class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#delete-modal">
+          {% trans 'Delete' %}
+        </button>
+      {% endif %}
+    </div>
   </div>
+  {% url 'dashboard_maintenance_delete' object.id as link %}
+  {% include 'car_rental/dashboard/modals/delete_modal.html' with delete_url=link %}
 </div>
 {% endblock content %}
