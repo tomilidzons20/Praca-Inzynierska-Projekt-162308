@@ -49,12 +49,12 @@ def address_update_view(request):
 
 def cancel_rental_view(request):
     if request.method == 'POST':
+        rental_id = request.POST.get('id')
         try:
-            rental_id = request.POST.get('id')
             rental = CarRental.objects.get(id=rental_id, user=request.user)
-            rental.status = CarRental.StatusChoices.CANCELLED
-            rental.save()
-            return JsonResponse({'success': True}, status=200)
         except CarRental.DoesNotExist:
             return JsonResponse({'errors': 'Rental does not exist'}, status=400)
+        rental.status = CarRental.StatusChoices.CANCELLED
+        rental.save()
+        return JsonResponse({'success': True}, status=200)
     return redirect('view_profile')

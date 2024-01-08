@@ -15,7 +15,7 @@
 
 {% block content %}
 <div class="container my-5">
-  <h5>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</h5>
+  <h5>{% trans 'Step' %} {{ wizard.steps.step1 }} {% trans 'of' %} {{ wizard.steps.count }}</h5>
   <form method="POST">
     {% csrf_token %}
     <div>
@@ -60,7 +60,7 @@
                     <div>
                       <div class="my-2">
                         <p>{% trans 'Rent time: ' %}</p>
-                        <p>{{ date_from }} - {{ date_to }}</p>
+                        <p>{{ date_from|date:'Y-m-d H:i' }} - {{ date_to|date:'Y-m-d H:i' }}</p>
                       </div>
                       <div class="my-2">
                         <p>{% trans 'Address: ' %}</p>

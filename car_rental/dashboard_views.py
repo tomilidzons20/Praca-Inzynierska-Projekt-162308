@@ -33,6 +33,10 @@ def is_staff(user):
     return user.is_superuser or user.is_staff
 
 
+def is_superuser(user):
+    return user.is_superuser
+
+
 class StaffRequiredMixin:
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_staff or request.user.is_superuser:
@@ -211,6 +215,15 @@ def maintenance_create_view(request):
     return redirect('dashboard_maintenance_list')
 
 
+@user_passes_test(is_superuser, login_url='dashboard_maintenance_list')
+def maintenance_delete_view(request, pk):
+    try:
+        CarMaintenance.objects.get(id=pk).delete()
+    except CarMaintenance.DoesNotExist:
+        pass
+    return redirect('dashboard_maintenance_list')
+
+
 @user_passes_test(is_staff)
 def car_create_view(request):
     if request.method == 'POST':
@@ -219,6 +232,15 @@ def car_create_view(request):
             form.save()
             return JsonResponse({'success': True}, status=200)
         return JsonResponse({'errors': form.errors}, status=400)
+    return redirect('dashboard_car_list')
+
+
+@user_passes_test(is_superuser, login_url='dashboard_car_list')
+def car_delete_view(request, pk):
+    try:
+        Car.objects.get(id=pk).delete()
+    except Car.DoesNotExist:
+        pass
     return redirect('dashboard_car_list')
 
 
@@ -233,6 +255,15 @@ def rental_create_view(request):
     return redirect('dashboard_rental_list')
 
 
+@user_passes_test(is_superuser)
+def rental_delete_view(request, pk):
+    try:
+        CarRental.objects.get(id=pk).delete()
+    except CarRental.DoesNotExist:
+        pass
+    return redirect('dashboard_rental_list')
+
+
 @user_passes_test(is_staff)
 def contact_create_view(request):
     if request.method == 'POST':
@@ -241,6 +272,15 @@ def contact_create_view(request):
             form.save()
             return JsonResponse({'success': True}, status=200)
         return JsonResponse({'errors': form.errors}, status=400)
+    return redirect('dashboard_contact_list')
+
+
+@user_passes_test(is_superuser)
+def contact_delete_view(request, pk):
+    try:
+        ContactMessage.objects.get(id=pk).delete()
+    except ContactMessage.DoesNotExist:
+        pass
     return redirect('dashboard_contact_list')
 
 
@@ -255,6 +295,15 @@ def rental_protection_create_view(request):
     return redirect('dashboard_protection_list')
 
 
+@user_passes_test(is_superuser)
+def rental_protection_delete_view(request, pk):
+    try:
+        RentalProtection.objects.get(id=pk).delete()
+    except RentalProtection.DoesNotExist:
+        pass
+    return redirect('dashboard_protection_list')
+
+
 @user_passes_test(is_staff)
 def rental_extra_create_view(request):
     if request.method == 'POST':
@@ -266,6 +315,15 @@ def rental_extra_create_view(request):
     return redirect('dashboard_extra_list')
 
 
+@user_passes_test(is_superuser)
+def rental_extra_delete_view(request, pk):
+    try:
+        RentalExtra.objects.get(id=pk).delete()
+    except RentalExtra.DoesNotExist:
+        pass
+    return redirect('dashboard_extra_list')
+
+
 @user_passes_test(is_staff)
 def news_create_view(request):
     if request.method == 'POST':
@@ -274,4 +332,13 @@ def news_create_view(request):
             form.save()
             return JsonResponse({'success': True}, status=200)
         return JsonResponse({'errors': form.errors}, status=400)
+    return redirect('dashboard_news_list')
+
+
+@user_passes_test(is_superuser)
+def news_delete_view(request, pk):
+    try:
+        News.objects.get(id=pk).delete()
+    except News.DoesNotExist:
+        pass
     return redirect('dashboard_news_list')
