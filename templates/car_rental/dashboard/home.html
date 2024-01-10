@@ -6,5 +6,158 @@
 {% endblock head_title %}
 
 {% block content %}
-<div>Home page of Dashboard</div>
+<div class="p-2 mb-5">
+  
+  <div class="row row-cols-1 row-cols-md-2 gy-2 mt-2">
+    <div class="col">
+      <h3 class="fw-normal">
+        {% trans 'New contact messages' %}:
+      </h3>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">{% trans 'User' %}</th>
+              <th scope="col">{% trans 'Add date' %}</th>
+              <th scope="col">{% trans 'Category' %}</th>
+              <th scope="col">{% trans 'Status' %}</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for contact in new_contacts %}
+              <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ contact.user }}</td>
+                <td>{{ contact.add_date|date:'Y-m-d H:i' }}</td>
+                <td>{{ contact.get_category_display }}</td>
+                <td>{{ contact.get_status_display }}</td>
+                <td class="text-center">
+                  <a href="{% url 'dashboard_contact_update' contact.id %}" class="btn btn-primary w-auto">
+                    {% trans 'Open' %}
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col">
+      <h3 class="fw-normal">
+        {% trans 'Incoming maintenances' %}:
+      </h3>
+      <div class="table-responsive">
+        <table class="table col">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">{% trans 'Car' %}</th>
+              <th scope="col">{% trans 'Date of repair' %}</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for maintenance in incoming_maintenance %}
+              <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ maintenance.car }}</td>
+                <td>{{ maintenance.date_of_repair|date:'Y-m-d' }}</td>
+                <td class="text-center">
+                  <a href="{% url 'dashboard_maintenance_update' maintenance.id %}" class="btn btn-primary w-auto">
+                    {% trans 'Open' %}
+                  </a>
+                </td>
+              </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="row row-cols-1 gy-2 mt-2">
+    <div class="col">
+      <h3 class="fw-normal">
+        {% trans 'Incoming rentals' %}:
+      </h3>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">{% trans 'Car' %}</th>
+              <th scope="col">{% trans 'User' %}</th>
+              <th scope="col">{% trans 'Start date' %}</th>
+              <th scope="col">{% trans 'End date' %}</th>
+              <th scope="col">{% trans 'Rental time' %}</th>
+              <th scope="col">{% trans 'Total cost' %}</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for rental in incoming_rentals %}
+              <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ rental.car }}</td>
+                <td>{{ rental.user }}</td>
+                <td>{{ rental.start_date|date:'Y-m-d H:i' }}</td>
+                <td>{{ rental.end_date|date:'Y-m-d H:i' }}</td>
+                <td>{{ rental.time_rented }}</td>
+                <td>{{ rental.total_cost.amount }} {{ rental.total_cost.currency }}</td>
+                <td class="text-center">
+                  <a href="{% url 'dashboard_rental_update' rental.id %}" class="btn btn-primary w-auto">
+                    {% trans 'Open' %}
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col">
+      <h3 class="fw-normal">
+        {% trans 'Ending rentals' %}:
+      </h3>
+      <div class="table-responsive">
+        <table class="table col">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">{% trans 'Car' %}</th>
+              <th scope="col">{% trans 'User' %}</th>
+              <th scope="col">{% trans 'Start date' %}</th>
+              <th scope="col">{% trans 'End date' %}</th>
+              <th scope="col">{% trans 'Rental time' %}</th>
+              <th scope="col">{% trans 'Total cost' %}</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for rental in ending_rentals  %}
+              <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ rental.car }}</td>
+                <td>{{ rental.user }}</td>
+                <td>{{ rental.start_date|date:'Y-m-d H:i' }}</td>
+                <td>{{ rental.end_date|date:'Y-m-d H:i' }}</td>
+                <td>{{ rental.time_rented }}</td>
+                <td>{{ rental.total_cost.amount }} {{ rental.total_cost.currency }}</td>
+                <td class="text-center">
+                  <a href="{% url 'dashboard_rental_update' rental.id %}" class="btn btn-primary w-auto">
+                    {% trans 'Open' %}
+                  </a>
+                </td>
+              </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock content %}

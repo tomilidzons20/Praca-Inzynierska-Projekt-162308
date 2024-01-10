@@ -2,7 +2,9 @@ from django.contrib.admin.views.decorators import user_passes_test
 from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.utils import timezone
 from django.views.generic import ListView
+from django.views.generic import TemplateView
 from django.views.generic import UpdateView
 from django_filters.views import FilterView
 
@@ -42,6 +44,31 @@ class StaffRequiredMixin:
         if request.user.is_staff or request.user.is_superuser:
             return super().dispatch(request, *args, **kwargs)
         return redirect('account_login')
+
+
+class DashboardHomeView(StaffRequiredMixin, TemplateView):
+    template_name = 'car_rental/dashboard/home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        now = timezone.now()
+        context['new_contacts'] = ContactMessage.objects.filter(
+            status=ContactMessage.StatusChoices.NEW,
+        ).order_by('-add_date')[:5]
+        context['incoming_maintenance'] = CarMaintenance.objects.filter(
+            status=CarMaintenance.MaintenanceChoices.SCHEDULED,
+            date_of_repair__gte=now,
+        ).order_by('date_of_repair')[:5]
+        context['ending_rentals'] = CarRental.objects.filter(
+            status=CarRental.StatusChoices.RENTED,
+            end_date__gte=now,
+        ).order_by('-end_date')[:5]
+        print(context['ending_rentals'])
+        context['incoming_rentals'] = CarRental.objects.filter(
+            status=CarRental.StatusChoices.RESERVED,
+            start_date__gte=now,
+        ).order_by('start_date')[:5]
+        return context
 
 
 class DashboardCarListView(StaffRequiredMixin, FilterView):

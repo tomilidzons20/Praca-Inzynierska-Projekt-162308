@@ -38,13 +38,15 @@ class Car(models.Model):
         max_length=64,
         blank=False,
     )
-    engine_capacity = models.CharField(
-        _('Engine capacity'),
+    engine_capacity = models.FloatField(
+        _('Engine capacity [l]'),
         blank=True,
+        default=0,
     )
-    engine_power = models.CharField(
-        _('Engine power'),
+    engine_power = models.PositiveIntegerField(
+        _('Engine power [hp]'),
         blank=True,
+        default=0,
     )
     status = models.CharField(
         _('Status'),
@@ -283,14 +285,6 @@ class RentalProtection(models.Model):
         _('Protection cost:'),
         max_digits=19,
         decimal_places=2,
-        default_currency='PLN',
-        default=0,
-        blank=False,
-    )
-    penalty = MoneyField(
-        _('Penalty cost:'),
-        max_digits=19,
-        decimal_places=0,
         default_currency='PLN',
         default=0,
         blank=False,
