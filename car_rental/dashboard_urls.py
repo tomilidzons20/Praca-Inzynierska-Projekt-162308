@@ -4,6 +4,7 @@ from .dashboard_views import DashboardCarListView
 from .dashboard_views import DashboardCarUpdateView
 from .dashboard_views import DashboardContactListView
 from .dashboard_views import DashboardContactUpdateView
+from .dashboard_views import DashboardHomeView
 from .dashboard_views import DashboardMaintenanceListView
 from .dashboard_views import DashboardMaintenanceUpdateView
 from .dashboard_views import DashboardNewsListView
@@ -30,6 +31,7 @@ from .dashboard_views import rental_protection_create_view
 from .dashboard_views import rental_protection_delete_view
 
 urlpatterns = [
+    path('', DashboardHomeView.as_view(), name='dashboard_home'),
     path('cars/', DashboardCarListView.as_view(), name='dashboard_car_list'),
     path('cars/create/', car_create_view, name='dashboard_car_create'),
     path('cars/update/<int:pk>/', DashboardCarUpdateView.as_view(), name='dashboard_car_update'),

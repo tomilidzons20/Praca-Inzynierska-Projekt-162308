@@ -46,15 +46,15 @@
                 <div class="d-flex flex-row text-center gap-2 flex-wrap text-nowrap">
                   <p class="rounded-pill info-pill bg-primary px-2 col" data-bs-toggle="tooltip" data-bs-placement="top"
                     data-bs-title="{% trans 'Year of production' %}">
-                    {{ car.production_year }}
+                    {{ car.production_year }} 
                   </p>
                   <p class="rounded-pill info-pill bg-secondary px-2 col" data-bs-toggle="tooltip" data-bs-placement="top"
                     data-bs-title="{% trans 'Engine capacity' %}">
-                    {{ car.engine_capacity }}
+                    {{ car.engine_capacity }} {% trans 'l' %}
                   </p>
                   <p class="rounded-pill info-pill bg-secondary px-2 col" data-bs-toggle="tooltip" data-bs-placement="top"
                     data-bs-title="{% trans 'Engine power' %}">
-                    {{ car.engine_power}}
+                    {{ car.engine_power}} {% trans 'hp' %}
                   </p>
                   <p class="rounded-pill info-pill bg-secondary px-2 col" data-bs-toggle="tooltip" data-bs-placement="top"
                     data-bs-title="{% trans 'Day cost' %}">

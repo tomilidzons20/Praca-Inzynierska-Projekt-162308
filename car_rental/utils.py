@@ -24,6 +24,9 @@ def set_form_styles(form_fields):
         'IntegerField': {
             'class': 'form-control',
         },
+        'FloatField': {
+            'class': 'form-control',
+        },
         'DateField': {
             'class': 'form-control',
         },
