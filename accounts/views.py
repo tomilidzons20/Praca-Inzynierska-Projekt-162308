@@ -1,3 +1,4 @@
+from allauth.account.views import PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
@@ -11,6 +12,11 @@ from .forms import AddressForm
 from .forms import ProfileForm
 from .models import Address
 from .models import CustomUser
+
+
+class CustomPasswordChangeView(PasswordChangeView):
+    def get_success_url(self):
+        return reverse_lazy('view_profile')
 
 
 class ProfileView(LoginRequiredMixin, UpdateView):

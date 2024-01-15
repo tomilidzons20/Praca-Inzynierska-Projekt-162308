@@ -19,7 +19,7 @@
       <h2 class="fw-normal my-3 text-break">
         {{ object.title }}
       </h2>
-      <small>{{ object.add_date }}</small>
+      <small>{{ object.add_date|date:"Y-m-d H:i" }}</small>
       <p class="my-3 text-break">
         {{ object.description|bleach }}
       </p>

@@ -19,7 +19,7 @@ SECRET_KEY = 'django-insecure-2x(3v2-yy#4i9jie&a7+b+@tsu7gw8g1&jrh77=p+p2^uchs+%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -170,12 +170,15 @@ INTERNAL_IPS = [
     'localhost',
 ]
 
+ACCOUNT_EMAIL_REQUIRED = True
+
 ACCOUNT_FORMS = {
     'login': 'accounts.forms.CustomLoginForm',
     'signup': 'accounts.forms.CustomSignupForm',
     'change_password': 'accounts.forms.CustomChangePasswordForm',
     'reset_password': 'accounts.forms.CustomResetPasswordForm',
     'add_email': 'accounts.forms.CustomEmailForm',
+    'reset_password_from_key': 'accounts.forms.CustomResetPasswordKeyForm',
 }
 
 PHONENUMBER_DEFAULT_REGION = 'PL'
@@ -188,7 +191,7 @@ BLEACH_ALLOWED_TAGS = [
     'strong', 'a', 's', 'h1',
     'h2', 'h3', 'h4', 'h5',
     'h6', 'pre', 'address',
-    'img',
+    'img'
 ]
 
 # Which HTML attributes are allowed
@@ -204,14 +207,21 @@ BLEACH_ALLOWED_STYLES = [
     'color', 'background-color', 'height', 'width',
 ]
 
-# Strip unknown tags if True, replace with HTML escaped characters if False
+# Strip unknown tags
 BLEACH_STRIP_TAGS = True
 
 # Strip comments, or leave them in.
-BLEACH_STRIP_COMMENTS = True
+BLEACH_STRIP_COMMENTS = False
 
 # Use the CKEditorWidget for bleached HTML fields
 BLEACH_DEFAULT_WIDGET = 'ckeditor.widgets.CKEditorWidget'
 
 MINIMUM_HOURS_BEFORE_RENT = 3
 MINIMUM_RENT_HOURS = 1
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = env.str('EMAIL_HOST')
+EMAIL_PORT = env.int('EMAIL_PORT')
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = env.str('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env.str('EMAIL_HOST_PASSWORD')

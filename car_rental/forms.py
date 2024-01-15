@@ -221,13 +221,13 @@ class CarChoiceForm(forms.Form):
 
 class CarExtraForm(forms.Form):
     protection = forms.ModelChoiceField(
-        queryset=RentalProtection.objects.all(),
+        queryset=RentalProtection.objects.all().order_by('id'),
         required=True,
         widget=forms.RadioSelect(),
         initial=1,
     )
     extra = forms.ModelMultipleChoiceField(
-        queryset=RentalExtra.objects.all(),
+        queryset=RentalExtra.objects.all().order_by('id'),
         required=False,
         widget=forms.CheckboxSelectMultiple(),
     )

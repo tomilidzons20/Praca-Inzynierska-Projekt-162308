@@ -21,40 +21,43 @@
           {{ form.as_table }}
         {% endfor %}
       {% else %}
-        {{ wizard.form.non_field_errors }}
-        <div class="mb-3">
-          {{ wizard.form.use_profile_address.label_tag }}
-          {{ wizard.form.use_profile_address }}
-        </div>
-        {{ wizard.form.first_name.errors }}
-        <div class="form-floating mb-3">
-          {{ wizard.form.first_name }}
-          {{ wizard.form.first_name.label_tag }}
-        </div>
-        {{ wizard.form.last_name.errors }}
-        <div class="form-floating mb-3">
-          {{ wizard.form.last_name }}
-          {{ wizard.form.last_name.label_tag }}
-        </div>
-        {{ wizard.form.city.errors }}
-        <div class="form-floating mb-3">
-          {{ wizard.form.city }}
-          {{ wizard.form.city.label_tag }}
-        </div>
-        {{ wizard.form.street.errors }}
-        <div class="form-floating mb-3">
-          {{ wizard.form.street }}
-          {{ wizard.form.street.label_tag }}
-        </div>
-        {{ wizard.form.building_number.errors }}
-        <div class="form-floating mb-3">
-          {{ wizard.form.building_number }}
-          {{ wizard.form.building_number.label_tag }}
-        </div>
-        {{ wizard.form.post_code.errors }}
-        <div class="form-floating mb-3">
-          {{ wizard.form.post_code }}
-          {{ wizard.form.post_code.label_tag }}
+        <div class="row bg-body p-3 rounded">
+          <h3>{% trans 'Provide address:' %}</h3>
+          {{ wizard.form.non_field_errors }}
+          <div class="mb-3">
+            {{ wizard.form.use_profile_address.label_tag }}
+            {{ wizard.form.use_profile_address }}
+          </div>
+          {{ wizard.form.first_name.errors }}
+          <div class="form-floating mb-3 p-1">
+            {{ wizard.form.first_name }}
+            {{ wizard.form.first_name.label_tag }}
+          </div>
+          {{ wizard.form.last_name.errors }}
+          <div class="form-floating mb-3 p-1">
+            {{ wizard.form.last_name }}
+            {{ wizard.form.last_name.label_tag }}
+          </div>
+          {{ wizard.form.city.errors }}
+          <div class="form-floating mb-3 p-1">
+            {{ wizard.form.city }}
+            {{ wizard.form.city.label_tag }}
+          </div>
+          {{ wizard.form.street.errors }}
+          <div class="form-floating mb-3 p-1">
+            {{ wizard.form.street }}
+            {{ wizard.form.street.label_tag }}
+          </div>
+          {{ wizard.form.building_number.errors }}
+          <div class="form-floating mb-3 p-1">
+            {{ wizard.form.building_number }}
+            {{ wizard.form.building_number.label_tag }}
+          </div>
+          {{ wizard.form.post_code.errors }}
+          <div class="form-floating mb-3 p-1">
+            {{ wizard.form.post_code }}
+            {{ wizard.form.post_code.label_tag }}
+          </div>
         </div>
       {% endif %}
     </div>

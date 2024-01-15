@@ -5,8 +5,8 @@
     <div class="container justify-content-center">
       <div class="row w-100 gy-2">
         <div class="col-6 col-md-4">
-          <a href="{% url 'home' %}"
-            class="btn w-100 {% if request.resolver_match.url_name == 'home' %} btn-outline-success {% else %} btn-outline-light {% endif %} me-2">
+          <a href="{% url 'days_rental' %}"
+            class="btn w-100 {% if request.resolver_match.url_name == 'days_rental' %} btn-outline-success {% else %} btn-outline-light {% endif %} me-2">
             {% trans 'Rent a car' %}
           </a>
         </div>

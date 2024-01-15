@@ -5,8 +5,10 @@
   {% trans "Sign In" %}
 {% endblock head_title %}
 {% block content %}
-  <div class="d-flex justify-content-center align-items-center">
-    {% url 'account_login' as login_url %}
+<div class="row">
+  {% url 'account_login' as login_url %}
+  {% url 'account_reset_password' as reset_url %}
+  <div class="col-12 col-md-6 offset-md-3">
     {% element form form=form method="post" action=login_url tags="entrance,login" class="my-5" %}
       {% slot body %}
         {% element h1 %}
@@ -42,11 +44,16 @@
           {% trans "Sign In" %}
         {% endelement %}
         <p class="my-3">
+          {% blocktrans %}
+          <a href="{{ reset_url }}">I don't remember password.</a>{% endblocktrans %}
+        </p>
+        <p class="my-3">
           {% blocktrans %}If you have not created an account yet, then please
           <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
         </p>
       {% endslot %}
     {% endelement %}
   </div>
-  {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+</div>
+{% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
 {% endblock content %}

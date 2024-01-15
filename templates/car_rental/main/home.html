@@ -1,19 +1,18 @@
 {% extends "car_rental/layouts/main_base.html" %}
 {% load i18n static %}
 {% block head_title %}
-  {% trans "Home" %}
+  {% trans "Home page" %}
 {% endblock head_title %}
 
 {% block content %}
 <div class="container my-5">
   <div class="container">
-    <h3 class="fw-normal mb-3">{% trans 'Rent a car for:' %}</h3>
     <div class="row pt-4 gy-3 gx-5">
 
       <div class="col-12 col-md-6 offset-md-3">
         <a href="{% url 'days_rental' %}" class="card btn btn-secondary">
           <div class="card-body">
-            <h5 class="card-title text-center">{% trans 'Days' %}</h5>
+            <h5 class="card-title text-center">{% trans 'Rent a car' %}</h5>
             <div class="d-flex justify-content-center">
               <img src="{% static 'img/car_pictures/default_car.png' %}" class="img-thumbnail" alt="{% trans 'Days' %}" width="350px" height="200px">
             </div>

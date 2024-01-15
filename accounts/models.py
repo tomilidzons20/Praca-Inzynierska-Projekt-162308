@@ -5,8 +5,11 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class CustomUser(AbstractUser):
-    phone_number = PhoneNumberField()
+    phone_number = PhoneNumberField(
+        verbose_name=_('Phone number')
+    )
     profile_picture = models.ImageField(
+        verbose_name=_('Profile picture'),
         upload_to='uploads/img/profile_pictures',
         blank=True,
         null=True,

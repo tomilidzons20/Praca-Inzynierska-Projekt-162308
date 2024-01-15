@@ -230,7 +230,7 @@ class News(models.Model):
         null=False,
     )
     description = BleachField(
-        _('Description'),
+        verbose_name=_('Description'),
     )
     main_picture = models.ImageField(
         upload_to='uploads/img/news',

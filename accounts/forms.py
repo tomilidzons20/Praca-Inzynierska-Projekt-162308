@@ -2,6 +2,7 @@ from allauth.account.forms import AddEmailForm
 from allauth.account.forms import ChangePasswordForm
 from allauth.account.forms import LoginForm
 from allauth.account.forms import ResetPasswordForm
+from allauth.account.forms import ResetPasswordKeyForm
 from allauth.account.forms import SignupForm
 from django import forms
 from django.utils.translation import gettext_lazy as _
@@ -108,3 +109,9 @@ class AddressForm(forms.ModelForm):
         exclude = [
             'account',
         ]
+
+
+class CustomResetPasswordKeyForm(ResetPasswordKeyForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        set_form_styles(self.fields)

@@ -8,8 +8,11 @@ $(document).on('submit', '#rental-form', (e) => {
     success: function (data) {
       location.reload();
     },
-    error: function(data) {
-      console.log('Error:', data);
+    error: function(xhr, status, error) {
+      const errors = JSON.parse(xhr.responseText).errors;
+      const container = $('#error-container');
+      container.text(errors['__all__']);
+      container.attr('class', 'mb-3')
     }
   });
 });

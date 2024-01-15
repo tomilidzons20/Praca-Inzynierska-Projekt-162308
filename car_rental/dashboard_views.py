@@ -63,7 +63,6 @@ class DashboardHomeView(StaffRequiredMixin, TemplateView):
             status=CarRental.StatusChoices.RENTED,
             end_date__gte=now,
         ).order_by('-end_date')[:5]
-        print(context['ending_rentals'])
         context['incoming_rentals'] = CarRental.objects.filter(
             status=CarRental.StatusChoices.RESERVED,
             start_date__gte=now,
