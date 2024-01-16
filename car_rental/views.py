@@ -159,9 +159,7 @@ class CarRentalForDaysView(LoginRequiredMixin, SessionWizardView):
                     Q(status=CarRental.StatusChoices.RESERVED) |
                     Q(status=CarRental.StatusChoices.RENTED),
                     Q(start_date__lte=date_from, end_date__gte=date_from) |
-                    Q(start_date__lte=date_to, end_date__gte=date_to) |
-                    Q(start_date__gte=date_from, start_date__lte=date_to) &
-                    Q(end_date__gte=date_from, end_date__lte=date_to),
+                    Q(start_date__lte=date_to, end_date__gte=date_to),
                     car=car.id,
                 )
                 if car_rentals:
